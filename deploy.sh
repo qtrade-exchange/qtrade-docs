@@ -22,6 +22,7 @@ Options:
 
 run_build() {
   bundle exec middleman build --clean
+  cp ./postman.json build
 }
 
 parse_args() {
