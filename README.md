@@ -10,6 +10,17 @@
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
 
+Qtrade Ubuntu 16.04 Quickstart
+------------
+``` shell
+sudo apt-get install ruby ruby-dev python3 python3-pip
+sudo gem install bundler
+bundle install
+bundle exec middleman server
+pip3 install --user jinja2
+python3 template_proc.py > source/index.html.md
+```
+
 Features
 ------------
 
