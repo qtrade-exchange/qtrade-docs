@@ -1,0 +1,2455 @@
+{
+	"info": {
+		"name": "qtrade",
+		"_postman_id": "4b77219d-0589-ca74-954d-4475561290c1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Markets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/markets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"markets"
+					]
+				},
+				"description": "Get general information about all available markets."
+			},
+			"response": [
+				{
+					"id": "a9e4e310-173e-4bd8-9021-73d12525aa2e",
+					"name": "Markets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/markets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"markets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "305",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:38:00 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 11:21:29 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI0ODA4OXxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FFfBnfbZTutO2fDL2rybXyU12Q2HKPaZ5b991lqoO-xF-h",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "23",
+					"body": "{\"markets\":[{\"id\":1,\"market_currency\":\"LTC\",\"base_currency\":\"BTC\"},{\"id\":2,\"market_currency\":\"DOGE\",\"base_currency\":\"BTC\"},{\"id\":3,\"market_currency\":\"BTM\",\"base_currency\":\"BTC\"},{\"id\":4,\"market_currency\":\"DASH\",\"base_currency\":\"BTC\"},{\"id\":5,\"market_currency\":\"ETH\",\"base_currency\":\"BTC\"}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Market Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/market/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"market",
+						"1"
+					]
+				},
+				"description": "Details about a specific market ID. WIP."
+			},
+			"response": [
+				{
+					"id": "28cedfe2-ac06-46c0-8ad0-73f890464b2a",
+					"name": "Market Details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/market/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"market",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "180",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:50:20 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "19",
+					"body": "{\"market\":{\"id\":1,\"market_currency\":\"LTC\",\"base_currency\":\"BTC\"},\"recent_trades\":[{\"amount\":\"0.50000000\",\"price\":\"0.01000000\",\"time\":\"2017-11-09T14:46:19.821263Z\"}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "OHLCV",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/market/1/ohlcv",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"market",
+						"1",
+						"ohlcv"
+					]
+				},
+				"description": "Details about a specific market ID. WIP."
+			},
+			"response": [
+				{
+					"id": "ceabc583-0aaf-44e5-b1e0-ab1b5ba5ea04",
+					"name": "Market Details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/market/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"market",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "180",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:50:20 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "19",
+					"body": "{\"market\":{\"id\":1,\"market_currency\":\"LTC\",\"base_currency\":\"BTC\"},\"recent_trades\":[{\"amount\":\"0.50000000\",\"price\":\"0.01000000\",\"time\":\"2017-11-09T14:46:19.821263Z\"}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Register Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"first_name\": \"test\", \"last_name\": \"test\", \"password\": \"test12345\", \"email\": \"t@test.com\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"register"
+					]
+				},
+				"description": "Register a new user account on qtrade."
+			},
+			"response": [
+				{
+					"id": "f3cd7efc-1dda-4520-be4c-90d303d0af26",
+					"name": "Register Account",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\": \"test\", \"last_name\": \"test\", \"password\": \"testing12345\", \"email\": \"t@test.com\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:39:09 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 11:21:29 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI0ODA4OXxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FFfBnfbZTutO2fDL2rybXyU12Q2HKPaZ5b991lqoO-xF-h",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "26",
+					"body": "{\"id\":4,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d51c21b-6861-4f07-aca9-d051465e75da",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"bearer\", pm.response.json()['data']['token']);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"t@test.com\", \"password\": \"test12345\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"login"
+					]
+				},
+				"description": "Returns a JWT used to authenticate all user actions. This token can be used instead of API key."
+			},
+			"response": [
+				{
+					"id": "5ca8ffea-dba3-4693-94f7-200aec937f0a",
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"t@test.com\", \"password\": \"testing12345\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:39:20 GMT",
+							"name": "Date",
+							"description": ""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "mysession=MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM; Path=/; Expires=Sat, 09 Dec 2017 20:39:20 GMT; Max-Age=2592000",
+							"name": "Set-Cookie",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:39:20 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "24",
+					"body": "{\"id\":4,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "TFA Setup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"bearer\", pm.response.json()['token']);"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWFsbXMiOlsidHJhZGUiLCJ3aXRoZHJhdyIsImtleWdlbiIsInRmYSJdLCJ1c2VyX2lkIjoxLCJleHAiOjE1MTE1ODg4OTh9.IfzHu4QR8iHedXFLawPkCjDaBAgGSFb70geDU2GLWos",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/tfa_setup",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"tfa_setup"
+					]
+				},
+				"description": "Returns a JWT used to authenticate all user actions. This token can be used instead of API key."
+			},
+			"response": [
+				{
+					"id": "2297965d-3eeb-42a0-bd8d-b13729c7a526",
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"t@test.com\", \"password\": \"testing12345\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:39:20 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "mysession=MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM; Path=/; Expires=Sat, 09 Dec 2017 20:39:20 GMT; Max-Age=2592000",
+							"name": "Set-Cookie",
+							"description": "an HTTP cookie"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:39:20 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "24",
+					"body": "{\"id\":4,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "User Info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"isaac23@simpload.com\", \"password\": \"testing123\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"me"
+					]
+				},
+				"description": "Fetch general information about the authenticated user account."
+			},
+			"response": [
+				{
+					"id": "200bb0d3-23ca-45f3-a4fa-92c7ca11b32d",
+					"name": "User Info",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"isaac23@simpload.com\", \"password\": \"testing123\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "53",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:40:05 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:39:20 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "270",
+					"body": "{\"success\":true,\"user\":{\"email\":\"t@test.com\",\"id\":4}}"
+				}
+			]
+		},
+		{
+			"name": "User Market View",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/market/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"market",
+						"1"
+					]
+				},
+				"description": "Current useable account balances for a user account. Doesn't include amounts currently represented in open orders, pending deposits or withdraws."
+			},
+			"response": [
+				{
+					"id": "6784f768-2605-488a-bb53-a972b00de32f",
+					"name": "Balances",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/balances",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"balances"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "129",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:43:34 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:39:20 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "17",
+					"body": "{\"balances\":[{\"user_id\":4,\"currency\":\"LTC\",\"val\":\"1.00000000\"},{\"user_id\":4,\"currency\":\"BTC\",\"val\":\"1.00000000\"}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Balances",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/balances",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"balances"
+					]
+				},
+				"description": "Current useable account balances for a user account. Doesn't include amounts currently represented in open orders, pending deposits or withdraws."
+			},
+			"response": [
+				{
+					"id": "fb50bbec-cc9b-4411-9426-208f0ed5aa5a",
+					"name": "Balances",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/balances",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"balances"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "129",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:43:34 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:39:20 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI1OTk2MHxEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FJfL116bPa8Z6EBHyT6VUU35ub3loVQNZV01wFcQts0EjM",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "17",
+					"body": "{\"balances\":[{\"user_id\":4,\"currency\":\"LTC\",\"val\":\"1.00000000\"},{\"user_id\":4,\"currency\":\"BTC\",\"val\":\"1.00000000\"}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Create a Withdraw",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"currency\": \"LTC\", \"amount\": \"9.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/withdraw",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"withdraw"
+					]
+				},
+				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+			},
+			"response": [
+				{
+					"id": "a7433aec-92fd-47e7-8731-c00debec4aec",
+					"name": "Create a Withdraw",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"currency\": \"LTC\", \"amount\": \"0.5\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/withdraw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"withdraw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:49:16 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "19",
+					"body": "{\"id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Withdraws",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"currency\": \"LTC\", \"amount\": \"9.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/withdraws",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"withdraws"
+					]
+				},
+				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+			},
+			"response": [
+				{
+					"id": "d50acb82-863a-4df0-83eb-f6058264c5e3",
+					"name": "Create a Withdraw",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"currency\": \"LTC\", \"amount\": \"0.5\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/withdraw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"withdraw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:49:16 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "19",
+					"body": "{\"id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Deposits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"currency\": \"LTC\", \"amount\": \"9.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/withdraws",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"withdraws"
+					]
+				},
+				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+			},
+			"response": [
+				{
+					"id": "ed530a68-0831-4e9c-b30e-71885b7b9bc1",
+					"name": "Create a Withdraw",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"currency\": \"LTC\", \"amount\": \"0.5\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/withdraw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"withdraw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "23",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:49:16 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "19",
+					"body": "{\"id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"t@test.com\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/transfers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"transfers"
+					]
+				},
+				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+			},
+			"response": [
+				{
+					"id": "3cb4ab8f-32b3-4295-b025-d83877e63d45",
+					"name": "Get Deposit Address for a Currency",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "63",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:59 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
+				},
+				{
+					"id": "af5b59f6-abb5-49cb-a5e3-58378e351917",
+					"name": "Empty address pool",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "57",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:48:08 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "18",
+					"body": "{\"error\":\"Address pool empty, try later\",\"success\":false}"
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/orders",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"orders"
+					]
+				},
+				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+			},
+			"response": [
+				{
+					"id": "e2b83b83-a643-45ac-a7ac-5c3c8cfd4a36",
+					"name": "Trades",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/trades",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"trades"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "403",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:22 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "17",
+					"body": "{\"orders\":[{\"id\":3,\"amount\":\"0.50000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"sell_limit\",\"market_id\":1,\"open\":true,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]},{\"id\":4,\"amount\":\"0.00000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"buy_limit\",\"market_id\":1,\"open\":false,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/orders",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"orders"
+					]
+				},
+				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+			},
+			"response": [
+				{
+					"id": "2885860b-36ff-4edb-b088-be52c2d5e5c7",
+					"name": "Trades",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/trades",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"trades"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "403",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:22 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "17",
+					"body": "{\"orders\":[{\"id\":3,\"amount\":\"0.50000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"sell_limit\",\"market_id\":1,\"open\":true,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]},{\"id\":4,\"amount\":\"0.00000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"buy_limit\",\"market_id\":1,\"open\":false,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Level 1 Verification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"date_of_birth\": \"1995-02-18T20:18:56.015Z\",\n\t\"country\":       \"other\",\n\t\"address\":       \"poop\",\n\t\"state\":         \"thing\",\n\t\"city\":          \"fakeee\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/verify_level1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"verify_level1"
+					]
+				},
+				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+			},
+			"response": [
+				{
+					"id": "a693621c-62bc-4bfb-8788-f92c300ecee6",
+					"name": "Trades",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/trades",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"trades"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "403",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:22 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "17",
+					"body": "{\"orders\":[{\"id\":3,\"amount\":\"0.50000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"sell_limit\",\"market_id\":1,\"open\":true,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]},{\"id\":4,\"amount\":\"0.00000000\",\"price\":\"0.01000000\",\"value\":\"0.00000000\",\"order_type\":\"buy_limit\",\"market_id\":1,\"open\":false,\"trades\":[{\"id\":1,\"amount\":\"0.50000000\",\"value\":\"0.00500000\"}]}],\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Create Sell Limit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"amount\": \"1\", \"price\": \"0.01\", \"market_id\": 1}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/sell_limit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"sell_limit"
+					]
+				},
+				"description": "Creates an order to sell a currency at the specified price. Amount will be removed from your balance immediately. Returns the created order id."
+			},
+			"response": [
+				{
+					"id": "ac5f0c14-31fb-41a8-9fc7-a82535037ebc",
+					"name": "Create Sell Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\": \"1\", \"price\": \"0.01\", \"market_id\": 1}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/sell_limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"sell_limit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:12 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "9",
+					"body": "{\"order_id\":0,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Create Buy Limit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/buy_limit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"buy_limit"
+					]
+				},
+				"description": "Creates an order to buy a currency at the specified price on the specified market. Amount will be removed from your balance immediately. Returns the created order id."
+			},
+			"response": [
+				{
+					"id": "9fad8a4b-7953-4caa-a243-5a639cf7e1bf",
+					"name": "Create Buy Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\": \"0.5\", \"price\": \"0.01\", \"market_id\": 1}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/buy_limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"buy_limit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:19 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"order_id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Create API Key",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/buy_limit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"buy_limit"
+					]
+				},
+				"description": "Allows the authenticated user to generate new API keys for use in limited scope applications."
+			},
+			"response": [
+				{
+					"id": "f913c816-d3e3-45d6-9c73-b30168db4dab",
+					"name": "Create Buy Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\": \"0.5\", \"price\": \"0.01\", \"market_id\": 1}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/buy_limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"buy_limit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:19 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"order_id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Get API Keys",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/keys",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"keys"
+					]
+				},
+				"description": "Allows the authenticated user to generate new API keys for use in limited scope applications."
+			},
+			"response": [
+				{
+					"id": "820d5efe-c4cd-4484-a369-ddcf78ce7d2b",
+					"name": "Create Buy Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\": \"0.5\", \"price\": \"0.01\", \"market_id\": 1}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/buy_limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"buy_limit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:19 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"order_id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Get Deposit Address for a Currency",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/deposit_address/LTC",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"deposit_address",
+						"LTC"
+					]
+				},
+				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+			},
+			"response": [
+				{
+					"id": "d45e8556-d2df-434b-a37b-947571fab711",
+					"name": "Get Deposit Address for a Currency",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "63",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:59 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
+				},
+				{
+					"id": "f9fa9610-c249-49de-9424-1e4ed02cd6e9",
+					"name": "Empty address pool",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "57",
+							"name": "Content-Length",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:48:08 GMT",
+							"name": "Date",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "18",
+					"body": "{\"error\":\"Address pool empty, try later\",\"success\":false}"
+				}
+			]
+		},
+		{
+			"name": "Resend verification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/resendconfirm",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"resendconfirm"
+					]
+				},
+				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+			},
+			"response": [
+				{
+					"id": "2cd1b247-52e6-43b1-adc7-787fb3ecdbb4",
+					"name": "Get Deposit Address for a Currency",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "63",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:59 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
+				},
+				{
+					"id": "5ab656ef-5bc1-4c46-9022-483189178748",
+					"name": "Empty address pool",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "57",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:48:08 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "18",
+					"body": "{\"error\":\"Address pool empty, try later\",\"success\":false}"
+				}
+			]
+		},
+		{
+			"name": "Forgot password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"t@test.com\"}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/forgot",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"forgot"
+					]
+				},
+				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+			},
+			"response": [
+				{
+					"id": "727dbf81-78f2-406c-b0b3-88504983748d",
+					"name": "Get Deposit Address for a Currency",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "63",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:59 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
+				},
+				{
+					"id": "81aee8d7-594b-4085-a319-879b9ce95384",
+					"name": "Empty address pool",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/user/depositaddress/LTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"depositaddress",
+								"LTC"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "57",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:48:08 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "18",
+					"body": "{\"error\":\"Address pool empty, try later\",\"success\":false}"
+				}
+			]
+		}
+	]
+}
