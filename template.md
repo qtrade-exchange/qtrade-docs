@@ -107,3 +107,9 @@ api.get("/{{ item.request.url.path | join("/") }}").json()
 {% for item in private %}
 {{ endpoint(item) }}
 {% endfor %}
+
+# Postman Collection
+
+For convenience, you can download a Postman collection to play around with the API.
+
+<a href="postman.json">Download Here</a>
