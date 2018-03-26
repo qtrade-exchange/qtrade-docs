@@ -1,7 +1,7 @@
 {
 	"info": {
 		"name": "qtrade",
-		"_postman_id": "4b77219d-0589-ca74-954d-4475561290c1",
+		"_postman_id": "2f565760-8531-b087-a4fb-56976da4011c",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,16 +9,6 @@
 		{
 			"name": "Markets",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -36,7 +26,7 @@
 			},
 			"response": [
 				{
-					"id": "a9e4e310-173e-4bd8-9021-73d12525aa2e",
+					"id": "7f26e114-8ae5-420b-849e-6a2af2ae879f",
 					"name": "Markets",
 					"originalRequest": {
 						"method": "GET",
@@ -109,11 +99,11 @@
 						"1"
 					]
 				},
-				"description": "Details about a specific market ID. WIP."
+				"description": "Return details about a specific market."
 			},
 			"response": [
 				{
-					"id": "28cedfe2-ac06-46c0-8ad0-73f890464b2a",
+					"id": "61b66104-847a-42c8-a0f0-4a158197d624",
 					"name": "Market Details",
 					"originalRequest": {
 						"method": "GET",
@@ -177,7 +167,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{url}}/v1/market/1/ohlcv",
+					"raw": "{{url}}/v1/market/1/ohlcv/{{interval}}",
 					"host": [
 						"{{url}}"
 					],
@@ -185,14 +175,15 @@
 						"v1",
 						"market",
 						"1",
-						"ohlcv"
+						"ohlcv",
+						"{{interval}}"
 					]
 				},
-				"description": "Details about a specific market ID. WIP."
+				"description": "Returns OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration. \n\nValid interval values include:\n\n - \"fivemin\"\n - \"fifteenmin\"\n - \"thirtymin\"\n - \"onehour\"\n - \"twohour\"\n - \"fourhour\"\n - \"oneday\""
 			},
 			"response": [
 				{
-					"id": "ceabc583-0aaf-44e5-b1e0-ab1b5ba5ea04",
+					"id": "99510889-94bc-4a9b-ba0f-7e749a042615",
 					"name": "Market Details",
 					"originalRequest": {
 						"method": "GET",
@@ -277,7 +268,7 @@
 			},
 			"response": [
 				{
-					"id": "f3cd7efc-1dda-4520-be4c-90d303d0af26",
+					"id": "bcd910e4-ace2-4bff-9b65-7f536bc51521",
 					"name": "Register Account",
 					"originalRequest": {
 						"method": "POST",
@@ -347,7 +338,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4d51c21b-6861-4f07-aca9-d051465e75da",
 						"type": "text/javascript",
 						"exec": [
 							"pm.environment.set(\"bearer\", pm.response.json()['data']['token']);"
@@ -381,7 +371,7 @@
 			},
 			"response": [
 				{
-					"id": "5ca8ffea-dba3-4693-94f7-200aec937f0a",
+					"id": "1dc272e1-a5a1-4f33-a23b-40bf5e39fa2f",
 					"name": "Login",
 					"originalRequest": {
 						"method": "POST",
@@ -497,11 +487,11 @@
 						"tfa_setup"
 					]
 				},
-				"description": "Returns a JWT used to authenticate all user actions. This token can be used instead of API key."
+				"description": "Request a two-factor authorization key string. This will fail if two-factor auth is already enabled, and the secret will not be valid until it is confirmed on the `/user/tfa` endpoint"
 			},
 			"response": [
 				{
-					"id": "2297965d-3eeb-42a0-bd8d-b13729c7a526",
+					"id": "037799a2-3202-4468-b127-c1afb76e2576",
 					"name": "Login",
 					"originalRequest": {
 						"method": "POST",
@@ -610,7 +600,7 @@
 			},
 			"response": [
 				{
-					"id": "200bb0d3-23ca-45f3-a4fa-92c7ca11b32d",
+					"id": "5015bb78-bb26-4cb6-bd2b-329d0915e54a",
 					"name": "User Info",
 					"originalRequest": {
 						"method": "GET",
@@ -703,11 +693,11 @@
 						"1"
 					]
 				},
-				"description": "Current useable account balances for a user account. Doesn't include amounts currently represented in open orders, pending deposits or withdraws."
+				"description": "Returns the currently available `base_currency` and `markey_currency`  balances for a user on the given market. These amounts do **not** include amounts currently represented in open orders, pending deposits or withdraws.\n\nAlso returns lists of `open_orders` and `closed_orders`"
 			},
 			"response": [
 				{
-					"id": "6784f768-2605-488a-bb53-a972b00de32f",
+					"id": "1b0ac970-fb6c-4291-bd1d-dc166cc64c97",
 					"name": "Balances",
 					"originalRequest": {
 						"method": "GET",
@@ -795,7 +785,7 @@
 			},
 			"response": [
 				{
-					"id": "fb50bbec-cc9b-4411-9426-208f0ed5aa5a",
+					"id": "957883b6-54ca-445b-86fe-f5e163b35e80",
 					"name": "Balances",
 					"originalRequest": {
 						"method": "GET",
@@ -887,11 +877,11 @@
 						"withdraw"
 					]
 				},
-				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+				"description": "Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes."
 			},
 			"response": [
 				{
-					"id": "a7433aec-92fd-47e7-8731-c00debec4aec",
+					"id": "28bd2be5-cdd7-45fc-b6c3-78fae3243a18",
 					"name": "Create a Withdraw",
 					"originalRequest": {
 						"method": "POST",
@@ -991,11 +981,11 @@
 						"withdraws"
 					]
 				},
-				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+				"description": "Returns a list of the user's Withdraws and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values"
 			},
 			"response": [
 				{
-					"id": "d50acb82-863a-4df0-83eb-f6058264c5e3",
+					"id": "64ed1db5-23c5-4454-af32-d741b616a488",
 					"name": "Create a Withdraw",
 					"originalRequest": {
 						"method": "POST",
@@ -1095,11 +1085,11 @@
 						"withdraws"
 					]
 				},
-				"description": "Creates a request with Withdraw currency to a specified address. Removes the money from balance instantly, is processed in batch jobs every few minutes."
+				"description": "Returns a list of the user's Deposits and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values"
 			},
 			"response": [
 				{
-					"id": "ed530a68-0831-4e9c-b30e-71885b7b9bc1",
+					"id": "8a6c892f-60ac-43bd-8ab7-82681aad9a36",
 					"name": "Create a Withdraw",
 					"originalRequest": {
 						"method": "POST",
@@ -1189,20 +1179,21 @@
 					"raw": "{\"email\":\"t@test.com\"}"
 				},
 				"url": {
-					"raw": "{{url}}/v1/transfers",
+					"raw": "{{url}}/v1/user/transfers",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"v1",
+						"user",
 						"transfers"
 					]
 				},
-				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+				"description": "Returns a list of the user's Transfers and metadata. Transfers are a special internal movement of funds between qTrade users. User created Transfers are not currently supported"
 			},
 			"response": [
 				{
-					"id": "3cb4ab8f-32b3-4295-b025-d83877e63d45",
+					"id": "c1d0bcee-3b9e-4f42-8273-82cf2d7e695e",
 					"name": "Get Deposit Address for a Currency",
 					"originalRequest": {
 						"method": "POST",
@@ -1259,7 +1250,7 @@
 					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
 				},
 				{
-					"id": "af5b59f6-abb5-49cb-a5e3-58378e351917",
+					"id": "1f6a5a5c-7517-4e87-a6f0-654bb10039d0",
 					"name": "Empty address pool",
 					"originalRequest": {
 						"method": "POST",
@@ -1318,7 +1309,7 @@
 			]
 		},
 		{
-			"name": "Orders",
+			"name": "Order History",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1348,7 +1339,7 @@
 			},
 			"response": [
 				{
-					"id": "e2b83b83-a643-45ac-a7ac-5c3c8cfd4a36",
+					"id": "13b7a17e-b48a-402b-980c-b5e1bcb0afdb",
 					"name": "Trades",
 					"originalRequest": {
 						"method": "GET",
@@ -1422,21 +1413,22 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{url}}/v1/user/orders",
+					"raw": "{{url}}/v1/user/order/{{id}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"v1",
 						"user",
-						"orders"
+						"order",
+						"{{id}}"
 					]
 				},
-				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+				"description": "Takes an Order ID and returns data about that order"
 			},
 			"response": [
 				{
-					"id": "2885860b-36ff-4edb-b088-be52c2d5e5c7",
+					"id": "5e850844-ff71-4471-a36c-39c7de3eadb1",
 					"name": "Trades",
 					"originalRequest": {
 						"method": "GET",
@@ -1528,11 +1520,11 @@
 						"verify_level1"
 					]
 				},
-				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+				"description": "Request level 1 account verification. Once posted these values are not modifyable. Requires `date_of_birth`, `address`, `state`, `city`, and `country`"
 			},
 			"response": [
 				{
-					"id": "a693621c-62bc-4bfb-8788-f92c300ecee6",
+					"id": "b9f33cfb-ff84-4c29-964b-d35bb307766c",
 					"name": "Trades",
 					"originalRequest": {
 						"method": "GET",
@@ -1628,7 +1620,7 @@
 			},
 			"response": [
 				{
-					"id": "ac5f0c14-31fb-41a8-9fc7-a82535037ebc",
+					"id": "f3fe5105-d59b-4121-8933-1b7c6a8e53c5",
 					"name": "Create Sell Limit",
 					"originalRequest": {
 						"method": "POST",
@@ -1732,7 +1724,7 @@
 			},
 			"response": [
 				{
-					"id": "9fad8a4b-7953-4caa-a243-5a639cf7e1bf",
+					"id": "bbba3dcc-44a5-4c4f-909f-d535e6e73403",
 					"name": "Create Buy Limit",
 					"originalRequest": {
 						"method": "POST",
@@ -1836,7 +1828,111 @@
 			},
 			"response": [
 				{
-					"id": "f913c816-d3e3-45d6-9c73-b30168db4dab",
+					"id": "a628e886-478e-405c-8cfc-74093884093b",
+					"name": "Create Buy Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"amount\": \"0.5\", \"price\": \"0.01\", \"market_id\": 1}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/buy_limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"buy_limit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 Nov 2017 20:46:19 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Sat Dec 09 2017 14:46:07 GMT-0600 (CST)",
+							"httpOnly": false,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "MTUxMDI2MDM2N3xEdi1CQkFFQ180SUFBUkFCRUFBQU9fLUNBQUlHYzNSeWFXNW5EQW9BQ0d4dloyZGxaRWx1QkdKdmIyd0NBZ0FCQm5OMGNtbHVad3dJQUFaMWMyVnlTV1FGYVc1ME5qUUVBZ0FDfHqFaBrDKcg5CQFSJxoNfRZQr3bNQY_h8DULjjfH2om0",
+							"key": "mysession"
+						}
+					],
+					"responseTime": "13",
+					"body": "{\"order_id\":1,\"success\":true}"
+				}
+			]
+		},
+		{
+			"name": "Revoke API Key",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"key_id\": 1}"
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/buy_limit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"buy_limit"
+					]
+				},
+				"description": "Allows the authenticated user to revoke an API key."
+			},
+			"response": [
+				{
+					"id": "70decffb-cce0-49a4-8eeb-750addbb8b0f",
 					"name": "Create Buy Limit",
 					"originalRequest": {
 						"method": "POST",
@@ -1936,11 +2032,11 @@
 						"keys"
 					]
 				},
-				"description": "Allows the authenticated user to generate new API keys for use in limited scope applications."
+				"description": "Returns a list of API keys with their description string and permissions"
 			},
 			"response": [
 				{
-					"id": "820d5efe-c4cd-4484-a369-ddcf78ce7d2b",
+					"id": "aa4c2b36-33f2-4d2f-a208-036fc389d958",
 					"name": "Create Buy Limit",
 					"originalRequest": {
 						"method": "POST",
@@ -2006,7 +2102,7 @@
 			]
 		},
 		{
-			"name": "Get Deposit Address for a Currency",
+			"name": "Get Deposit Address",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -2022,7 +2118,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{url}}/v1/user/deposit_address/LTC",
+					"raw": "{{url}}/v1/user/deposit_address/{{currency_key}}",
 					"host": [
 						"{{url}}"
 					],
@@ -2030,14 +2126,14 @@
 						"v1",
 						"user",
 						"deposit_address",
-						"LTC"
+						"{{currency_key}}"
 					]
 				},
-				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+				"description": "Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time."
 			},
 			"response": [
 				{
-					"id": "d45e8556-d2df-434b-a37b-947571fab711",
+					"id": "79abb0b2-b64b-4961-bf02-63e7b48f8ac4",
 					"name": "Get Deposit Address for a Currency",
 					"originalRequest": {
 						"method": "POST",
@@ -2094,7 +2190,7 @@
 					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
 				},
 				{
-					"id": "f9fa9610-c249-49de-9424-1e4ed02cd6e9",
+					"id": "4c4328cb-cd8b-457e-9ee5-de947d994b7b",
 					"name": "Empty address pool",
 					"originalRequest": {
 						"method": "POST",
@@ -2179,11 +2275,11 @@
 						"resendconfirm"
 					]
 				},
-				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+				"description": "Resends the email verification letter"
 			},
 			"response": [
 				{
-					"id": "2cd1b247-52e6-43b1-adc7-787fb3ecdbb4",
+					"id": "0fdbe0cd-1428-4408-bc4b-96212741a2a2",
 					"name": "Get Deposit Address for a Currency",
 					"originalRequest": {
 						"method": "POST",
@@ -2240,7 +2336,7 @@
 					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
 				},
 				{
-					"id": "5ab656ef-5bc1-4c46-9022-483189178748",
+					"id": "52ab4e21-0c18-463d-88ee-0441d20474fe",
 					"name": "Empty address pool",
 					"originalRequest": {
 						"method": "POST",
@@ -2301,16 +2397,6 @@
 		{
 			"name": "Forgot password",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [
 					{
@@ -2332,11 +2418,11 @@
 						"forgot"
 					]
 				},
-				"description": "Returns a deposit address for sending money to your exchange account. This should rarely change, but it is good practice to fetch it before sending currency every time."
+				"description": "Sends a prompt to reset your password. Accepts an email address "
 			},
 			"response": [
 				{
-					"id": "727dbf81-78f2-406c-b0b3-88504983748d",
+					"id": "3cf86498-aa3a-4818-a59d-eed5716e38ca",
 					"name": "Get Deposit Address for a Currency",
 					"originalRequest": {
 						"method": "POST",
@@ -2393,7 +2479,7 @@
 					"body": "{\"address\":\"mfgtdwpDuGJquoPubQWPiDa1pwA5aPeYmr\",\"success\":true}"
 				},
 				{
-					"id": "81aee8d7-594b-4085-a319-879b9ce95384",
+					"id": "255ab5ee-b27a-4364-b5a6-2358bccd7083",
 					"name": "Empty address pool",
 					"originalRequest": {
 						"method": "POST",
