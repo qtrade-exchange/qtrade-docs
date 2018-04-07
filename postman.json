@@ -26,7 +26,7 @@
 			},
 			"response": [
 				{
-					"id": "d7da63ec-91ce-4b39-9cf8-79f96224da97",
+					"id": "62044e94-632a-4d6d-8aa7-f4cb6edcfcce",
 					"name": "Markets",
 					"originalRequest": {
 						"method": "GET",
@@ -100,7 +100,7 @@
 			},
 			"response": [
 				{
-					"id": "8fb88504-04d0-4169-aeeb-ca6656083e7f",
+					"id": "bbc8296a-3a11-4b5e-bf73-f462c4b7663e",
 					"name": "Market Details",
 					"originalRequest": {
 						"method": "GET",
@@ -155,6 +155,215 @@
 			]
 		},
 		{
+			"name": "Currencies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/currencies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"currencies"
+					]
+				},
+				"description": "Get general information about all available currencies."
+			},
+			"response": [
+				{
+					"id": "89b58e8e-2698-4c7c-a668-180e7350f951",
+					"name": "Markets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/markets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"markets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "314",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 06 Apr 2018 19:58:15 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"responseTime": 22,
+					"body": "{\"data\":{\"markets\":[{\"id\":2,\"market_currency\":\"BCH\",\"base_currency\":\"BTC\",\"maker_fee\":\"0.0025\",\"taker_fee\":\"0.0025\",\"metadata\":{},\"can_trade\":true,\"can_cancel\":true},{\"id\":1,\"market_currency\":\"LTC\",\"base_currency\":\"BTC\",\"maker_fee\":\"0.0025\",\"taker_fee\":\"0.0025\",\"metadata\":{},\"can_trade\":true,\"can_cancel\":true}]}}"
+				},
+				{
+					"id": "98e8808e-d6f0-4b30-8453-b9d92266e37a",
+					"name": "Currencies",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/currencies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"currencies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "869",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Apr 2018 04:33:51 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"responseTime": 13,
+					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"confirms\": 6,\n                    \"withdraw_fee\": \"0.001\",\n                    \"address_version\": 111,\n                    \"satoshi_per_byte\": 10,\n                    \"required_confirmations\": 6,\n                    \"required_generate_confirmations\": 120\n                },\n                \"metadata\": {},\n                \"can_withdraw\": true\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Ticker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/ticker/[market_string]",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ticker",
+						"[market_string]"
+					]
+				},
+				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
+			},
+			"response": []
+		},
+		{
+			"name": "Ticker by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/ticker_by_id/[market_id]",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ticker_by_id",
+						"[market_id]"
+					]
+				},
+				"description": "Get ticker values for the given market. The `market_id` value should be a valid market integer ID. These IDs are returned on the `Markets` and `Market Details` endpoints "
+			},
+			"response": []
+		},
+		{
+			"name": "Orderbook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/ticker/[market_string]",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ticker",
+						"[market_string]"
+					]
+				},
+				"description": "Get orderbook values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
+			},
+			"response": []
+		},
+		{
+			"name": "Orderbook by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/orderbook_by_id/[market_id]",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"orderbook_by_id",
+						"[market_id]"
+					]
+				},
+				"description": "Get orderbook values for the given market. The `market_id` value should be a valid market integer ID. These IDs are returned on the `Markets` and `Market Details` endpoints"
+			},
+			"response": []
+		},
+		{
 			"name": "OHLCV",
 			"request": {
 				"method": "GET",
@@ -177,7 +386,7 @@
 			},
 			"response": [
 				{
-					"id": "6220d193-a9f0-4f1d-acae-f30de0c77f85",
+					"id": "3af532c6-bef7-42c9-ac33-cc0ab8e9e0b2",
 					"name": "OHLCV",
 					"originalRequest": {
 						"method": "GET",
@@ -272,7 +481,7 @@
 			},
 			"response": [
 				{
-					"id": "6fa212ea-67e8-43f5-b659-bfa146b9f1a1",
+					"id": "2b5c1392-38ea-42c5-8ffc-2b1a3958df1a",
 					"name": "User Info",
 					"originalRequest": {
 						"method": "GET",
@@ -365,7 +574,7 @@
 			},
 			"response": [
 				{
-					"id": "e8ba4dc7-66f4-4e70-a543-938cb2d37edb",
+					"id": "7d34638d-afa0-436c-ac0b-bc27671ba537",
 					"name": "Balances",
 					"originalRequest": {
 						"method": "GET",
@@ -451,7 +660,7 @@
 			},
 			"response": [
 				{
-					"id": "71b116bd-9d16-4c94-9746-050f15579a0e",
+					"id": "2ec90ccb-94a3-4045-af95-f96ed15abef7",
 					"name": "User Market View",
 					"originalRequest": {
 						"method": "GET",
@@ -537,7 +746,7 @@
 			},
 			"response": [
 				{
-					"id": "33446af5-5653-4a61-b488-5af5dee1deb9",
+					"id": "41aac9e1-e587-4a21-ac08-59a18366ac74",
 					"name": "Order History",
 					"originalRequest": {
 						"method": "GET",
@@ -624,6 +833,50 @@
 			"response": []
 		},
 		{
+			"name": "Cancel Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "4"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/user/cancel_order",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"cancel_order"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "Takes an Order ID"
+			},
+			"response": []
+		},
+		{
 			"name": "Withdraw History",
 			"request": {
 				"auth": {
@@ -662,7 +915,7 @@
 			},
 			"response": [
 				{
-					"id": "712b3b36-0005-4090-8787-802c3418054a",
+					"id": "3ac63c4a-f9e8-4ba7-b541-d08f02887c31",
 					"name": "Withdraws",
 					"originalRequest": {
 						"method": "GET",
@@ -765,7 +1018,7 @@
 			},
 			"response": [
 				{
-					"id": "101ddceb-0554-42e0-abf5-c8509623c230",
+					"id": "14d4182f-0c6a-4dc1-a583-517a5690c1a6",
 					"name": "Withdraw Details",
 					"originalRequest": {
 						"method": "GET",
@@ -946,7 +1199,7 @@
 			},
 			"response": [
 				{
-					"id": "0ee5838f-c340-4c6f-9527-e38ebb4ebdd0",
+					"id": "499271ab-5b32-449e-86e3-403aaafb7ffa",
 					"name": "Transfers",
 					"originalRequest": {
 						"method": "GET",
@@ -1047,7 +1300,7 @@
 			},
 			"response": [
 				{
-					"id": "3e1631a9-a83e-451d-abad-7df31433287e",
+					"id": "3012921c-90be-4fb0-b9d2-23f80078ff34",
 					"name": "Create a Withdraw",
 					"originalRequest": {
 						"method": "POST",
@@ -1142,7 +1395,7 @@
 			},
 			"response": [
 				{
-					"id": "96cb14cf-92dc-4bb8-9df0-47de82493fc8",
+					"id": "c6d37eb7-5012-48c6-a578-58fe12da55fb",
 					"name": "Get Deposit Address - disabled",
 					"originalRequest": {
 						"method": "POST",
@@ -1171,7 +1424,7 @@
 					"body": "{\"data\":{\"currency_status\":\"disabled\"}}"
 				},
 				{
-					"id": "09b15c36-788b-4828-b126-6984b6d85692",
+					"id": "21d47611-816e-4c3f-9e0e-d19a0bef8b96",
 					"name": "Get Deposit Address - offline",
 					"originalRequest": {
 						"method": "POST",
@@ -1200,7 +1453,7 @@
 					"body": "{\"data\":{\"currency_status\":\"offline\"}}"
 				},
 				{
-					"id": "bf2e871a-2cd4-4708-8f8d-0fd198ef372d",
+					"id": "4285b26d-ba57-44a5-8574-6ef9e0cc63c6",
 					"name": "Get Deposit Address - ok",
 					"originalRequest": {
 						"method": "POST",
@@ -1229,7 +1482,7 @@
 					"body": "{\"data\":{\"address\":\"n1EFaiFzWbd5VeA5FWe1xqi1KVEsWFj2ni\",\"currency_status\":\"ok\"}}"
 				},
 				{
-					"id": "77fdc684-2973-4965-849a-197d614c174f",
+					"id": "738e1fea-f2f6-4d81-9dba-0a5d8968bd81",
 					"name": "Get Deposit Address - degraded",
 					"originalRequest": {
 						"method": "POST",
@@ -1298,7 +1551,7 @@
 			},
 			"response": [
 				{
-					"id": "81cea03e-f6f3-43aa-8505-5c14623976ca",
+					"id": "dd322fe5-6234-4047-b9f3-6d882e63fd0f",
 					"name": "Create Sell Limit",
 					"originalRequest": {
 						"method": "POST",
@@ -1399,7 +1652,7 @@
 			},
 			"response": [
 				{
-					"id": "02348f29-d733-48d5-b2ad-3af14e321ca4",
+					"id": "6470caed-92c5-4ebe-abe4-cae56ed4363c",
 					"name": "Create Buy Limit",
 					"originalRequest": {
 						"method": "POST",
