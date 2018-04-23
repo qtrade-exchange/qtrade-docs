@@ -3,7 +3,6 @@ title: qTrade API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - python
-  - shell
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -59,24 +58,12 @@ Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 {% for resp in item.response %}
 
 {% if item.request.method == "POST" and resp.originalRequest.body.raw %}
-``` shell
-curl -H "Content-Type: application/json" \
-     -H "Authorization: Bearer ${TOKEN}" \
-     -X POST \
-     -d '{{ resp.originalRequest.body.raw }}' \
-     {{ env.url }}/v1/user/me
-```
 
 ``` python
 req = {{ resp.originalRequest.body.raw | json_to_python_dict }}
 api.post("/{{ item.request.url.path | join("/") }}", json=req).json()
 ```
 {% elif item.request.method == "GET" %}
-``` shell
-curl -H "Content-Type: application/json" \
-     -H "Authorization: Bearer ${TOKEN}" \
-     {{ env.url }}/v1/user/me
-```
 
 ``` python
 api.get("/{{ item.request.url.path | join("/") }}").json()
