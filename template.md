@@ -29,7 +29,7 @@ The qTrade API is available at
 
 qTrade offers JWT and HMAC authentication methods. All requests and responses are the `application/json` content type return typical HTTP status codes.
 
-This documentation will focus on using HMAC authentication protocols.
+This documentation will only cover HMAC authentication protocols.
 
 
 ## HMAC authentication with an API key
@@ -50,27 +50,6 @@ Withdraw | `/user/withdraw`
 Deposit | `/user/deposit_address/{currency_code}` 
 Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 
-
-## JWT authentication
-
-``` python
-{{ load_snippet('password.py') }}
-```
-
-``` shell
-export TOKEN=$(curl -H -q "Content-Type: application/json" \
-                    -X POST \
-                    -d '{"email":"t@test.com","password":"test12345"}' \
-                    {{ env.url }}v1/login | jq -r '.data.token')
-```
-
-JWT is a username/password based token authentication. JWT is the method used on the qTrade exchange webpage and grants complete access to all user functions. Some actions in the API are protected by two factor auth (if enabled on the account).
-
-<aside class="notice">
-JWT authentication is not recommended for interacting with the qTrade trade engine due to the increased security burden of properly storing user credentials, two-factor auth, and the full access to all API commands.
-</aside>
-
-If you'd like to build your own front-end for qTrade JWT authentication is probably what you'd want to use.
 
 {% macro endpoint(item) %}
 ## {{ item.name }}
