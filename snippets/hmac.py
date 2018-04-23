@@ -38,5 +38,5 @@ api = requests.Session()
 api.auth = QtradeAuth("1:1111111111111111111111111111111111111111111111111111111111111111")
 
 # Make a call to API
-res = api.get('{{ url }}v1/user/me').json()
+res = api.get('{{ url }}/v1/user/me').json()
 print(res)
