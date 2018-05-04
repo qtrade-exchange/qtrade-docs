@@ -328,7 +328,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "{{url}}/v1/ticker/[market_string]",
+					"raw": "{{url}}/v1/orderbook/[market_string]",
 					"host": [
 						"{{url}}"
 					],
