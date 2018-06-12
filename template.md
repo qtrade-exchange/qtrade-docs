@@ -15,7 +15,7 @@ search: true
 
 # Introduction
 
-Welcome to the qTrade API documentation. These documents detail how to use qTrade's exchange API and are open source [on github]((https://github.com/icook/qtrade-docs)). If you'd like to make a correction or suggest any changes please feel free to make a pull request. 
+Welcome to the qTrade API documentation. These documents detail how to use qTrade's exchange API and are open source [on github](https://github.com/icook/qtrade-docs). If you'd like to make a correction or suggest any changes please feel free to make a pull request.
 
 qTrade's APIs are separated into two categories public and private. Private APIs require authentication and allows placing orders, making deposits and withdrawals, and other account information. Public APIs provide market data and do not require authentication.
 
