@@ -301,11 +301,139 @@
 			"response": []
 		},
 		{
-			"name": "Ticker by ID",
+			"name": "Tickers",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/tickers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"tickers"
+					]
+				},
+				"description": "Get ticker values for all markets."
+			},
+			"response": [
+				{
+					"id": "cb9932ae-c7ff-4f71-98f0-552dc0a47b64",
+					"name": "Tickers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/v1/tickers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"tickers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "CF-RAY",
+							"value": "43e14e558f327137-ORD",
+							"name": "CF-RAY",
+							"description": "Custom header"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 21 Jul 2018 23:04:20 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+							"name": "Expect-CT",
+							"description": "Custom header"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains",
+							"name": "Strict-Transport-Security",
+							"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Thu Feb 28 2019 18:23:46 GMT-0600 (CST)",
+							"httpOnly": true,
+							"domain": "qtrade.io",
+							"path": "/",
+							"secure": true,
+							"value": "d7c59c5f6bfec2ed4b1a0890e774ff1ac1519863826",
+							"key": "__cfduid"
+						}
+					],
+					"responseTime": 450,
+					"body": "{\"data\":{\"markets\":[{\"ask\":\"0.00000001\",\"bid\":null,\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":4,\"id_hr\":\"CPR_BTC\",\"last\":\"0.00000001\"},{\"ask\":null,\"bid\":null,\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":2,\"id_hr\":\"RCO_BTC\",\"last\":\"0\"},{\"ask\":\"0.00005\",\"bid\":\"0.00001025\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":6,\"id_hr\":\"QUAN_BTC\",\"last\":\"0.00001\"},{\"ask\":\"0.0000025\",\"bid\":\"0.0000015\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":7,\"id_hr\":\"RVN_BTC\",\"last\":\"0.0000025\"},{\"ask\":\"0.000128\",\"bid\":\"0.00002\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":9,\"id_hr\":\"BTM_BTC\",\"last\":\"0.00001701\"},{\"ask\":\"0.000002\",\"bid\":\"0.00000021\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":8,\"id_hr\":\"MMO_BTC\",\"last\":\"0.000074\"},{\"ask\":\"0.0290001\",\"bid\":\"0.0260001\",\"day_avg_price\":\"0.0274360570535912\",\"day_change\":\"0.3\",\"day_high\":\"0.030145\",\"day_low\":\"0.0215599\",\"day_open\":\"0.02\",\"day_volume_base\":\"0.15430256\",\"day_volume_market\":\"5.62407928\",\"id\":15,\"id_hr\":\"VEO_BTC\",\"last\":\"0.026\"},{\"ask\":\"0.000003\",\"bid\":null,\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":10,\"id_hr\":\"ANU_BTC\",\"last\":\"0.000005\"},{\"ask\":null,\"bid\":null,\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":12,\"id_hr\":\"BWS20_BWS10\",\"last\":\"1\"},{\"ask\":\"0.0000015\",\"bid\":\"0.0000007\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":11,\"id_hr\":\"BWS20_BTC\",\"last\":\"0.00000095\"},{\"ask\":\"0.00000499\",\"bid\":\"0.00000259\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":3,\"id_hr\":\"REDN_BTC\",\"last\":\"0.00000386\"},{\"ask\":\"0.00012\",\"bid\":\"0.000008\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":13,\"id_hr\":\"DEFT_BTC\",\"last\":\"0.000008\"},{\"ask\":\"0.0000148\",\"bid\":\"0.000009\",\"day_avg_price\":\"0.0000131189692541\",\"day_change\":\"-0.3793103448275862\",\"day_high\":\"0.0000133\",\"day_low\":\"0.000009\",\"day_open\":\"0.0000145\",\"day_volume_base\":\"0.0111475\",\"day_volume_market\":\"849.723769\",\"id\":14,\"id_hr\":\"RUPX_BTC\",\"last\":\"0.000009\"},{\"ask\":\"0.01325\",\"bid\":\"0.0115\",\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":1,\"id_hr\":\"LTC_BTC\",\"last\":\"0.01175\"},{\"ask\":\"0.0000999\",\"bid\":\"0.0000091\",\"day_avg_price\":\"0.0000462013833253\",\"day_change\":null,\"day_high\":\"0.00456\",\"day_low\":\"0.0000091\",\"day_open\":null,\"day_volume_base\":\"0.03871256\",\"day_volume_market\":\"837.90911037\",\"id\":16,\"id_hr\":\"THC_BTC\",\"last\":\"0.00456\"},{\"ask\":null,\"bid\":null,\"day_avg_price\":null,\"day_change\":null,\"day_high\":null,\"day_low\":null,\"day_open\":null,\"day_volume_base\":\"0\",\"day_volume_market\":\"0\",\"id\":5,\"id_hr\":\"BAC_BTC\",\"last\":\"0.000001\"}]}}"
+				}
+			]
+		},
+		{
+			"name": "Ticker by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/v1/ticker_by_id/[market_id]",
 					"host": [
