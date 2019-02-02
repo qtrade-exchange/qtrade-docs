@@ -15,7 +15,7 @@ search: true
 
 # Introduction
 
-Welcome to the qTrade API documentation. These documents detail how to use qTrade's exchange API and are open source [on github](https://github.com/icook/qtrade-docs). If you'd like to make a correction or suggest any changes please feel free to make a pull request.
+Welcome to the qTrade API documentation. These documents detail how to use qTrade's exchange API and are open source [on github](https://github.com/qtrade-exchange/qtrade-docs). If you'd like to make a correction or suggest any changes please feel free to make a pull request.
 
 qTrade's APIs are separated into two categories public and private. Private APIs require authentication and allows placing orders, making deposits and withdrawals, and other account information. Public APIs provide market data and do not require authentication.
 
@@ -70,14 +70,6 @@ api.get("/{{ item.request.url.path | join("/") }}").json()
 ```
 {% endif %}
 
-{% if item.request.method == "POST" and resp.originalRequest.body.raw %}
-> Request
-
-``` json
-{{ resp.originalRequest.body.raw | to_pretty_json }}
-```
-{% endif %}
-
 > {{ resp.code }} Response 
 
 ``` json
@@ -86,6 +78,22 @@ api.get("/{{ item.request.url.path | join("/") }}").json()
 {% endfor %}
 
 {{ item.request.description }}
+
+{% if item.request.url.variable %}
+Parameter | Type | Description
+--------- | ---- | -----------
+{% for prop in item.request.url.variable %}
+{{ prop.key }} | {{ prop.value }} | {{ prop.description }}
+{% endfor %}
+{% endif %}
+
+{% if item.request.url.query %}
+Parameter | Type | Description
+--------- | ---- | -----------
+{% for prop in item.request.url.query %}
+{{ prop.key }} | {{ prop.value }} | {{ prop.description }}
+{% endfor %}
+{% endif %}
 
 {% if item.extra.properties %}
 Parameter | Type | Description
