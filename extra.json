@@ -1,9 +1,3 @@
 {
-    "Create a Withdraw":{
-        "properties":{
-            "address": {"type": "string", "description": "The address to send withdrawn coins"},
-            "amount": {"type": "decimal string", "description": "A string specifying the amount of currency to withdraw"},
-            "currency": {"type": "string", "description": "The currency code of the currency you'd like to withdraw"}
-        }
-    }
+
 }
