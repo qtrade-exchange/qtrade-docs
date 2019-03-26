@@ -1859,14 +1859,71 @@
 					"variable": [
 						{
 							"key": "deposit_id",
-							"value": "String",
-							"description": "ID of a deposit"
+							"value": ""
 						}
 					]
 				},
-				"description": "Takes an Deposit ID and returns data about that Deposit\n\n<aside class=\"warning\">This endpoint currently non-functional</aside>"
+				"description": "Takes an Deposit ID and returns data about that Deposit"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Deposit Details Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/deposit/:deposit_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"deposit",
+								":deposit_id"
+							],
+							"variable": [
+								{
+									"key": "deposit_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "195"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2019 21:05:23 GMT"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"deposit\": [\n            {\n                \"id\": \"ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4\",\n                \"amount\": \"1\",\n                \"currency\": \"BTC\",\n                \"address\": \"1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE\",\n                \"status\": \"credited\",\n                \"relay_status\": \"\",\n                \"network_data\": {},\n                \"created_at\": \"2019-03-02T04:05:51.090427Z\"\n            }\n        ]\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "Transfers",
