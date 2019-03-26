@@ -1859,7 +1859,8 @@
 					"variable": [
 						{
 							"key": "deposit_id",
-							"value": ""
+							"value": "string",
+							"description": "ID of the deposit"
 						}
 					]
 				},
