@@ -1184,10 +1184,29 @@ Successful cancellation returns just a 200 with no payload
 <p>Returns a list of the user&#39;s Deposits and metadata including <code>id</code>, <code>amount</code>, <code>currency</code>, <code>address</code>, <code>status</code>, <code>network_data</code>, <code>created_at</code> values.</p>
 
 <p><code>GET https://api.qtrade.io/v1/user/deposits</code></p>
-<h2 id='deposit-details'>Deposit Details</h2>
+<h2 id='deposit-details'>Deposit Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/:deposit_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-02T04:05:51.090427Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"network_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="s2">"relay_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credited"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Takes an Deposit ID and returns data about that Deposit</p>
-
-<aside class="warning">This endpoint currently non-functional</aside>
 
 <table><thead>
 <tr>
@@ -1198,8 +1217,8 @@ Successful cancellation returns just a 200 with no payload
 </thead><tbody>
 <tr>
 <td>deposit_id</td>
-<td>String</td>
-<td>ID of a deposit</td>
+<td>string</td>
+<td>ID of the deposit</td>
 </tr>
 </tbody></table>
 
