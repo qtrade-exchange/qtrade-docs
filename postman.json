@@ -1232,7 +1232,7 @@
 			]
 		},
 		{
-			"name": "Order History",
+			"name": "Get Orders",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1259,9 +1259,23 @@
 						"v1",
 						"user",
 						"orders"
+					],
+					"query": [
+						{
+							"key": "open",
+							"value": "Boolean",
+							"description": "Filter by opened/closed orders",
+							"disabled": true
+						},
+						{
+							"key": "older_than",
+							"value": "Integer",
+							"description": "Expects an order ID and returns orders with and ID < the passed ID",
+							"disabled": true
+						}
 					]
 				},
-				"description": "Fetches the last 200 orders made by your account with all the trades associated."
+				"description": "Fetches the last 200 orders made by your account with all the trades associated.\n\nIf you need more than the last 200 trades use the `older_than` param. Passing an order ID will return results only orders which are older than that order ID."
 			},
 			"response": [
 				{
