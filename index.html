@@ -275,7 +275,7 @@
                     <a href="#user-market-view" class="toc-h2 toc-link" data-title="user-market-view">User Market View</a>
                   </li>
                   <li>
-                    <a href="#order-history" class="toc-h2 toc-link" data-title="order-history">Order History</a>
+                    <a href="#get-orders" class="toc-h2 toc-link" data-title="get-orders">Get Orders</a>
                   </li>
                   <li>
                     <a href="#order-details" class="toc-h2 toc-link" data-title="order-details">Order Details</a>
@@ -956,7 +956,7 @@
 </tbody></table>
 
 <p><code>GET https://api.qtrade.io/v1/user/market/:market_id</code></p>
-<h2 id='order-history'>Order History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/orders"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='get-orders'>Get Orders</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/orders"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -1012,6 +1012,27 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Fetches the last 200 orders made by your account with all the trades associated.</p>
+
+<p>If you need more than the last 200 trades use the <code>older_than</code> param. Passing an order ID will return results only orders which are older than that order ID.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>open</td>
+<td>Boolean</td>
+<td>Filter by opened/closed orders</td>
+</tr>
+<tr>
+<td>older_than</td>
+<td>Integer</td>
+<td>Expects an order ID and returns orders with and ID &lt; the passed ID</td>
+</tr>
+</tbody></table>
 
 <p><code>GET https://api.qtrade.io/v1/user/orders</code></p>
 <h2 id='order-details'>Order Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/order/:order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
