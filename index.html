@@ -228,6 +228,12 @@
                   <li>
                     <a href="#hmac-authentication-with-an-api-key" class="toc-h2 toc-link" data-title="hmac-authentication-with-an-api-key">HMAC authentication with an API key</a>
                   </li>
+                  <li>
+                    <a href="#rate-limits" class="toc-h2 toc-link" data-title="rate-limits">Rate Limits</a>
+                  </li>
+                  <li>
+                    <a href="#cors" class="toc-h2 toc-link" data-title="cors">CORS</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -406,6 +412,50 @@
 <tr>
 <td>Trade</td>
 <td><code>/user/sell_limit</code>, <code>/user/buy_limit</code>, <code>/user/cancel_order</code></td>
+</tr>
+</tbody></table>
+<h2 id='rate-limits'>Rate Limits</h2>
+<p>A good rule of thumb is to limit your requests to 1 / second. The rate limit is enforced by limiting the number of requests in a specific time period. The limit is reset after that time period has elapsed. This means your rate limit within that time period is burstable, and not strictly limited to 1/second. You can monitor the current rate limit status by checking the response headers of your requests. Outlined below are the headers we return and how they work.</p>
+
+<p>If you&#39;d like a higher rate limit please contact support and explain your use case.</p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>How it is used</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Ratelimit</td>
+<td>The number of maximum requests available in the time period</td>
+</tr>
+<tr>
+<td>X-RateLimit-Reset</td>
+<td>How many seconds until your rate limit resets</td>
+</tr>
+<tr>
+<td>X-Ratelimit-Remaining</td>
+<td>How many requests you have left for the time period</td>
+</tr>
+</tbody></table>
+<h2 id='cors'>CORS</h2>
+<p>For increased user security we&#39;ve limited valid CORS origins for private API routes. Only the qtrade.io domain origin is valid for private API requests, and this means private API requests performed in a browser (ie, via javascript) will fail.</p>
+
+<p>If your app needs private API access we recommend performing your API requests on the server side. For example, if you want to display your qTrade deposit address to someone visiting your website, make the request to the deposit endpoint on the server and return that data to your client in your HTTP response.</p>
+
+<table><thead>
+<tr>
+<th>Endpoint</th>
+<th>Access-Control-Allow-Origin</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Public endpoints</td>
+<td>*</td>
+</tr>
+<tr>
+<td>Private endpoints</td>
+<td>https://qtrade.io</td>
 </tr>
 </tbody></table>
 <h1 id='public'>Public</h1><h2 id='markets'>Markets</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/markets"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
