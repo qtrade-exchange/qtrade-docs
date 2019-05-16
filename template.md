@@ -50,6 +50,31 @@ Deposit | `/user/deposit_address/{currency_code}`
 Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 
 
+## Rate Limits
+
+A good rule of thumb is to limit your requests to 1 / second. The rate limit is enforced by limiting the number of requests in a specific time period. The limit is reset after that time period has elapsed. This means your rate limit within that time period is burstable, and not strictly limited to 1/second. You can monitor the current rate limit status by checking the response headers of your requests. Outlined below are the headers we return and how they work.
+
+If you'd like a higher rate limit please contact support and explain your use case.
+
+Header | How it is used
+--- | ---
+X-Ratelimit | The number of maximum requests available in the time period
+X-RateLimit-Reset | How many seconds until your rate limit resets
+X-Ratelimit-Remaining | How many requests you have left for the time period
+
+
+## CORS
+
+For increased user security we've limited valid CORS origins for private API routes. Only the qtrade.io domain origin is valid for private API requests, and this means private API requests performed in a browser (ie, via javascript) will fail.
+
+If your app needs private API access we recommend performing your API requests on the server side. For example, if you want to display your qTrade deposit address to someone visiting your website, make the request to the deposit endpoint on the server and return that data to your client in your HTTP response.
+
+Endpoint | Access-Control-Allow-Origin
+--- | ---
+Public endpoints | *
+Private endpoints | https://qtrade.io
+
+
 {% macro endpoint(item) %}
 ## {{ item.name }}
 
