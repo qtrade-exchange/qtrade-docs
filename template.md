@@ -65,6 +65,10 @@ X-Ratelimit-Remaining | How many requests you have left for the time period
 
 ## CORS
 
+<aside class="warning">
+  Public API currently restricts CORS origins. This is planned to be removed
+</aside>
+
 For increased user security we've limited valid CORS origins for private API routes. Only the qtrade.io domain origin is valid for private API requests, and this means private API requests performed in a browser (ie, via javascript) will fail.
 
 If your app needs private API access we recommend performing your API requests on the server side. For example, if you want to display your qTrade deposit address to someone visiting your website, make the request to the deposit endpoint on the server and return that data to your client in your HTTP response.
