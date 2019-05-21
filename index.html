@@ -246,13 +246,19 @@
                     <a href="#market-details" class="toc-h2 toc-link" data-title="market-details">Market Details</a>
                   </li>
                   <li>
+                    <a href="#market-trade-history" class="toc-h2 toc-link" data-title="market-trade-history">Market Trade History</a>
+                  </li>
+                  <li>
                     <a href="#currencies" class="toc-h2 toc-link" data-title="currencies">Currencies</a>
                   </li>
                   <li>
-                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">Ticker</a>
+                    <a href="#currency-by-code" class="toc-h2 toc-link" data-title="currency-by-code">Currency by Code</a>
                   </li>
                   <li>
                     <a href="#tickers" class="toc-h2 toc-link" data-title="tickers">Tickers</a>
+                  </li>
+                  <li>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">Ticker</a>
                   </li>
                   <li>
                     <a href="#ticker-by-id" class="toc-h2 toc-link" data-title="ticker-by-id">Ticker by ID</a>
@@ -499,7 +505,7 @@
 <p>Get general information about all available markets.</p>
 
 <p><code>GET https://api.qtrade.io/v1/markets</code></p>
-<h2 id='market-details'>Market Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='market-details'>Market Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -542,13 +548,68 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>market_id</td>
-<td>Integer</td>
-<td>Integer ID of market</td>
+<td>market_string</td>
+<td>Int or Str</td>
+<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
 
-<p><code>GET https://api.qtrade.io/v1/market/:market_id</code></p>
+<p><code>GET https://api.qtrade.io/v1/market/:market_string</code></p>
+<h2 id='market-trade-history'>Market Trade History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string/trades"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00760005"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T02:41:30.781308Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01181539"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"seller_taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99515615"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T02:41:30.781308Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01180695"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"seller_taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Return historical trade data on a market</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_string</td>
+<td>Int or Str</td>
+<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>older_than</td>
+<td>Integer</td>
+<td>Expects a trade ID and returns trades with and ID &lt; the passed ID</td>
+</tr>
+</tbody></table>
+
+<p><code>GET https://api.qtrade.io/v1/market/:market_string/trades?older_than=Integer</code></p>
 <h2 id='currencies'>Currencies</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currencies"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -581,29 +642,36 @@
 <p>Get general information about all available currencies.</p>
 
 <p><code>GET https://api.qtrade.io/v1/currencies</code></p>
-<h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='currency-by-code'>Currency by Code</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currency/:code"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02249"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0191"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0197095311101552"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0380429141071119"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02249"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0184"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01840001"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.42644484"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.63647819"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VEO_BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0191"</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"confirms"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"required_generate_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"satoshi_per_byte"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin_like"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get ticker values for the given market. The <code>market_string</code> value should be formatted ala <code>BTC_LTC</code> for the BTC/LTC market.</p>
+<p>Get general information about a specific currency.</p>
 
 <table><thead>
 <tr>
@@ -613,13 +681,13 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>market_string</td>
-<td>String</td>
-<td>Should be formatted ala LTC_BTC for the LTC/BTC market</td>
+<td>code</td>
+<td>string</td>
+<td>The ticker code of the currency. Ala &#39;BTC&#39;</td>
 </tr>
 </tbody></table>
 
-<p><code>GET https://api.qtrade.io/v1/ticker/:market_string</code></p>
+<p><code>GET https://api.qtrade.io/v1/currency/:code</code></p>
 <h2 id='tickers'>Tickers</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/tickers"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -663,6 +731,45 @@
 <p>Get ticker values for all markets.</p>
 
 <p><code>GET https://api.qtrade.io/v1/tickers</code></p>
+<h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02249"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0191"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0197095311101552"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0380429141071119"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.02249"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0184"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01840001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.42644484"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.63647819"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VEO_BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0191"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get ticker values for the given market. The <code>market_string</code> value should be formatted ala <code>BTC_LTC</code> for the BTC/LTC market.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_string</td>
+<td>Int or Str</td>
+<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+</tr>
+</tbody></table>
+
+<p><code>GET https://api.qtrade.io/v1/ticker/:market_string</code></p>
 <h2 id='ticker-by-id'>Ticker by ID</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker_by_id/:market_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -685,6 +792,10 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<aside class="warning">
+  Deprecated. Use the ticker/:market_string method
+</aside>
+
 <p>Get ticker values for the given market. The <code>market_id</code> value should be a valid market integer ID. These IDs are returned on the <code>Markets</code> and <code>Market Details</code> endpoints </p>
 
 <table><thead>
@@ -733,8 +844,8 @@
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>String</td>
-<td>Formatted ala LTC_BTC for the LTC/BTC market</td>
+<td>Int or Str</td>
+<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
 
@@ -759,6 +870,10 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<aside class="warning">
+  Deprecated. Use the orderbook/:market_string method
+</aside>
+
 <p>Get orderbook values for the given market. The <code>market_id</code> value should be a valid market integer ID. These IDs are returned on the <code>Markets</code> and <code>Market Details</code> endpoints</p>
 
 <table><thead>
@@ -776,7 +891,7 @@
 </tbody></table>
 
 <p><code>GET https://api.qtrade.io/v1/orderbook_by_id/:market_id</code></p>
-<h2 id='ohlcv'>OHLCV</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/1/ohlcv/:interval"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='ohlcv'>OHLCV</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string/ohlcv/:interval"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -852,13 +967,18 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>market_string</td>
+<td>Int or Str</td>
+<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+</tr>
+<tr>
 <td>interval</td>
 <td>String</td>
 <td>OHLCV data is chunked by this interval</td>
 </tr>
 </tbody></table>
 
-<p><code>GET https://api.qtrade.io/v1/market/1/ohlcv/:interval</code></p>
+<p><code>GET https://api.qtrade.io/v1/market/:market_string/ohlcv/:interval</code></p>
 <h1 id='private'>Private</h1><h2 id='user-info'>User Info</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/me"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
