@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Markets",
+			"name": "One Ticker",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -15,20 +15,28 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/v1/markets",
+					"raw": "{{url}}/v1/ticker/:market_string",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"v1",
-						"markets"
+						"ticker",
+						":market_string"
+					],
+					"variable": [
+						{
+							"key": "market_string",
+							"value": "Int or Str",
+							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+						}
 					]
 				},
-				"description": "Get general information about all available markets."
+				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
 			},
 			"response": [
 				{
-					"name": "Markets",
+					"name": "Ticker Example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -37,13 +45,20 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/v1/markets",
+							"raw": "{{url}}/v1/ticker/:market_string",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
-								"markets"
+								"ticker",
+								":market_string"
+							],
+							"variable": [
+								{
+									"key": "market_string",
+									"value": "VEO_BTC"
+								}
 							]
 						}
 					},
@@ -53,7 +68,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Fri, 01 Feb 2019 02:51:50 GMT"
+							"value": "Thu, 31 Jan 2019 23:38:14 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -93,16 +108,277 @@
 						},
 						{
 							"key": "CF-RAY",
-							"value": "4a211e557b63c52a-ORD"
+							"value": "4a2002c099dcc566-ORD"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"markets\": [\n            {\n                \"id\": 20,\n                \"market_currency\": \"BIS\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0.0025\",\n                \"taker_fee\": \"0.0025\",\n                \"metadata\": {},\n                \"can_trade\": true,\n                \"can_cancel\": true,\n                \"can_view\": true\n            },\n            {\n                \"id\": 19,\n                \"market_currency\": \"SNOW\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0.0075\",\n                \"taker_fee\": \"0.0075\",\n                \"metadata\": {},\n                \"can_trade\": true,\n                \"can_cancel\": true,\n                \"can_view\": true\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"ask\": \"0.02249\",\n        \"bid\": \"0.0191\",\n        \"day_avg_price\": \"0.0197095311101552\",\n        \"day_change\": \"0.0380429141071119\",\n        \"day_high\": \"0.02249\",\n        \"day_low\": \"0.0184\",\n        \"day_open\": \"0.01840001\",\n        \"day_volume_base\": \"0.42644484\",\n        \"day_volume_market\": \"21.63647819\",\n        \"id\": 15,\n        \"id_hr\": \"VEO_BTC\",\n        \"last\": \"0.0191\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "Market Details",
+			"name": "All Tickers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/v1/tickers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"tickers"
+					]
+				},
+				"description": "Get ticker values for all markets."
+			},
+			"response": [
+				{
+					"name": "Tickers Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/tickers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"tickers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 01 Feb 2019 00:25:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "4a2048ae4945c52a-ORD"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"markets\": [\n            {\n                \"ask\": \"0.0034\",\n                \"bid\": \"0.0011\",\n                \"day_avg_price\": null,\n                \"day_change\": null,\n                \"day_high\": null,\n                \"day_low\": null,\n                \"day_open\": null,\n                \"day_volume_base\": \"0\",\n                \"day_volume_market\": \"0\",\n                \"id\": 23,\n                \"id_hr\": \"GRIN_BTC\",\n                \"last\": \"0.0033\"\n            },\n            {\n                \"ask\": \"0.000099\",\n                \"bid\": \"0.0000795\",\n                \"day_avg_price\": \"0.0000795337894515\",\n                \"day_change\": \"-0.2205882352941176\",\n                \"day_high\": \"0.00008\",\n                \"day_low\": \"0.0000795\",\n                \"day_open\": \"0.000102\",\n                \"day_volume_base\": \"0.07353291\",\n                \"day_volume_market\": \"924.549308\",\n                \"id\": 19,\n                \"id_hr\": \"SNOW_BTC\",\n                \"last\": \"0.0000795\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "One Currency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/v1/currency/:code",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"currency",
+						":code"
+					],
+					"variable": [
+						{
+							"description": "The ticker code of the currency. Ala 'BTC'",
+							"key": "code",
+							"value": "string"
+						}
+					]
+				},
+				"description": "Get general information about a specific currency."
+			},
+			"response": [
+				{
+					"name": "Currency by Code Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/currency/BTC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"currency",
+								"BTC"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "327"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 May 2019 02:46:29 GMT"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "60"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "32"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"currency\": {\n            \"code\": \"BTC\",\n            \"long_name\": \"Bitcoin\",\n            \"type\": \"bitcoin_like\",\n            \"status\": \"ok\",\n            \"precision\": 8,\n            \"config\": {\n                \"price\": 1,\n                \"confirms\": 6,\n                \"withdraw_fee\": \"0.001\",\n                \"default_signer\": 1,\n                \"address_version\": 111,\n                \"satoshi_per_byte\": 10,\n                \"required_confirmations\": 1,\n                \"required_generate_confirmations\": 120\n            },\n            \"metadata\": {},\n            \"can_withdraw\": true\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "All Currencies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/v1/currencies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"currencies"
+					]
+				},
+				"description": "Get general information about all available currencies."
+			},
+			"response": [
+				{
+					"name": "Currencies",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/currencies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"currencies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "869",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Apr 2018 04:33:51 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"confirms\": 6,\n                    \"withdraw_fee\": \"0.001\",\n                    \"address_version\": 111,\n                    \"satoshi_per_byte\": 10,\n                    \"required_confirmations\": 6,\n                    \"required_generate_confirmations\": 120\n                },\n                \"metadata\": {},\n                \"can_withdraw\": true\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "One Market",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -214,7 +490,7 @@
 			]
 		},
 		{
-			"name": "Market Trade History",
+			"name": "All Markets",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -223,7 +499,103 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/v1/market/:market_string/trades?older_than=Integer",
+					"raw": "{{url}}/v1/markets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"markets"
+					]
+				},
+				"description": "Get general information about all available markets."
+			},
+			"response": [
+				{
+					"name": "Markets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/markets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"markets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 01 Feb 2019 02:51:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "4a211e557b63c52a-ORD"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"markets\": [\n            {\n                \"id\": 20,\n                \"market_currency\": \"BIS\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0.0025\",\n                \"taker_fee\": \"0.0025\",\n                \"metadata\": {},\n                \"can_trade\": true,\n                \"can_cancel\": true,\n                \"can_view\": true\n            },\n            {\n                \"id\": 19,\n                \"market_currency\": \"SNOW\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0.0075\",\n                \"taker_fee\": \"0.0075\",\n                \"metadata\": {},\n                \"can_trade\": true,\n                \"can_cancel\": true,\n                \"can_view\": true\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Market Trades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/v1/market/:market_string/trades?",
 					"host": [
 						"{{url}}"
 					],
@@ -237,7 +609,14 @@
 						{
 							"key": "older_than",
 							"value": "Integer",
-							"description": "Expects a trade ID and returns trades with and ID < the passed ID"
+							"description": "Expects a trade ID and returns trades with an ID < the passed ID",
+							"disabled": true
+						},
+						{
+							"key": "newer_than",
+							"value": "Integer",
+							"description": "Expects a trade ID and returns trades with an ID > the passed ID\n",
+							"disabled": true
 						}
 					],
 					"variable": [
@@ -312,491 +691,7 @@
 			]
 		},
 		{
-			"name": "Currencies",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/currencies",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"currencies"
-					]
-				},
-				"description": "Get general information about all available currencies."
-			},
-			"response": [
-				{
-					"name": "Currencies",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/currencies",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"currencies"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Length",
-							"value": "869",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 07 Apr 2018 04:33:51 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin",
-							"name": "Vary",
-							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"confirms\": 6,\n                    \"withdraw_fee\": \"0.001\",\n                    \"address_version\": 111,\n                    \"satoshi_per_byte\": 10,\n                    \"required_confirmations\": 6,\n                    \"required_generate_confirmations\": 120\n                },\n                \"metadata\": {},\n                \"can_withdraw\": true\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Currency by Code",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/currency/:code",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"currency",
-						":code"
-					],
-					"variable": [
-						{
-							"description": "The ticker code of the currency. Ala 'BTC'",
-							"key": "code",
-							"value": "string"
-						}
-					]
-				},
-				"description": "Get general information about a specific currency."
-			},
-			"response": [
-				{
-					"name": "Currency by Code Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/currency/BTC",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"currency",
-								"BTC"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Length",
-							"value": "327"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 May 2019 02:46:29 GMT"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "X-Ratelimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-Ratelimit-Remaining",
-							"value": "60"
-						},
-						{
-							"key": "X-Ratelimit-Reset",
-							"value": "32"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"currency\": {\n            \"code\": \"BTC\",\n            \"long_name\": \"Bitcoin\",\n            \"type\": \"bitcoin_like\",\n            \"status\": \"ok\",\n            \"precision\": 8,\n            \"config\": {\n                \"price\": 1,\n                \"confirms\": 6,\n                \"withdraw_fee\": \"0.001\",\n                \"default_signer\": 1,\n                \"address_version\": 111,\n                \"satoshi_per_byte\": 10,\n                \"required_confirmations\": 1,\n                \"required_generate_confirmations\": 120\n            },\n            \"metadata\": {},\n            \"can_withdraw\": true\n        }\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Tickers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/tickers",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"tickers"
-					]
-				},
-				"description": "Get ticker values for all markets."
-			},
-			"response": [
-				{
-					"name": "Tickers Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/tickers",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"tickers"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 00:25:58 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=0; includeSubDomains"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Expect-CT",
-							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-						},
-						{
-							"key": "Server",
-							"value": "cloudflare"
-						},
-						{
-							"key": "CF-RAY",
-							"value": "4a2048ae4945c52a-ORD"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"markets\": [\n            {\n                \"ask\": \"0.0034\",\n                \"bid\": \"0.0011\",\n                \"day_avg_price\": null,\n                \"day_change\": null,\n                \"day_high\": null,\n                \"day_low\": null,\n                \"day_open\": null,\n                \"day_volume_base\": \"0\",\n                \"day_volume_market\": \"0\",\n                \"id\": 23,\n                \"id_hr\": \"GRIN_BTC\",\n                \"last\": \"0.0033\"\n            },\n            {\n                \"ask\": \"0.000099\",\n                \"bid\": \"0.0000795\",\n                \"day_avg_price\": \"0.0000795337894515\",\n                \"day_change\": \"-0.2205882352941176\",\n                \"day_high\": \"0.00008\",\n                \"day_low\": \"0.0000795\",\n                \"day_open\": \"0.000102\",\n                \"day_volume_base\": \"0.07353291\",\n                \"day_volume_market\": \"924.549308\",\n                \"id\": 19,\n                \"id_hr\": \"SNOW_BTC\",\n                \"last\": \"0.0000795\"\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Ticker",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/ticker/:market_string",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"ticker",
-						":market_string"
-					],
-					"variable": [
-						{
-							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
-						}
-					]
-				},
-				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
-			},
-			"response": [
-				{
-					"name": "Ticker Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/ticker/:market_string",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"ticker",
-								":market_string"
-							],
-							"variable": [
-								{
-									"key": "market_string",
-									"value": "VEO_BTC"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 31 Jan 2019 23:38:14 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=0; includeSubDomains"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Expect-CT",
-							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-						},
-						{
-							"key": "Server",
-							"value": "cloudflare"
-						},
-						{
-							"key": "CF-RAY",
-							"value": "4a2002c099dcc566-ORD"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"ask\": \"0.02249\",\n        \"bid\": \"0.0191\",\n        \"day_avg_price\": \"0.0197095311101552\",\n        \"day_change\": \"0.0380429141071119\",\n        \"day_high\": \"0.02249\",\n        \"day_low\": \"0.0184\",\n        \"day_open\": \"0.01840001\",\n        \"day_volume_base\": \"0.42644484\",\n        \"day_volume_market\": \"21.63647819\",\n        \"id\": 15,\n        \"id_hr\": \"VEO_BTC\",\n        \"last\": \"0.0191\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Ticker by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/ticker_by_id/:market_id",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"ticker_by_id",
-						":market_id"
-					],
-					"variable": [
-						{
-							"key": "market_id",
-							"value": "Integer",
-							"description": "Integer ID of currency"
-						}
-					]
-				},
-				"description": "<aside class=\"warning\">\n  Deprecated. Use the ticker/:market_string method\n</aside>\n\nGet ticker values for the given market. The `market_id` value should be a valid market integer ID. These IDs are returned on the `Markets` and `Market Details` endpoints "
-			},
-			"response": [
-				{
-					"name": "Ticker by ID Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/ticker_by_id/:market_id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"ticker_by_id",
-								":market_id"
-							],
-							"variable": [
-								{
-									"key": "market_id",
-									"value": "15",
-									"description": "Integer ID of currency"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 00:22:36 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=0; includeSubDomains"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Expect-CT",
-							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-						},
-						{
-							"key": "Server",
-							"value": "cloudflare"
-						},
-						{
-							"key": "CF-RAY",
-							"value": "4a2043bdbfc9c52a-ORD"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"ask\": \"0.02249\",\n        \"bid\": \"0.0191\",\n        \"day_avg_price\": \"0.0197095311101552\",\n        \"day_change\": \"0.0380429141071119\",\n        \"day_high\": \"0.02249\",\n        \"day_low\": \"0.0184\",\n        \"day_open\": \"0.01840001\",\n        \"day_volume_base\": \"0.42644484\",\n        \"day_volume_market\": \"21.63647819\",\n        \"id\": 15,\n        \"id_hr\": \"VEO_BTC\",\n        \"last\": \"0.0191\"\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Orderbook",
+			"name": "Market Orderbook",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -816,9 +711,9 @@
 					],
 					"variable": [
 						{
+							"description": "May be an ID or a string pair ala 'LTC_BTC'",
 							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+							"value": "Int or Str"
 						}
 					]
 				},
@@ -904,118 +799,6 @@
 					],
 					"cookie": [],
 					"body": "{\n\t\"data\": {\n\t\t\"buy\": {\n\t\t\t\"0.000009\": \"150\",\n\t\t\t\"0.0001032\": \"100\",\n\t\t\t\"0.00020139\": \"100\"\n\t\t},\n\t\t\"sell\": {\n\t\t\t\"5\": \"100\",\n\t\t\t\"14\": \"28\",\n\t\t\t\"0.02249\": \"0.99720378\"\n\t\t}\n\t}\n}"
-				}
-			]
-		},
-		{
-			"name": "Orderbook by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/orderbook_by_id/:market_id",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"orderbook_by_id",
-						":market_id"
-					],
-					"variable": [
-						{
-							"description": "Integer ID of market",
-							"key": "market_id",
-							"value": "Integer"
-						}
-					]
-				},
-				"description": "<aside class=\"warning\">\n  Deprecated. Use the orderbook/:market_string method\n</aside>\n\nGet orderbook values for the given market. The `market_id` value should be a valid market integer ID. These IDs are returned on the `Markets` and `Market Details` endpoints"
-			},
-			"response": [
-				{
-					"name": "Orderbook by ID Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/orderbook_by_id/:market_id",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"orderbook_by_id",
-								":market_id"
-							],
-							"variable": [
-								{
-									"key": "market_id",
-									"value": "15",
-									"description": "Integer ID of market"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 00:27:58 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=0; includeSubDomains"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Expect-CT",
-							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-						},
-						{
-							"key": "Server",
-							"value": "cloudflare"
-						},
-						{
-							"key": "CF-RAY",
-							"value": "4a204b9cff88c52a-ORD"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"buy\": {\n            \"0.000009\": \"150\",\n            \"0.0001032\": \"100\",\n            \"0.00020139\": \"100\"\n        },\n        \"sell\": {\n            \"5\": \"100\",\n            \"14\": \"28\",\n            \"0.02249\": \"0.99720378\"\n        }\n    }\n}"
 				}
 			]
 		},
@@ -1443,7 +1226,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/v1/user/orders",
+					"raw": "{{url}}/v1/user/orders?open=Boolean",
 					"host": [
 						"{{url}}"
 					],
@@ -1456,8 +1239,7 @@
 						{
 							"key": "open",
 							"value": "Boolean",
-							"description": "Filter by opened/closed orders",
-							"disabled": true
+							"description": "Filter by opened/closed orders"
 						},
 						{
 							"key": "older_than",
