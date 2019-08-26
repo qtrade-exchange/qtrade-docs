@@ -10,10 +10,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/ticker/:market_string",
 					"host": [
@@ -28,6 +24,7 @@
 						{
 							"key": "market_string",
 							"value": "Int or Str",
+							"type": "string",
 							"description": "May be an ID or a string pair ala 'LTC_BTC'"
 						}
 					]
@@ -40,10 +37,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/ticker/:market_string",
 							"host": [
@@ -121,10 +114,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/tickers",
 					"host": [
@@ -143,10 +132,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/tickers",
 							"host": [
@@ -217,10 +202,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/currency/:code",
 					"host": [
@@ -233,9 +214,10 @@
 					],
 					"variable": [
 						{
-							"description": "The ticker code of the currency. Ala 'BTC'",
 							"key": "code",
-							"value": "string"
+							"value": "string",
+							"type": "string",
+							"description": "The ticker code of the currency. Ala 'BTC'"
 						}
 					]
 				},
@@ -247,10 +229,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/currency/BTC",
 							"host": [
@@ -306,10 +284,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/currencies",
 					"host": [
@@ -328,10 +302,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/currencies",
 							"host": [
@@ -382,10 +352,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string",
 					"host": [
@@ -400,6 +366,7 @@
 						{
 							"key": "market_string",
 							"value": "Int or Str",
+							"type": "string",
 							"description": "May be an ID or a string pair ala 'LTC_BTC'"
 						}
 					]
@@ -412,10 +379,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/:market_id",
 							"host": [
@@ -494,10 +457,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/markets",
 					"host": [
@@ -516,10 +475,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/markets",
 							"host": [
@@ -590,10 +545,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string/trades?",
 					"host": [
@@ -623,6 +574,7 @@
 						{
 							"key": "market_string",
 							"value": "Int or Str",
+							"type": "string",
 							"description": "May be an ID or a string pair ala 'LTC_BTC'"
 						}
 					]
@@ -635,10 +587,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/LTC_BTC/trades",
 							"host": [
@@ -695,10 +643,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/orderbook/:market_string",
 					"host": [
@@ -711,9 +655,10 @@
 					],
 					"variable": [
 						{
-							"description": "May be an ID or a string pair ala 'LTC_BTC'",
 							"key": "market_string",
-							"value": "Int or Str"
+							"value": "Int or Str",
+							"type": "string",
+							"description": "May be an ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
@@ -725,10 +670,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/orderbook/:market_string",
 							"host": [
@@ -807,10 +748,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string/ohlcv/:interval",
 					"host": [
@@ -827,11 +764,13 @@
 						{
 							"key": "market_string",
 							"value": "Int or Str",
+							"type": "string",
 							"description": "May be an ID or a string pair ala 'LTC_BTC'"
 						},
 						{
 							"key": "interval",
 							"value": "String",
+							"type": "string",
 							"description": "OHLCV data is chunked by this interval"
 						}
 					]
@@ -844,10 +783,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/1/ohlcv/:interval",
 							"host": [
@@ -927,26 +862,10 @@
 			"name": "User Info",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"header": [],
 				"url": {
 					"raw": "{{url}}/v1/user/me",
 					"host": [
@@ -971,10 +890,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/me",
 							"host": [
@@ -1025,21 +940,10 @@
 			"name": "Balances",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/balances",
 					"host": [
@@ -1059,10 +963,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/balances",
 							"host": [
@@ -1113,21 +1013,10 @@
 			"name": "User Market View",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/market/:market_id",
 					"host": [
@@ -1143,7 +1032,8 @@
 						{
 							"key": "market_id",
 							"value": "Integer",
-							"description": "Integer ID of market"
+							"description": "Integer ID of market",
+							"type": "string"
 						}
 					]
 				},
@@ -1155,10 +1045,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/market/1",
 							"host": [
@@ -1210,21 +1096,10 @@
 			"name": "Get Orders",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/orders?open=Boolean",
 					"host": [
@@ -1263,10 +1138,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/orders",
 							"host": [
@@ -1317,21 +1188,10 @@
 			"name": "Order Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/order/:order_id",
 					"host": [
@@ -1347,7 +1207,8 @@
 						{
 							"key": "order_id",
 							"value": "Integer",
-							"description": "ID of the order to lookup"
+							"description": "ID of the order to lookup",
+							"type": "string"
 						}
 					]
 				},
@@ -1359,10 +1220,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/order/:order_id",
 							"host": [
@@ -1413,22 +1270,10 @@
 			"name": "Cancel Order",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
-					{
-						"key": "",
-						"value": "",
-						"disabled": true
-					},
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
@@ -1533,14 +1378,7 @@
 			"name": "Withdraw History",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1549,10 +1387,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/withdraws",
 					"host": [
@@ -1577,10 +1411,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/withdraws",
 							"host": [
@@ -1623,26 +1453,16 @@
 			"name": "Withdraw Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/withdraw/:withdraw_id",
 					"host": [
@@ -1658,7 +1478,8 @@
 						{
 							"key": "withdraw_id",
 							"value": "Integer",
-							"description": "ID of the withdraw"
+							"description": "ID of the withdraw",
+							"type": "string"
 						}
 					]
 				},
@@ -1675,10 +1496,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/withdraw/:withdraw_id",
 							"host": [
@@ -1729,26 +1546,16 @@
 			"name": "Deposit History",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/deposits",
 					"host": [
@@ -1773,10 +1580,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposits",
 							"host": [
@@ -1819,14 +1622,7 @@
 			"name": "Deposit Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1835,10 +1631,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/deposit/:deposit_id",
 					"host": [
@@ -1854,7 +1646,8 @@
 						{
 							"key": "deposit_id",
 							"value": "string",
-							"description": "ID of the deposit"
+							"description": "ID of the deposit",
+							"type": "string"
 						}
 					]
 				},
@@ -1871,10 +1664,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit/:deposit_id",
 							"host": [
@@ -1924,14 +1713,7 @@
 			"name": "Transfers",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1940,10 +1722,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/transfers",
 					"host": [
@@ -1968,10 +1746,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/transfers",
 							"host": [
@@ -2014,14 +1788,7 @@
 			"name": "Create a Withdraw",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2124,21 +1891,10 @@
 			"name": "Get Deposit Address",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/deposit_address/:currency",
 					"host": [
@@ -2154,7 +1910,8 @@
 						{
 							"description": "Currency code ala \"LTC\"",
 							"key": "currency",
-							"value": "String"
+							"value": "String",
+							"type": "string"
 						}
 					]
 				},
@@ -2226,10 +1983,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/[currency_key]",
 							"host": [
@@ -2255,10 +2008,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/:currency",
 							"host": [
@@ -2308,10 +2057,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/:currency",
 							"host": [
@@ -2362,14 +2107,7 @@
 			"name": "Create Sell Limit",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2480,14 +2218,7 @@
 			"name": "Create Buy Limit",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2593,6 +2324,68 @@
 					"body": "{\n\t\"data\": {\n\t\t\"order\": {\n\t\t\t\"id\": 13254,\n\t\t\t\"market_amount\": \"10\",\n\t\t\t\"market_amount_remaining\": \"10\",\n\t\t\t\"created_at\": \"2018-04-06T20:47:11.966139Z\",\n\t\t\t\"price\": \"0.1\",\n\t\t\t\"base_amount\": \"1.0025\",\n\t\t\t\"order_type\": \"buy_limit\",\n\t\t\t\"market_id\": 1,\n\t\t\t\"open\": true,\n\t\t\t\"trades\": []\n\t\t}\n\t}\n}"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2b90e11c-fe0e-4222-b2e4-edfb0d844fd2",
+				"type": "text/javascript",
+				"exec": [
+					"let key = pm.environment.get(\"hmac_key\");",
+					"let keyid = pm.environment.get(\"hmac_key_id\");",
+					"",
+					"function epochTime() {",
+					"    var d = new Date();",
+					"    var t = d.getTime();",
+					"    var o = t + \"\";",
+					"    return o.substring(0, 10);",
+					"}",
+					"",
+					"var time = epochTime();",
+					"var encodedUri = request.url.slice(7);",
+					"var rawSignature = request.method + \"\\n\";",
+					"rawSignature += encodedUri + \"\\n\";",
+					"rawSignature += time + \"\\n\";",
+					"if (request.method == \"GET\") {",
+					"    rawSignature += \"\\n\";",
+					"} else {",
+					"    rawSignature += request.data + \"\\n\";",
+					"}",
+					"rawSignature += key;",
+					"console.log(request.data);",
+					"",
+					"var hash = CryptoJS.SHA256(rawSignature);",
+					"",
+					"postman.setEnvironmentVariable('key', key);",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'Content-Type',",
+					"    value: 'application/json'",
+					"})",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'HMAC-Timestamp', ",
+					"    value: time",
+					"})",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'Authorization', ",
+					"    value: 'HMAC-SHA256 ' + keyid + ':' + hash.toString(CryptoJS.enc.Base64)",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c607f45f-b466-4ed8-b8c7-0bc1655d79e7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

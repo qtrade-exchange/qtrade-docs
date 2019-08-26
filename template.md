@@ -55,7 +55,7 @@ Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 
 {% for resp in item.response %}
 
-{% if item.request.method == "POST" and resp.originalRequest.body.raw %}
+{% if item.request.method == "POST" and resp.originalRequest.body and resp.originalRequest.body.raw %}
 
 ``` python
 req = {{ resp.originalRequest.body.raw | json_to_python_dict }}
