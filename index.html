@@ -229,19 +229,19 @@
             <a href="#public" class="toc-h1 toc-link" data-title="public">Public</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#one-ticker" class="toc-h2 toc-link" data-title="one-ticker">One Ticker</a>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">Ticker</a>
                   </li>
                   <li>
                     <a href="#all-tickers" class="toc-h2 toc-link" data-title="all-tickers">All Tickers</a>
                   </li>
                   <li>
-                    <a href="#one-currency" class="toc-h2 toc-link" data-title="one-currency">One Currency</a>
+                    <a href="#currency" class="toc-h2 toc-link" data-title="currency">Currency</a>
                   </li>
                   <li>
                     <a href="#all-currencies" class="toc-h2 toc-link" data-title="all-currencies">All Currencies</a>
                   </li>
                   <li>
-                    <a href="#one-market" class="toc-h2 toc-link" data-title="one-market">One Market</a>
+                    <a href="#market" class="toc-h2 toc-link" data-title="market">Market</a>
                   </li>
                   <li>
                     <a href="#all-markets" class="toc-h2 toc-link" data-title="all-markets">All Markets</a>
@@ -279,16 +279,16 @@
                     <a href="#cancel-order" class="toc-h2 toc-link" data-title="cancel-order">Cancel Order</a>
                   </li>
                   <li>
-                    <a href="#withdraw-history" class="toc-h2 toc-link" data-title="withdraw-history">Withdraw History</a>
-                  </li>
-                  <li>
                     <a href="#withdraw-details" class="toc-h2 toc-link" data-title="withdraw-details">Withdraw Details</a>
                   </li>
                   <li>
-                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="deposit-history">Deposit History</a>
+                    <a href="#withdraw-history" class="toc-h2 toc-link" data-title="withdraw-history">Withdraw History</a>
                   </li>
                   <li>
                     <a href="#deposit-details" class="toc-h2 toc-link" data-title="deposit-details">Deposit Details</a>
+                  </li>
+                  <li>
+                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="deposit-history">Deposit History</a>
                   </li>
                   <li>
                     <a href="#transfers" class="toc-h2 toc-link" data-title="transfers">Transfers</a>
@@ -315,6 +315,11 @@
           </li>
           <li>
             <a href="#postman-collection" class="toc-h1 toc-link" data-title="postman-collection">Postman Collection</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-the-collection-and-environment" class="toc-h2 toc-link" data-title="get-the-a-href-postman-json-collection-a-and-a-href-postman_environment-json-environment-a">Get the <a href="postman.json">Collection</a> and <a href="postman_environment.json">Environment</a></a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
@@ -411,7 +416,7 @@
 <td><code>/user/sell_limit</code>, <code>/user/buy_limit</code>, <code>/user/cancel_order</code></td>
 </tr>
 </tbody></table>
-<h1 id='public'>Public</h1><h2 id='one-ticker'>One Ticker</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h1 id='public'>Public</h1><h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -434,18 +439,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get ticker values for the given market. The <code>market_string</code> value should be formatted ala <code>BTC_LTC</code> for the BTC/LTC market.</p>
-
+<h3 id='path-variables'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Int or Str</td>
-<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
 
@@ -493,7 +496,7 @@
 <p>Get ticker values for all markets.</p>
 
 <p><code>GET https://api.qtrade.io/v1/tickers</code></p>
-<h2 id='one-currency'>One Currency</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currency/:code"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='currency'>Currency</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currency/:code"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -523,18 +526,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get general information about a specific currency.</p>
-
+<h3 id='path-variables-2'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>code</td>
-<td>string</td>
-<td>The ticker code of the currency. Ala &#39;BTC&#39;</td>
+<td>The string ticker code of the currency. Ala &#39;BTC&#39;</td>
 </tr>
 </tbody></table>
 
@@ -571,7 +572,7 @@
 <p>Get general information about all available currencies.</p>
 
 <p><code>GET https://api.qtrade.io/v1/currencies</code></p>
-<h2 id='one-market'>One Market</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='market'>Market</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -605,18 +606,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.</p>
-
+<h3 id='path-variables-3'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Int or Str</td>
-<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
 
@@ -683,21 +682,19 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Return historical trade data on a market</p>
-
+<h3 id='path-variables-4'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Int or Str</td>
-<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
-
+<h3 id='query-params'>Query params</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -739,18 +736,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get orderbook values for the given market. The <code>market_string</code> value should be formatted ala <code>BTC_LTC</code> for the BTC/LTC market.</p>
-
+<h3 id='path-variables-5'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Int or Str</td>
-<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 </tbody></table>
 
@@ -822,22 +817,19 @@
 <td>One day slices</td>
 </tr>
 </tbody></table>
-
+<h3 id='path-variables-6'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Int or Str</td>
-<td>May be an ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
 </tr>
 <tr>
 <td>interval</td>
-<td>String</td>
 <td>OHLCV data is chunked by this interval</td>
 </tr>
 </tbody></table>
@@ -978,17 +970,15 @@
 <p>Returns the currently available <code>base_currency</code> and <code>markey_currency</code>  balances for a user on the given market. These amounts do <strong>not</strong> include amounts currently represented in open orders, pending deposits or withdraws.</p>
 
 <p>Also returns lists of <code>open_orders</code> and <code>closed_orders</code></p>
-
+<h3 id='path-variables-7'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>market_id</td>
-<td>Integer</td>
 <td>Integer ID of market</td>
 </tr>
 </tbody></table>
@@ -1052,7 +1042,7 @@
 <p>Fetches the last 200 orders made by your account with all the trades associated.</p>
 
 <p>If you need more than the last 200 trades use the <code>older_than</code> param. Passing an order ID will return results only orders which are older than that order ID.</p>
-
+<h3 id='query-params-2'>Query params</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1077,7 +1067,7 @@
 </tr>
 </tbody></table>
 
-<p><code>GET https://api.qtrade.io/v1/user/orders?open=Boolean</code></p>
+<p><code>GET https://api.qtrade.io/v1/user/orders?</code></p>
 <h2 id='order-details'>Order Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/order/:order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -1100,18 +1090,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Takes an Order ID and returns data about that order</p>
-
+<h3 id='path-variables-8'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>Integer</td>
-<td>ID of the order to lookup</td>
+<td>Integer ID of the order to lookup</td>
 </tr>
 </tbody></table>
 
@@ -1136,22 +1124,57 @@
 <aside class="notice">
 Successful cancellation returns just a 200 with no payload
 </aside>
-
+<h3 id='post-body'>POST Body</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>Integer</td>
-<td>Order ID to cancel</td>
+<td>Integer ID of the order to cancel</td>
 </tr>
 </tbody></table>
 
-<p><code>POST https://api.qtrade.io/v1/user/cancel_order?</code></p>
+<p><code>POST https://api.qtrade.io/v1/user/cancel_order</code></p>
+<h2 id='withdraw-details'>Withdraw Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/withdraw/:withdraw_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cancel_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-01T06:06:16.218062Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"network_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"relay_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_create"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Takes an Withdraw ID and returns data about that Withdraw</p>
+<h3 id='path-variables-9'>Path variables</h3>
+<table><thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>withdraw_id</td>
+<td>Integer ID of the withdraw</td>
+</tr>
+</tbody></table>
+
+<p><code>GET https://api.qtrade.io/v1/user/withdraw/:withdraw_id</code></p>
 <h2 id='withdraw-history'>Withdraw History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/withdraws"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -1179,45 +1202,43 @@ Successful cancellation returns just a 200 with no payload
 <p>Returns a list of the user&#39;s Withdraws and metadata including <code>id</code>, <code>amount</code>, <code>currency</code>, <code>address</code>, <code>status</code>, <code>network_data</code>, <code>created_at</code> values</p>
 
 <p><code>GET https://api.qtrade.io/v1/user/withdraws</code></p>
-<h2 id='withdraw-details'>Withdraw Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/withdraw/:withdraw_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<h2 id='deposit-details'>Deposit Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/:deposit_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
 <p>200 Response </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"withdraw"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cancel_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-01T06:06:16.218062Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"network_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"relay_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_create"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-02T04:05:51.090427Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"network_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="s2">"relay_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credited"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Takes an Withdraw ID and returns data about that Withdraw</p>
-
+<p>Takes an Deposit ID and returns data about that Deposit</p>
+<h3 id='path-variables-10'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>withdraw_id</td>
-<td>Integer</td>
-<td>ID of the withdraw</td>
+<td>deposit_id</td>
+<td>String ID of the deposit</td>
 </tr>
 </tbody></table>
 
-<p><code>GET https://api.qtrade.io/v1/user/withdraw/:withdraw_id</code></p>
+<p><code>GET https://api.qtrade.io/v1/user/deposit/:deposit_id</code></p>
 <h2 id='deposit-history'>Deposit History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposits"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -1248,45 +1269,6 @@ Successful cancellation returns just a 200 with no payload
 <p>Returns a list of the user&#39;s Deposits and metadata including <code>id</code>, <code>amount</code>, <code>currency</code>, <code>address</code>, <code>status</code>, <code>network_data</code>, <code>created_at</code> values.</p>
 
 <p><code>GET https://api.qtrade.io/v1/user/deposits</code></p>
-<h2 id='deposit-details'>Deposit Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/:deposit_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre>
-<blockquote>
-<p>200 Response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"deposit"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-02T04:05:51.090427Z"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"network_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-                </span><span class="s2">"relay_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credited"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Takes an Deposit ID and returns data about that Deposit</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>deposit_id</td>
-<td>string</td>
-<td>ID of the deposit</td>
-</tr>
-</tbody></table>
-
-<p><code>GET https://api.qtrade.io/v1/user/deposit/:deposit_id</code></p>
 <h2 id='transfers'>Transfers</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/transfers"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <blockquote>
@@ -1331,28 +1313,24 @@ Successful cancellation returns just a 200 with no payload
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes.</p>
-
+<h3 id='post-body-2'>POST Body</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>String</td>
-<td>Exact amount, including decimal &quot;1.2345&quot;</td>
+<td>String. Exact amount, including decimal &quot;1.2345&quot;</td>
 </tr>
 <tr>
 <td>currency</td>
-<td>String</td>
-<td>Price in base currency of the market</td>
+<td>String. Currency code to withdraw</td>
 </tr>
 <tr>
 <td>address</td>
-<td>String</td>
-<td>Address to receive funds</td>
+<td>String. Address to receive funds</td>
 </tr>
 </tbody></table>
 
@@ -1400,7 +1378,7 @@ Successful cancellation returns just a 200 with no payload
 </span></code></pre>
 <p>Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time.</p>
 
-<p>The returned <code>currency_status</code> key may be one of 4 values:</p>
+<p>The returned <code>currency_status</code> key may be one of the following values:</p>
 
 <table><thead>
 <tr>
@@ -1435,17 +1413,15 @@ Successful cancellation returns just a 200 with no payload
 <td>Currency is delisted and deposits are no longer accepted</td>
 </tr>
 </tbody></table>
-
+<h3 id='path-variables-11'>Path variables</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currency</td>
-<td>String</td>
 <td>Currency code ala &quot;LTC&quot;</td>
 </tr>
 </tbody></table>
@@ -1493,32 +1469,28 @@ Successful cancellation returns just a 200 with no payload
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates an order to sell a currency at the specified price. Amount will be removed from your balance immediately. Returns the created order id.</p>
-
+<h3 id='post-body-3'>POST Body</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>String</td>
-<td>Exact amount, including decimal &quot;1.2345&quot;</td>
+<td>String. Exact amount, including decimal &quot;1.2345&quot;</td>
 </tr>
 <tr>
 <td>price</td>
-<td>String</td>
-<td>Price in base currency of the market</td>
+<td>String. Price in base currency of the market</td>
 </tr>
 <tr>
 <td>market_id</td>
-<td>Integer</td>
-<td>Integer ID of market</td>
+<td>Integer ID of the market</td>
 </tr>
 </tbody></table>
 
-<p><code>POST https://api.qtrade.io/v1/user/sell_limit?</code></p>
+<p><code>POST https://api.qtrade.io/v1/user/sell_limit</code></p>
 <h2 id='create-buy-limit'>Create Buy Limit</h2><pre class="highlight python tab-python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'amount'</span><span class="p">:</span> <span class="s">'10'</span><span class="p">,</span> <span class="s">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span> <span class="s">'0.1'</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/buy_limit"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
@@ -1543,32 +1515,28 @@ Successful cancellation returns just a 200 with no payload
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates an order to buy a currency at the specified price on the specified market. Amount will be removed from your balance immediately. Returns the created order id.</p>
-
+<h3 id='post-body-4'>POST Body</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>String</td>
-<td>Exact amount, including decimal &quot;1.2345&quot;</td>
+<td>String. Exact amount, including decimal &quot;1.2345&quot;</td>
 </tr>
 <tr>
 <td>price</td>
-<td>String</td>
-<td>Price in base currency of the market</td>
+<td>String. Price in base currency of the market</td>
 </tr>
 <tr>
 <td>market_id</td>
-<td>Integer</td>
 <td>Integer ID of market</td>
 </tr>
 </tbody></table>
 
-<p><code>POST https://api.qtrade.io/v1/user/buy_limit?</code></p>
+<p><code>POST https://api.qtrade.io/v1/user/buy_limit</code></p>
 <h1 id='rate-limits'>Rate Limits</h1>
 <p>A good rule of thumb is to limit your requests to 1 / second. The rate limit is enforced by limiting the number of requests in a specific time period. The limit is reset after that time period has elapsed. This means your rate limit within that time period is burstable, and not strictly limited to 1/second. You can monitor the current rate limit status by checking the response headers of your requests. Outlined below are the headers we return and how they work.</p>
 
@@ -1626,14 +1594,15 @@ Successful cancellation returns just a 200 with no payload
 </tr>
 </tbody></table>
 <h1 id='postman-collection'>Postman Collection</h1>
-<p>For convenience, you can download a Postman collection to play around with the API.</p>
+<p>For convenience you can download a Postman collection to play around with the API. </p>
 
-<p><a href="postman.json">Download Here</a></p>
-
-<aside class="warning">
-  The postman collection uses the JWT authentication scheme, which is undocumented and not supported. It does not work out of the box with our production API. This collection is provided as a helpful reference.
-</aside>
-<h1 id='errors'>Errors</h1>
+<ul>
+<li>Import the collection</li>
+<li>Import the Environment</li>
+<li>Set the <code>hmac_key</code> and <code>hmac_key_id</code> environment variables to match an API key you generated</li>
+<li>Execute API calls!</li>
+</ul>
+<h3 id='get-the-collection-and-environment'>Get the <a href="postman.json">Collection</a> and <a href="postman_environment.json">Environment</a></h3><h1 id='errors'>Errors</h1>
 <p>The qTrade API returns the following error codes:</p>
 
 <table><thead>

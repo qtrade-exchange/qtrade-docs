@@ -6,14 +6,10 @@
 	},
 	"item": [
 		{
-			"name": "One Ticker",
+			"name": "Ticker",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/ticker/:market_string",
 					"host": [
@@ -27,8 +23,8 @@
 					"variable": [
 						{
 							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+							"value": "{{market_string}}",
+							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
@@ -40,10 +36,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/ticker/:market_string",
 							"host": [
@@ -121,10 +113,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/tickers",
 					"host": [
@@ -143,10 +131,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/tickers",
 							"host": [
@@ -213,14 +197,10 @@
 			]
 		},
 		{
-			"name": "One Currency",
+			"name": "Currency",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/currency/:code",
 					"host": [
@@ -233,9 +213,10 @@
 					],
 					"variable": [
 						{
-							"description": "The ticker code of the currency. Ala 'BTC'",
 							"key": "code",
-							"value": "string"
+							"value": "{{code}}",
+							"type": "string",
+							"description": "The string ticker code of the currency. Ala 'BTC'"
 						}
 					]
 				},
@@ -247,10 +228,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/currency/BTC",
 							"host": [
@@ -306,10 +283,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/currencies",
 					"host": [
@@ -328,10 +301,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/currencies",
 							"host": [
@@ -378,14 +347,10 @@
 			]
 		},
 		{
-			"name": "One Market",
+			"name": "Market",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string",
 					"host": [
@@ -399,8 +364,9 @@
 					"variable": [
 						{
 							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+							"value": "{{market_string}}",
+							"type": "string",
+							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
@@ -412,10 +378,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/:market_id",
 							"host": [
@@ -494,10 +456,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/markets",
 					"host": [
@@ -516,10 +474,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/markets",
 							"host": [
@@ -590,10 +544,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string/trades?",
 					"host": [
@@ -622,8 +572,9 @@
 					"variable": [
 						{
 							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+							"value": "{{market_string}}",
+							"type": "string",
+							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
@@ -635,10 +586,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/LTC_BTC/trades",
 							"host": [
@@ -695,10 +642,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/orderbook/:market_string",
 					"host": [
@@ -711,9 +654,10 @@
 					],
 					"variable": [
 						{
-							"description": "May be an ID or a string pair ala 'LTC_BTC'",
 							"key": "market_string",
-							"value": "Int or Str"
+							"value": "{{market_string}}",
+							"type": "string",
+							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
@@ -725,10 +669,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/orderbook/:market_string",
 							"host": [
@@ -807,10 +747,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/market/:market_string/ohlcv/:interval",
 					"host": [
@@ -826,12 +762,14 @@
 					"variable": [
 						{
 							"key": "market_string",
-							"value": "Int or Str",
-							"description": "May be an ID or a string pair ala 'LTC_BTC'"
+							"value": "{{market_string}}",
+							"type": "string",
+							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						},
 						{
 							"key": "interval",
-							"value": "String",
+							"value": "{{interval}}",
+							"type": "string",
 							"description": "OHLCV data is chunked by this interval"
 						}
 					]
@@ -844,10 +782,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/market/1/ohlcv/:interval",
 							"host": [
@@ -927,26 +861,10 @@
 			"name": "User Info",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"header": [],
 				"url": {
 					"raw": "{{url}}/v1/user/me",
 					"host": [
@@ -971,10 +889,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/me",
 							"host": [
@@ -1025,21 +939,10 @@
 			"name": "Balances",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/balances",
 					"host": [
@@ -1059,10 +962,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/balances",
 							"host": [
@@ -1113,21 +1012,10 @@
 			"name": "User Market View",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/market/:market_id",
 					"host": [
@@ -1142,8 +1030,9 @@
 					"variable": [
 						{
 							"key": "market_id",
-							"value": "Integer",
-							"description": "Integer ID of market"
+							"value": "{{market_id}}",
+							"description": "Integer ID of market",
+							"type": "string"
 						}
 					]
 				},
@@ -1155,10 +1044,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/market/1",
 							"host": [
@@ -1210,23 +1095,12 @@
 			"name": "Get Orders",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{url}}/v1/user/orders?open=Boolean",
+					"raw": "{{url}}/v1/user/orders?",
 					"host": [
 						"{{url}}"
 					],
@@ -1239,7 +1113,8 @@
 						{
 							"key": "open",
 							"value": "Boolean",
-							"description": "Filter by opened/closed orders"
+							"description": "Filter by opened/closed orders",
+							"disabled": true
 						},
 						{
 							"key": "older_than",
@@ -1263,10 +1138,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/orders",
 							"host": [
@@ -1317,21 +1188,10 @@
 			"name": "Order Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/order/:order_id",
 					"host": [
@@ -1346,8 +1206,9 @@
 					"variable": [
 						{
 							"key": "order_id",
-							"value": "Integer",
-							"description": "ID of the order to lookup"
+							"value": "{{order_id}}",
+							"description": "Integer ID of the order to lookup",
+							"type": "string"
 						}
 					]
 				},
@@ -1359,10 +1220,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/order/:order_id",
 							"host": [
@@ -1413,22 +1270,10 @@
 			"name": "Cancel Order",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
-					{
-						"key": "",
-						"value": "",
-						"disabled": true
-					},
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
@@ -1437,11 +1282,18 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\"id\": 106}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "{{cancel_order_id}}",
+							"description": "Integer ID of the order to cancel",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "{{url}}/v1/user/cancel_order?",
+					"raw": "{{url}}/v1/user/cancel_order",
 					"host": [
 						"{{url}}"
 					],
@@ -1449,14 +1301,6 @@
 						"v1",
 						"user",
 						"cancel_order"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "Integer",
-							"description": "Order ID to cancel",
-							"disabled": true
-						}
 					]
 				},
 				"description": "Takes an Order ID.\n\n<aside class=\"notice\">\nSuccessful cancellation returns just a 200 with no payload\n</aside>"
@@ -1530,119 +1374,19 @@
 			]
 		},
 		{
-			"name": "Withdraw History",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/v1/user/withdraws",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"user",
-						"withdraws"
-					]
-				},
-				"description": "Returns a list of the user's Withdraws and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values"
-			},
-			"response": [
-				{
-					"name": "Withdraw History Example",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/v1/user/withdraws",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"withdraws"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 06:06:25 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "250"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"withdraws\": [\n            {\n                \"id\": 2,\n                \"amount\": \"1\",\n                \"user_id\": 0,\n                \"currency\": \"LTC\",\n                \"network_data\": {},\n                \"address\": \"mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB\",\n                \"status\": \"needs_create\",\n                \"relay_status\": \"\",\n                \"created_at\": \"2019-02-01T06:06:16.218062Z\",\n                \"cancel_requested\": false\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
 			"name": "Withdraw Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/withdraw/:withdraw_id",
 					"host": [
@@ -1657,8 +1401,9 @@
 					"variable": [
 						{
 							"key": "withdraw_id",
-							"value": "Integer",
-							"description": "ID of the withdraw"
+							"value": "{{withdraw_id}}",
+							"description": "Integer ID of the withdraw",
+							"type": "string"
 						}
 					]
 				},
@@ -1675,10 +1420,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/withdraw/:withdraw_id",
 							"host": [
@@ -1726,17 +1467,10 @@
 			]
 		},
 		{
-			"name": "Deposit History",
+			"name": "Withdraw History",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1745,26 +1479,22 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{url}}/v1/user/deposits",
+					"raw": "{{url}}/v1/user/withdraws",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"v1",
 						"user",
-						"deposits"
+						"withdraws"
 					]
 				},
-				"description": "Returns a list of the user's Deposits and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values."
+				"description": "Returns a list of the user's Withdraws and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values"
 			},
 			"response": [
 				{
-					"name": "Deposit History",
+					"name": "Withdraw History Example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1773,19 +1503,15 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{url}}/v1/user/deposits",
+							"raw": "{{url}}/v1/user/withdraws",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
 								"user",
-								"deposits"
+								"withdraws"
 							]
 						}
 					},
@@ -1803,15 +1529,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 01 Feb 2019 06:08:28 GMT"
+							"value": "Fri, 01 Feb 2019 06:06:25 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "546"
+							"value": "250"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"deposits\": [\n            {\n                \"id\": \"1:855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088\",\n                \"amount\": \"0.25\",\n                \"currency\": \"BTC\",\n                \"address\": \"1Kv3CKUigVPsxGCkkaoyLKrZHZ7WLq8jNK\",\n                \"status\": \"credited\",\n                \"relay_status\": \"\",\n                \"network_data\": {\n                \t\t\"confirms\": 2,\n\t\t\t\t\t\t\"confirms_required\": 2,\n\t\t\t\t\t\t\"txid\": \"855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088\",\n\t\t\t\t\t\t\"vout\": 1\n                \t},\n                \"created_at\": \"2019-01-08T21:15:18.775592Z\"\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"withdraws\": [\n            {\n                \"id\": 2,\n                \"amount\": \"1\",\n                \"user_id\": 0,\n                \"currency\": \"LTC\",\n                \"network_data\": {},\n                \"address\": \"mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB\",\n                \"status\": \"needs_create\",\n                \"relay_status\": \"\",\n                \"created_at\": \"2019-02-01T06:06:16.218062Z\",\n                \"cancel_requested\": false\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -1819,14 +1545,7 @@
 			"name": "Deposit Details",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1835,10 +1554,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/deposit/:deposit_id",
 					"host": [
@@ -1853,8 +1568,9 @@
 					"variable": [
 						{
 							"key": "deposit_id",
-							"value": "string",
-							"description": "ID of the deposit"
+							"value": "{{deposit_id}}",
+							"description": "String ID of the deposit",
+							"type": "string"
 						}
 					]
 				},
@@ -1871,10 +1587,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit/:deposit_id",
 							"host": [
@@ -1921,17 +1633,86 @@
 			]
 		},
 		{
+			"name": "Deposit History",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/v1/user/deposits",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"deposits"
+					]
+				},
+				"description": "Returns a list of the user's Deposits and metadata including `id`, `amount`, `currency`, `address`, `status`, `network_data`, `created_at` values."
+			},
+			"response": [
+				{
+					"name": "Deposit History",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/v1/user/deposits",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"deposits"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 01 Feb 2019 06:08:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "546"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"deposits\": [\n            {\n                \"id\": \"1:855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088\",\n                \"amount\": \"0.25\",\n                \"currency\": \"BTC\",\n                \"address\": \"1Kv3CKUigVPsxGCkkaoyLKrZHZ7WLq8jNK\",\n                \"status\": \"credited\",\n                \"relay_status\": \"\",\n                \"network_data\": {\n                \t\t\"confirms\": 2,\n\t\t\t\t\t\t\"confirms_required\": 2,\n\t\t\t\t\t\t\"txid\": \"855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088\",\n\t\t\t\t\t\t\"vout\": 1\n                \t},\n                \"created_at\": \"2019-01-08T21:15:18.775592Z\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "Transfers",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [
@@ -1940,10 +1721,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{url}}/v1/user/transfers",
 					"host": [
@@ -1968,10 +1745,6 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/transfers",
 							"host": [
@@ -2014,14 +1787,7 @@
 			"name": "Create a Withdraw",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2031,8 +1797,27 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\"currency\": \"LTC\", \"amount\": \"1.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "{{withdraw_amount}}",
+							"description": "String. Exact amount, including decimal \"1.2345\"",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "{{code}}",
+							"description": "String. Currency code to withdraw",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "{{withdraw_address}}",
+							"description": "String. Address to receive funds",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
 					"raw": "{{url}}/v1/user/withdraw",
@@ -2043,26 +1828,6 @@
 						"v1",
 						"user",
 						"withdraw"
-					],
-					"query": [
-						{
-							"key": "amount",
-							"value": "String",
-							"description": "Exact amount, including decimal \"1.2345\"",
-							"disabled": true
-						},
-						{
-							"key": "currency",
-							"value": "String",
-							"description": "Price in base currency of the market",
-							"disabled": true
-						},
-						{
-							"key": "address",
-							"value": "String",
-							"description": "Address to receive funds",
-							"disabled": true
-						}
 					]
 				},
 				"description": "Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes."
@@ -2124,20 +1889,13 @@
 			"name": "Get Deposit Address",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "formdata",
+					"formdata": []
 				},
 				"url": {
 					"raw": "{{url}}/v1/user/deposit_address/:currency",
@@ -2154,11 +1912,12 @@
 						{
 							"description": "Currency code ala \"LTC\"",
 							"key": "currency",
-							"value": "String"
+							"value": "String",
+							"type": "string"
 						}
 					]
 				},
-				"description": "Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time.\n\nThe returned `currency_status` key may be one of 4 values:\n\nStatus | Returns address | Use case\n--- | --- | --- \n`ok` | Yes | Normal operation\n`degraded` | Yes | Down for maintenance. Funds will be credited once maintenance is completed\n`disabled` | No | Deposits temporarily disabled due to network issues. Typically due to excessive forking, stalled chain, or consesus issues\n`offline` | No | Offline for other reason\n`delisted` | No | Currency is delisted and deposits are no longer accepted\n\n"
+				"description": "Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time.\n\nThe returned `currency_status` key may be one of the following values:\n\nStatus | Returns address | Use case\n--- | --- | --- \n`ok` | Yes | Normal operation\n`degraded` | Yes | Down for maintenance. Funds will be credited once maintenance is completed\n`disabled` | No | Deposits temporarily disabled due to network issues. Typically due to excessive forking, stalled chain, or consesus issues\n`offline` | No | Offline for other reason\n`delisted` | No | Currency is delisted and deposits are no longer accepted\n\n"
 			},
 			"response": [
 				{
@@ -2226,10 +1985,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/[currency_key]",
 							"host": [
@@ -2255,10 +2010,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/:currency",
 							"host": [
@@ -2308,10 +2059,6 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/:currency",
 							"host": [
@@ -2362,14 +2109,7 @@
 			"name": "Create Sell Limit",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2379,11 +2119,30 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\"amount\": \"1\", \"price\": \"0.01\", \"market_id\": 1}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "{{sell_amount}}",
+							"description": "String. Exact amount, including decimal \"1.2345\"",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "{{sell_price}}",
+							"description": "String. Price in base currency of the market",
+							"type": "text"
+						},
+						{
+							"key": "market_id",
+							"value": "{{market_id}}",
+							"description": "Integer ID of the market",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "{{url}}/v1/user/sell_limit?",
+					"raw": "{{url}}/v1/user/sell_limit",
 					"host": [
 						"{{url}}"
 					],
@@ -2391,26 +2150,6 @@
 						"v1",
 						"user",
 						"sell_limit"
-					],
-					"query": [
-						{
-							"key": "amount",
-							"value": "String",
-							"description": "Exact amount, including decimal \"1.2345\"",
-							"disabled": true
-						},
-						{
-							"key": "price",
-							"value": "String",
-							"description": "Price in base currency of the market",
-							"disabled": true
-						},
-						{
-							"key": "market_id",
-							"value": "Integer",
-							"description": "Integer ID of market",
-							"disabled": true
-						}
 					]
 				},
 				"description": "Creates an order to sell a currency at the specified price. Amount will be removed from your balance immediately. Returns the created order id."
@@ -2480,14 +2219,7 @@
 			"name": "Create Buy Limit",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{bearer}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -2497,11 +2229,30 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "{{buy_amount}}",
+							"description": "String. Exact amount, including decimal \"1.2345\"",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "{{buy_price}}",
+							"description": "String. Price in base currency of the market",
+							"type": "text"
+						},
+						{
+							"key": "market_id",
+							"value": "{{market_id}}",
+							"description": "Integer ID of market",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "{{url}}/v1/user/buy_limit?",
+					"raw": "{{url}}/v1/user/buy_limit",
 					"host": [
 						"{{url}}"
 					],
@@ -2509,26 +2260,6 @@
 						"v1",
 						"user",
 						"buy_limit"
-					],
-					"query": [
-						{
-							"key": "amount",
-							"value": "String",
-							"description": "Exact amount, including decimal \"1.2345\"",
-							"disabled": true
-						},
-						{
-							"key": "price",
-							"value": "String",
-							"description": "Price in base currency of the market",
-							"disabled": true
-						},
-						{
-							"key": "market_id",
-							"value": "Integer",
-							"description": "Integer ID of market",
-							"disabled": true
-						}
 					]
 				},
 				"description": "Creates an order to buy a currency at the specified price on the specified market. Amount will be removed from your balance immediately. Returns the created order id."
@@ -2593,6 +2324,77 @@
 					"body": "{\n\t\"data\": {\n\t\t\"order\": {\n\t\t\t\"id\": 13254,\n\t\t\t\"market_amount\": \"10\",\n\t\t\t\"market_amount_remaining\": \"10\",\n\t\t\t\"created_at\": \"2018-04-06T20:47:11.966139Z\",\n\t\t\t\"price\": \"0.1\",\n\t\t\t\"base_amount\": \"1.0025\",\n\t\t\t\"order_type\": \"buy_limit\",\n\t\t\t\"market_id\": 1,\n\t\t\t\"open\": true,\n\t\t\t\"trades\": []\n\t\t}\n\t}\n}"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2b90e11c-fe0e-4222-b2e4-edfb0d844fd2",
+				"type": "text/javascript",
+				"exec": [
+					"let key = pm.environment.get(\"hmac_key\");",
+					"let keyid = pm.environment.get(\"hmac_key_id\");",
+					"",
+					"function epochTime() {",
+					"    var d = new Date();",
+					"    var t = d.getTime();",
+					"    var o = t + \"\";",
+					"    return o.substring(0, 10);",
+					"}",
+					"",
+					"var replaceVars = function(string)",
+					"{",
+					"    return string.replace(/\\{\\{.+?\\}\\}/g, function(match)",
+					"    {",
+					"        var varName = match.substr(2, match.length - 4);",
+					"        var varValue = environment[varName] || globals[varName];",
+					"        return varValue ? replaceVars(varValue) : match; // recursive!",
+					"    });",
+					"}",
+					"",
+					"var time = epochTime();",
+					"var encodedUri = replaceVars(request.url.slice(7));",
+					"var rawSignature = request.method + \"\\n\";",
+					"rawSignature += pm.environment.values.substitute(encodedUri, null, false) + \"\\n\";",
+					"",
+					"rawSignature += time + \"\\n\";",
+					"if (request.method == \"GET\") {",
+					"    rawSignature += \"\\n\";",
+					"} else {",
+					"    rawSignature += request.data + \"\\n\";",
+					"}",
+					"rawSignature += key;",
+					"console.log(request.data);",
+					"",
+					"var hash = CryptoJS.SHA256(rawSignature);",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'Content-Type',",
+					"    value: 'application/json'",
+					"})",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'HMAC-Timestamp', ",
+					"    value: time",
+					"})",
+					"",
+					"pm.request.headers.add({",
+					"    key: 'Authorization', ",
+					"    value: 'HMAC-SHA256 ' + keyid + ':' + hash.toString(CryptoJS.enc.Base64)",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c607f45f-b466-4ed8-b8c7-0bc1655d79e7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
