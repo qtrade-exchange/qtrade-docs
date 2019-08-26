@@ -163,10 +163,11 @@ Market Trades | `/market/:market_string/trades`
 
 # Postman Collection
 
-For convenience, you can download a Postman collection to play around with the API.
+For convenience you can download a Postman collection to play around with the API. 
 
-<a href="postman.json">Download Here</a>
+ - Import the collection
+ - Import the Environment
+ - Set the `hmac_key` and `hmac_key_id` environment variables to match an API key you generated
+ - Execute API calls!
 
-<aside class="warning">
-  The postman collection uses the JWT authentication scheme, which is undocumented and not supported. It does not work out of the box with our production API. This collection is provided as a helpful reference.
-</aside>
+### Get the <a href="postman.json">Collection</a> and <a href="postman_environment.json">Environment</a>
