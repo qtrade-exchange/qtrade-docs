@@ -77,15 +77,32 @@ api.get("/{{ item.request.url.path | join("/") }}").json()
 
 {{ item.request.description }}
 
+{% if item.request.body and item.request.body.formdata %}
+
+### POST Body
+
+Variable | Description
+--------- | -----------
+{% for dict in item.request.body.formdata %}
+{{dict.key}} | {{dict.description}}
+{% endfor %}
+{% endif %}
+
 {% if item.request.url.variable %}
-Parameter | Type | Description
---------- | ---- | -----------
+
+### Path variables
+
+Variable | Description
+--------- | -----------
 {% for prop in item.request.url.variable %}
-{{ prop.key }} | {{ prop.value }} | {{ prop.description }}
+{{ prop.key }} | {{ prop.description }}
 {% endfor %}
 {% endif %}
 
 {% if item.request.url.query %}
+
+### Query params
+
 Parameter | Type | Description
 --------- | ---- | -----------
 {% for prop in item.request.url.query %}
