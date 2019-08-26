@@ -3,6 +3,7 @@ title: qTrade API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - python
+  - php
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -34,6 +35,10 @@ The qTrade API is available at
 {{ load_snippet('hmac.py') }}
 ```
 
+``` php
+{{ load_snippet('hmac.php')}}
+```
+
 qTrade's private API requires HMAC authentication. All requests and responses are the `application/json` content type return typical HTTP status codes.
 
 The HMAC protocol uses an API key issued on qTrade's website in the account settings page. API keys have a limited set of permissions and you should always issue a key with the minimum set of permissions needed. API keys may also be revoked on the settings page.
@@ -61,10 +66,23 @@ Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 req = {{ resp.originalRequest.body.raw | json_to_python_dict }}
 api.post("/{{ item.request.url.path | join("/") }}", json=req).json()
 ```
+``` php
+<?php
+$req = {{ resp.originalRequest.body.raw | json_to_php_array }}
+$result = $api->post("/{{ item.request.url.path | join("/") }}", $req);
+print_r(json_decode($result));
+?>
+```
 {% elif item.request.method == "GET" %}
 
 ``` python
 api.get("/{{ item.request.url.path | join("/") }}").json()
+```
+``` php
+<?php
+$result = $api->get("/{{ item.request.url.path | join("/") }}");
+print_r(json_decode($result));
+?>
 ```
 {% endif %}
 
