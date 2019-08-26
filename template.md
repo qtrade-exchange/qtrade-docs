@@ -69,7 +69,7 @@ api.post("/{{ item.request.url.path | join("/") }}", json=req).json()
 ``` php
 <?php
 $req = {{ resp.originalRequest.body.raw | json_to_php_array }}
-$result = $api->post("/{{ item.request.url.path | join("/") }}", $req);
+$result = $api->post("/{{ item.request.url.path | join("/") }}", json_encode($req));
 print_r(json_decode($result));
 ?>
 ```
