@@ -3,7 +3,7 @@ title: qTrade API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - python
-  - javascript
+  - javascript: Node.js
   - php
 
 toc_footers:
