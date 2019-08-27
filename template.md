@@ -3,6 +3,7 @@ title: qTrade API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - python
+  - javascript
   - php
 
 toc_footers:
@@ -34,7 +35,9 @@ The qTrade API is available at
 ``` python
 {{ load_snippet('hmac.py') }}
 ```
-
+``` javascript
+{{ load_snippet('hmac.js') }}
+```
 ``` php
 {{ load_snippet('hmac.php')}}
 ```
@@ -66,6 +69,10 @@ Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 req = {{ resp.originalRequest.body.raw | json_to_python_dict }}
 api.post("/{{ item.request.url.path | join("/") }}", json=req).json()
 ```
+``` javascript
+req = {{ resp.originalRequest.body.raw | json_to_python_dict }}
+api.post("/{{ item.request.url.path | join("/") }}", JSON.stringify(req), (resp) => {})
+```
 ``` php
 <?php
 $req = {{ resp.originalRequest.body.raw | json_to_php_array }}
@@ -77,6 +84,9 @@ print_r(json_decode($result));
 
 ``` python
 api.get("/{{ item.request.url.path | join("/") }}").json()
+```
+``` javascript
+api.get("/{{ item.request.url.path | join("/") }}", (resp) => {})
 ```
 ``` php
 <?php
