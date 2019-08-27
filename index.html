@@ -202,7 +202,7 @@
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
-  <body class="index" data-languages="[&quot;python&quot;,&quot;php&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;javascript&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,6 +213,7 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="php">php</a>
         </div>
         <div class="search">
@@ -387,6 +388,82 @@
 <span class="c"># Make a call to API</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.qtrade.io/v1/user/me'</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'https'</span><span class="p">);</span>
+
+<span class="kr">class</span> <span class="nx">QtradeAuth</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">keyID</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">key</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">host</span> <span class="o">=</span> <span class="s1">'api.qtrade.io'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">req</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="nx">endpoint</span><span class="p">,</span> <span class="nx">body</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="nx">handleData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">);</span>
+
+    <span class="c1">// Create hmac sig</span>
+    <span class="kd">let</span> <span class="nx">sig_text</span> <span class="o">=</span> <span class="nx">method</span> <span class="o">+</span> <span class="s2">"\n"</span><span class="p">;</span>
+    <span class="nx">sig_text</span> <span class="o">+=</span> <span class="nx">endpoint</span> <span class="o">+</span> <span class="s2">"\n"</span><span class="p">;</span>
+    <span class="nx">sig_text</span> <span class="o">+=</span> <span class="nx">timestamp</span> <span class="o">+</span> <span class="s2">"\n"</span><span class="p">;</span>
+    <span class="nx">sig_text</span> <span class="o">+=</span> <span class="nx">body</span> <span class="o">+</span> <span class="s2">"\n"</span><span class="p">;</span>
+    <span class="nx">sig_text</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">sig_text</span><span class="p">,</span> <span class="s1">'utf8'</span><span class="p">).</span><span class="nx">digest</span><span class="p">().</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">opt</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">host</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span>
+      <span class="na">path</span><span class="p">:</span> <span class="nx">endpoint</span><span class="p">,</span>
+      <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json; charset=utf-8'</span><span class="p">,</span>
+        <span class="s1">'Authorization'</span><span class="p">:</span> <span class="s1">'HMAC-SHA256 '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">keyID</span> <span class="o">+</span> <span class="s1">':'</span> <span class="o">+</span> <span class="nx">hash</span><span class="p">,</span>
+        <span class="s2">"HMAC-Timestamp"</span><span class="p">:</span> <span class="nx">timestamp</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">https</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">opt</span><span class="p">,</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">setEncoding</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">output</span> <span class="o">+=</span> <span class="nx">chunk</span><span class="p">;</span>
+      <span class="p">});</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'end'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">handleData</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">output</span><span class="p">));</span>
+      <span class="p">})</span>
+    <span class="p">});</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="nx">get</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">handleData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="nx">endpoint</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">handleData</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">post</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">handleData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="nx">endpoint</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">handleData</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QtradeAuth</span><span class="p">(</span><span class="s2">"1:1111111111111111111111111111111111111111111111111111111111111111"</span><span class="p">);</span>
+
+<span class="c1">// GET request</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/me"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// POST request</span>
+<span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+  <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"0.01"</span><span class="p">,</span>
+  <span class="s2">"market_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/sell_limit"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+
+
+
+
+
+
+
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">class</span> <span class="nc">QtradeAuth</span> 
 <span class="p">{</span>
@@ -483,6 +560,7 @@
 </tr>
 </tbody></table>
 <h1 id='public'>Public</h1><h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/ticker/:market_string"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/ticker/:market_string"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -524,6 +602,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/ticker/:market_string</code></p>
 <h2 id='all-tickers'>All Tickers</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/tickers"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/tickers"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/tickers"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -571,6 +650,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/tickers</code></p>
 <h2 id='currency'>Currency</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currency/:code"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/currency/:code"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/currency/:code"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -619,6 +699,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/currency/:code</code></p>
 <h2 id='all-currencies'>All Currencies</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/currencies"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/currencies"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/currencies"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -655,6 +736,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/currencies</code></p>
 <h2 id='market'>Market</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -707,6 +789,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/market/:market_string</code></p>
 <h2 id='all-markets'>All Markets</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/markets"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/markets"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/markets"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -748,6 +831,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/markets</code></p>
 <h2 id='market-trades'>Market Trades</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string/trades"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string/trades"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string/trades"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -810,6 +894,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/market/:market_string/trades?</code></p>
 <h2 id='market-orderbook'>Market Orderbook</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/orderbook/:market_string"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/orderbook/:market_string"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/orderbook/:market_string"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -849,6 +934,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/orderbook/:market_string</code></p>
 <h2 id='ohlcv'>OHLCV</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/:market_string/ohlcv/:interval"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string/ohlcv/:interval"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/:market_string/ohlcv/:interval"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -938,6 +1024,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/market/:market_string/ohlcv/:interval</code></p>
 <h1 id='private'>Private</h1><h2 id='user-info'>User Info</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/me"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/me"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/me"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -967,6 +1054,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/user/me</code></p>
 <h2 id='balances'>Balances</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/balances"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/balances"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/balances"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -998,6 +1086,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/user/balances</code></p>
 <h2 id='user-market-view'>User Market View</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/:market_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/market/:market_id"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/market/:market_id"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1099,6 +1188,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/user/market/:market_id</code></p>
 <h2 id='get-orders'>Get Orders</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/orders"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/orders"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/orders"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1187,6 +1277,7 @@
 
 <p><code>GET https://api.qtrade.io/v1/user/orders?</code></p>
 <h2 id='order-details'>Order Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/order/:order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/order/:order_id"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/order/:order_id"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1228,6 +1319,8 @@
 <p><code>GET https://api.qtrade.io/v1/user/order/:order_id</code></p>
 <h2 id='cancel-order'>Cancel Order</h2><pre class="highlight python tab-python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">109</span><span class="p">,</span>
@@ -1268,6 +1361,7 @@ Successful cancellation returns just a 200 with no payload
 
 <p><code>POST https://api.qtrade.io/v1/user/cancel_order</code></p>
 <h2 id='withdraw-details'>Withdraw Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/withdraw/:withdraw_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/withdraw/:withdraw_id"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/withdraw/:withdraw_id"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1309,6 +1403,7 @@ Successful cancellation returns just a 200 with no payload
 
 <p><code>GET https://api.qtrade.io/v1/user/withdraw/:withdraw_id</code></p>
 <h2 id='withdraw-history'>Withdraw History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/withdraws"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/withdraws"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/withdraws"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1340,6 +1435,7 @@ Successful cancellation returns just a 200 with no payload
 
 <p><code>GET https://api.qtrade.io/v1/user/withdraws</code></p>
 <h2 id='deposit-details'>Deposit Details</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/:deposit_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/deposit/:deposit_id"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/deposit/:deposit_id"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1381,6 +1477,7 @@ Successful cancellation returns just a 200 with no payload
 
 <p><code>GET https://api.qtrade.io/v1/user/deposit/:deposit_id</code></p>
 <h2 id='deposit-history'>Deposit History</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposits"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/deposits"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/deposits"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1415,6 +1512,7 @@ Successful cancellation returns just a 200 with no payload
 
 <p><code>GET https://api.qtrade.io/v1/user/deposits</code></p>
 <h2 id='transfers'>Transfers</h2><pre class="highlight python tab-python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/transfers"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/transfers"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/transfers"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
@@ -1449,6 +1547,10 @@ Successful cancellation returns just a 200 with no payload
   <span class="s">'amount'</span><span class="p">:</span> <span class="s">'1.51235432'</span><span class="p">,</span>
   <span class="s">'currency'</span><span class="p">:</span> <span class="s">'LTC'</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/withdraw"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'address'</span><span class="p">:</span> <span class="s1">'n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE'</span><span class="p">,</span>
+  <span class="s1">'amount'</span><span class="p">:</span> <span class="s1">'1.51235432'</span><span class="p">,</span>
+  <span class="s1">'currency'</span><span class="p">:</span> <span class="s1">'LTC'</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/withdraw"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="s2">"LTC"</span><span class="p">,</span>
@@ -1495,6 +1597,8 @@ Successful cancellation returns just a 200 with no payload
 <p><code>POST https://api.qtrade.io/v1/user/withdraw</code></p>
 <h2 id='get-deposit-address'>Get Deposit Address</h2><pre class="highlight python tab-python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'currency'</span><span class="p">:</span> <span class="s">'LTC'</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/deposit_address/:currency"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'currency'</span><span class="p">:</span> <span class="s1">'LTC'</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/deposit_address/:currency"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"currency"</span> <span class="o">=&gt;</span> <span class="s2">"LTC"</span><span class="p">,</span>
@@ -1594,6 +1698,8 @@ Successful cancellation returns just a 200 with no payload
 <p><code>POST https://api.qtrade.io/v1/user/deposit_address/:currency</code></p>
 <h2 id='create-sell-limit'>Create Sell Limit</h2><pre class="highlight python tab-python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'amount'</span><span class="p">:</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span> <span class="s">'0.01'</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/sell_limit"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'amount'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'price'</span><span class="p">:</span> <span class="s1">'0.01'</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/sell_limit"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
@@ -1667,6 +1773,8 @@ Successful cancellation returns just a 200 with no payload
 <p><code>POST https://api.qtrade.io/v1/user/sell_limit</code></p>
 <h2 id='create-buy-limit'>Create Buy Limit</h2><pre class="highlight python tab-python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'amount'</span><span class="p">:</span> <span class="s">'10'</span><span class="p">,</span> <span class="s">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span> <span class="s">'0.1'</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/buy_limit"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'amount'</span><span class="p">:</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'price'</span><span class="p">:</span> <span class="s1">'0.1'</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/buy_limit"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"amount"</span> <span class="o">=&gt;</span> <span class="s2">"10"</span><span class="p">,</span>
@@ -1828,6 +1936,7 @@ Successful cancellation returns just a 200 with no payload
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="php">php</a>
           </div>
       </div>
