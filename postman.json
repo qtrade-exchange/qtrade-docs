@@ -1036,7 +1036,7 @@
 						}
 					]
 				},
-				"description": "Returns the currently available `base_currency` and `markey_currency`  balances for a user on the given market. These amounts do **not** include amounts currently represented in open orders, pending deposits or withdraws.\n\nAlso returns lists of `open_orders` and `closed_orders`"
+				"description": "Returns the currently available `base_currency` and `market_currency`  balances for a user on the given market. These amounts do **not** include amounts currently represented in open orders, pending deposits or withdraws.\n\nAlso returns lists of `open_orders` and `closed_orders`"
 			},
 			"response": [
 				{
