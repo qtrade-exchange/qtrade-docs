@@ -368,7 +368,10 @@
         <span class="n">request_details</span> <span class="o">+=</span> <span class="n">url_obj</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">url_obj</span><span class="o">.</span><span class="n">params</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
         <span class="n">request_details</span> <span class="o">+=</span> <span class="n">timestamp</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
         <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
-            <span class="n">request_details</span> <span class="o">+=</span> <span class="n">req</span><span class="o">.</span><span class="n">body</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">request_details</span> <span class="o">+=</span> <span class="n">req</span><span class="o">.</span><span class="n">body</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">request_details</span> <span class="o">+=</span> <span class="n">req</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">request_details</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
         <span class="n">request_details</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
