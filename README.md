@@ -14,11 +14,13 @@ Qtrade Ubuntu 16.04 Quickstart
 ------------
 ``` shell
 sudo apt-get install ruby ruby-dev python3 python3-pip
+sudo gem update --system
 sudo gem install bundler
-bundle install
+bundle install --path vendor/bundle
 bundle exec middleman server
 pip3 install --user jinja2
 python3 template_proc.py > source/index.html.md
+./deploy.sh
 ```
 
 Features
