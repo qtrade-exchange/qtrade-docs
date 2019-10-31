@@ -370,7 +370,7 @@
 						}
 					]
 				},
-				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades."
+				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.\n\nkey | desc\n---------- | -------\nmaker_fee | The percentage fee taken on the trade value of maker orders\ntaker_fee | The percentage fee taken on the trade value on taker orders\nid | A globally unique market identifier as an integer\nmetadata | Frontend rendering parameters\ncan_trade | true if trading and order creation is disabled\nbase_currency | The currency that orders are priced in\nmarket_currency | The currency that is bought or sold\n"
 			},
 			"response": [
 				{
