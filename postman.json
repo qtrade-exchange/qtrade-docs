@@ -1242,13 +1242,13 @@
 						{
 							"key": "older_than",
 							"value": "Integer",
-							"description": "Expects an order ID and returns orders with and ID < the passed ID",
+							"description": "Expects an order ID and returns orders with an ID < the passed ID",
 							"disabled": true
 						},
 						{
 							"key": "newer_than",
 							"value": "Integer",
-							"description": "Expects an order ID and returns orders with and ID > the passed ID",
+							"description": "Expects an order ID and returns orders with an ID > the passed ID",
 							"disabled": true
 						}
 					]
