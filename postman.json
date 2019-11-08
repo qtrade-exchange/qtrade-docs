@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "950830e1-68b2-4bb2-823e-c650315101ae",
+		"_postman_id": "6895f3f0-4b9b-43e4-8390-61c36538da7d",
 		"name": "qTrade Docs live",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,12 +23,12 @@
 					"variable": [
 						{
 							"key": "market_string",
-							"value": "{{market_string}}",
+							"value": "LTC_BTC",
 							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
-				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
+				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market.\n\nkey | desc\n---------- | -------\nask | The current ask price on the market\nbid | The current bid price on the market\nday_avg_price | The market average price over the last 24 hours\nday_change | The change in the market's midpoint over the last 24 hours\nday_high | The price of the highest trade in the last 24 hours\nday_low | The price of the lowest trade in the last 24 hours\nday_open | The price of the latest trade which occurred more than 24 hours ago\nday_volume_base | The market volume in its base currency\nday_volume_market | The market volume in market currency\nid | A globally unique market identifier as an integer\nid_hr | A globally unique market identifier as a human-readable string\nlast | The price of the last trade made on the market"
 			},
 			"response": [
 				{
@@ -123,7 +123,7 @@
 						"tickers"
 					]
 				},
-				"description": "Get ticker values for all markets."
+				"description": "Get ticker values for all markets.\n\nReturn parameters are as for Ticker."
 			},
 			"response": [
 				{
@@ -213,30 +213,36 @@
 					],
 					"variable": [
 						{
+							"description": "The string ticker code of the currency. Ala 'BTC'",
 							"key": "code",
-							"value": "{{code}}",
-							"type": "string",
-							"description": "The string ticker code of the currency. Ala 'BTC'"
+							"value": "{{code}}"
 						}
 					]
 				},
-				"description": "Get general information about a specific currency."
+				"description": "Get general information about a specific currency.\n\nkey | desc\n---------- | -------\ncan_withdraw | True if this currency can be withdrawn\ncode | The currency code as used in market strings etc.\nconfig | This dictionary is primarily for internal use, and varies from coin to coin.  Consistent values are as follows:\n&nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The estimated price of the coin in USD\n&nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee | &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade\nlong_name | The full name of the currency\nprecision | \nstatus | The coin's listing and trading status on qTrade"
 			},
 			"response": [
 				{
-					"name": "Currency by Code Example",
+					"name": "Currency By Code",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/v1/currency/BTC",
+							"raw": "{{url}}/v1/currency/:code",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
 								"currency",
-								"BTC"
+								":code"
+							],
+							"variable": [
+								{
+									"description": "The string ticker code of the currency. Ala 'BTC'",
+									"key": "code",
+									"value": "{{code}}"
+								}
 							]
 						}
 					},
@@ -245,20 +251,40 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Content-Length",
-							"value": "327"
+							"key": "Date",
+							"value": "Thu, 07 Nov 2019 23:56:09 GMT"
 						},
 						{
 							"key": "Content-Type",
 							"value": "application/json; charset=utf-8"
 						},
 						{
-							"key": "Date",
-							"value": "Tue, 21 May 2019 02:46:29 GMT"
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
 						},
 						{
 							"key": "Vary",
 							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
 						},
 						{
 							"key": "X-Ratelimit-Limit",
@@ -266,15 +292,39 @@
 						},
 						{
 							"key": "X-Ratelimit-Remaining",
-							"value": "60"
+							"value": "59"
 						},
 						{
 							"key": "X-Ratelimit-Reset",
-							"value": "32"
+							"value": "52"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "53233dfedad35ee7-OMA"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"currency\": {\n            \"code\": \"BTC\",\n            \"long_name\": \"Bitcoin\",\n            \"type\": \"bitcoin_like\",\n            \"status\": \"ok\",\n            \"precision\": 8,\n            \"config\": {\n                \"price\": 1,\n                \"confirms\": 6,\n                \"withdraw_fee\": \"0.001\",\n                \"default_signer\": 1,\n                \"address_version\": 111,\n                \"satoshi_per_byte\": 10,\n                \"required_confirmations\": 1,\n                \"required_generate_confirmations\": 120\n            },\n            \"metadata\": {},\n            \"can_withdraw\": true\n        }\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"currency\": {\n            \"code\": \"BTC\",\n            \"long_name\": \"Bitcoin\",\n            \"type\": \"bitcoin_like\",\n            \"status\": \"ok\",\n            \"precision\": 8,\n            \"config\": {\n                \"price\": 9159.72,\n                \"withdraw_fee\": \"0.0005\",\n                \"default_signer\": 6,\n                \"address_version\": 0,\n                \"satoshi_per_byte\": 15,\n                \"explorerAddressURL\": \"https://live.blockcypher.com/btc/address/\",\n                \"p2sh_address_version\": 5,\n                \"explorerTransactionURL\": \"https://live.blockcypher.com/btc/tx/\",\n                \"required_confirmations\": 2,\n                \"required_generate_confirmations\": 100\n            },\n            \"metadata\": {\n                \"withdraw_notices\": []\n            },\n            \"can_withdraw\": true\n        }\n    }\n}"
 				}
 			]
 		},
@@ -293,11 +343,11 @@
 						"currencies"
 					]
 				},
-				"description": "Get general information about all available currencies."
+				"description": "Get general information about all available currencies.\n\nReturn parameters are as for Currency."
 			},
 			"response": [
 				{
-					"name": "Currencies",
+					"name": "All Currencies",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -317,32 +367,80 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Content-Length",
-							"value": "869",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
+							"key": "Date",
+							"value": "Thu, 07 Nov 2019 23:57:30 GMT"
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
+							"value": "application/json; charset=utf-8"
 						},
 						{
-							"key": "Date",
-							"value": "Sat, 07 Apr 2018 04:33:51 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
 						},
 						{
 							"key": "Vary",
-							"value": "Origin",
-							"name": "Vary",
-							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "31"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "53233ffbfd125ee7-OMA"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"confirms\": 6,\n                    \"withdraw_fee\": \"0.001\",\n                    \"address_version\": 111,\n                    \"satoshi_per_byte\": 10,\n                    \"required_confirmations\": 6,\n                    \"required_generate_confirmations\": 120\n                },\n                \"metadata\": {},\n                \"can_withdraw\": true\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"price\": 9159.72,\n                    \"withdraw_fee\": \"0.0005\",\n                    \"default_signer\": 6,\n                    \"address_version\": 0,\n                    \"satoshi_per_byte\": 15,\n                    \"explorerAddressURL\": \"https://live.blockcypher.com/btc/address/\",\n                    \"p2sh_address_version\": 5,\n                    \"explorerTransactionURL\": \"https://live.blockcypher.com/btc/tx/\",\n                    \"required_confirmations\": 2,\n                    \"required_generate_confirmations\": 100\n                },\n                \"metadata\": {\n                    \"withdraw_notices\": []\n                },\n                \"can_withdraw\": true\n            },\n            {\n                \"code\": \"BIS\",\n                \"long_name\": \"Bismuth\",\n                \"type\": \"bismuth\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"price\": 0.11314929085578249,\n                    \"data_max\": 1000,\n                    \"withdraw_fee\": \"0.25\",\n                    \"default_signer\": 54,\n                    \"explorerAddressURL\": \"https://bismuth.online/search?quicksearch=\",\n                    \"enable_address_data\": true,\n                    \"explorerTransactionURL\": \"https://bismuth.online/search?quicksearch=\",\n                    \"required_confirmations\": 35\n                },\n                \"metadata\": {\n                    \"hidden\": false,\n                    \"deposit_notices\": []\n                },\n                \"can_withdraw\": true\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -363,14 +461,13 @@
 					],
 					"variable": [
 						{
+							"description": "Integer ID or a string pair ala 'LTC_BTC'",
 							"key": "market_string",
-							"value": "{{market_string}}",
-							"type": "string",
-							"description": "Integer ID or a string pair ala 'LTC_BTC'"
+							"value": "{{market_string}}"
 						}
 					]
 				},
-				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.\n\nkey | desc\n---------- | -------\nmaker_fee | The percentage fee taken on the trade value of maker orders\ntaker_fee | The percentage fee taken on the trade value on taker orders\nid | A globally unique market identifier as an integer\nmetadata | Frontend rendering parameters\ncan_trade | true if trading and order creation is disabled\nbase_currency | The currency that orders are priced in\nmarket_currency | The currency that is bought or sold\n"
+				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.\n\nkey | desc\n---------- | -------\nmaker_fee | The percentage fee taken on the trade value of maker orders\ntaker_fee | The percentage fee taken on the trade value on taker orders\nid | A globally unique market identifier as an integer\nmetadata | Frontend rendering params\ncan_trade | true if trading and order creation is disabled\nbase_currency | The code of currency that orders are priced in\nmarket_currency | The code of currency that is bought or sold"
 			},
 			"response": [
 				{
@@ -447,7 +544,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"market\": {\n            \"id\": 15,\n            \"market_currency\": \"VEO\",\n            \"base_currency\": \"BTC\",\n            \"maker_fee\": \"0.005\",\n            \"taker_fee\": \"0.005\",\n            \"metadata\": {},\n            \"can_trade\": true,\n            \"can_cancel\": true,\n            \"can_view\": false\n        },\n        \"recent_trades\": [\n            {\n                \"amount\": \"1.64360163\",\n                \"price\": \"0.0191\",\n                \"created_at\": \"2019-01-31T23:09:31.419131Z\"\n            },\n            {\n                \"amount\": \"1.60828469\",\n                \"price\": \"0.02248\",\n                \"created_at\": \"2019-01-31T22:05:16.531659Z\"\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"market\": {\n            \"id\": 15,\n            \"market_currency\": \"VEO\",\n            \"base_currency\": \"BTC\",\n            \"maker_fee\": \"0.005\",\n            \"taker_fee\": \"0.005\",\n            \"metadata\": {},\n            \"can_trade\": true,\n            \"can_cancel\": true,\n            \"can_view\": false\n        },\n        \"recent_trades\": [\n            {\n            \t\"id\": 51362,\n                \"amount\": \"1.64360163\",\n                \"price\": \"0.0191\",\n                \"created_at\": \"2019-01-31T23:09:31.419131Z\"\n            },\n            {\n            \t\"id\": 51362,\n                \"amount\": \"1.60828469\",\n                \"price\": \"0.02248\",\n                \"created_at\": \"2019-01-31T22:05:16.531659Z\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -466,7 +563,7 @@
 						"markets"
 					]
 				},
-				"description": "Get general information about all available markets."
+				"description": "Get general information about all available markets.\n\nReturn parameters are as for Market."
 			},
 			"response": [
 				{
@@ -545,7 +642,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/v1/market/:market_string/trades?",
+					"raw": "{{url}}/v1/market/:market_string/trades",
 					"host": [
 						"{{url}}"
 					],
@@ -573,12 +670,11 @@
 						{
 							"key": "market_string",
 							"value": "{{market_string}}",
-							"type": "string",
 							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
-				"description": "Return historical trade data on a market"
+				"description": "Return historical trade data on a market.\n\nkey | desc\n---------- | -------\namount | The amount of the transaction in market currency\ncreated_at | The time and date of the trade's creation\nprice | The price of the trade in base currency\nseller_taker | True if the seller was the taker, false if the buyer was the taker"
 			},
 			"response": [
 				{
@@ -633,7 +729,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"trades\": [\n            {\n                \"amount\": \"0.00760005\",\n                \"price\": \"0.01181539\",\n                \"seller_taker\": false,\n                \"created_at\": \"2019-05-21T02:41:30.781308Z\"\n            },\n            {\n                \"amount\": \"4.99515615\",\n                \"price\": \"0.01180695\",\n                \"seller_taker\": false,\n                \"created_at\": \"2019-05-21T02:41:30.781308Z\"\n            }\n        ]\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"trades\": [\n            {\n            \t\"id\": 51362,\n                \"amount\": \"0.00760005\",\n                \"price\": \"0.01181539\",\n                \"seller_taker\": false,\n                \"created_at\": \"2019-05-21T02:41:30.781308Z\"\n            },\n            {\n            \t\"id\": 51354,\n                \"amount\": \"4.99515615\",\n                \"price\": \"0.01180695\",\n                \"seller_taker\": false,\n                \"created_at\": \"2019-05-21T02:41:30.781308Z\"\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -656,12 +752,11 @@
 						{
 							"key": "market_string",
 							"value": "{{market_string}}",
-							"type": "string",
 							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						}
 					]
 				},
-				"description": "Get orderbook values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market."
+				"description": "Get orderbook values for the given market. The `market_string` value should be formatted ala `LTC_BTC` for the LTC/BTC market.\n\nOrders are given in a `price|amount` format, sorted by type."
 			},
 			"response": [
 				{
@@ -763,18 +858,16 @@
 						{
 							"key": "market_string",
 							"value": "{{market_string}}",
-							"type": "string",
 							"description": "Integer ID or a string pair ala 'LTC_BTC'"
 						},
 						{
 							"key": "interval",
 							"value": "{{interval}}",
-							"type": "string",
 							"description": "OHLCV data is chunked by this interval"
 						}
 					]
 				},
-				"description": "Returns OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration. \n\nValid interval values include:\n\nIntervals | Meaning\n---------- | -------\nfivemin | Five minute slices\nfifteenmin | Fifteen minute slices\nthirtymin | Thirty minute slices\nonehour | One hour slices \ntwohour | Two hour slices\nfourhour | Four hour slices \noneday | One day slices "
+				"description": "Returns lifetime OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration.\n\nValid interval values include:\n\nIntervals | Meaning\n---------- | -------\nfivemin | Five minute slices\nfifteenmin | Fifteen minute slices\nthirtymin | Thirty minute slices\nonehour | One hour slices \ntwohour | Two hour slices\nfourhour | Four hour slices \noneday | One day slices"
 			},
 			"response": [
 				{
@@ -883,12 +976,7 @@
 					"name": "User Info",
 					"originalRequest": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{url}}/v1/user/me",
 							"host": [
@@ -906,32 +994,68 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Content-Length",
-							"value": "193",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
+							"key": "Date",
+							"value": "Thu, 07 Nov 2019 23:37:55 GMT"
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
+							"value": "application/json; charset=utf-8"
 						},
 						{
-							"key": "Date",
-							"value": "Fri, 06 Apr 2018 20:31:03 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
 						},
 						{
 							"key": "Vary",
-							"value": "Origin",
-							"name": "Vary",
-							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "117"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "6"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "5323234c3c5c5f2f-OMA"
 						}
 					],
 					"cookie": [],
-					"body": "{\"data\":{\"user\":{\"id\":1000000,\"email\":\"t@test.com\",\"lname\":\"a\",\"fname\":\"a\",\"verified_email\":false,\"tfa_enabled\":false,\"withdraw_limit\":0,\"can_withdraw\":true,\"can_login\":true,\"can_trade\":true}}}"
+					"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": 1000000,\n            \"email\": \"hugh@test.com\",\n            \"fname\": \"Hugh\",\n            \"lname\": \"Jass\",\n            \"verified_email\": true,\n            \"tfa_enabled\": true,\n            \"withdraw_limit\": 0,\n            \"verification\": \"none\",\n            \"can_withdraw\": true,\n            \"can_login\": true,\n            \"can_trade\": true,\n            \"referral_code\": \"6W56QFFVIIJ2\",\n            \"email_addresses\": [\n                {\n                    \"address\": \"hugh@test.com\",\n                    \"created_at\": \"2019-10-14T14:41:43.506827Z\",\n                    \"id\": 10000,\n                    \"verified\": true,\n                    \"is_primary\": true\n                },\n                {\n                    \"address\": \"jass@test.com\",\n                    \"created_at\": \"2019-11-14T18:51:23.816532Z\",\n                    \"id\": 10001,\n                    \"verified\": true,\n                    \"is_primary\": false\n                }\n            ]\n        }\n    }\n}"
 				}
 			]
 		},
@@ -1031,8 +1155,7 @@
 						{
 							"key": "market_id",
 							"value": "{{market_id}}",
-							"description": "Integer ID of market",
-							"type": "string"
+							"description": "Integer ID of market"
 						}
 					]
 				},
@@ -1100,7 +1223,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/v1/user/orders?",
+					"raw": "{{url}}/v1/user/orders",
 					"host": [
 						"{{url}}"
 					],
@@ -1112,7 +1235,7 @@
 					"query": [
 						{
 							"key": "open",
-							"value": "Boolean",
+							"value": "true",
 							"description": "Filter by opened/closed orders",
 							"disabled": true
 						},
@@ -1207,12 +1330,11 @@
 						{
 							"key": "order_id",
 							"value": "{{order_id}}",
-							"description": "Integer ID of the order to lookup",
-							"type": "string"
+							"description": "Integer ID of the order to lookup"
 						}
 					]
 				},
-				"description": "Takes an Order ID and returns data about that order"
+				"description": "Takes an Order ID and returns data about that order.\n\nkey | desc\n---------- | -------\nmarket_amount | The amount of market currency involved in the order.  This is the order amount for sell orders, or the total traded for buy orders.\nmarket_amount_remaining | The amount of market currency remaining when this request was processed.\nbase_amount | The amount of base currency involved in the order.  This is the order value for buy orders, or the total traded for sell orders.\nopen | True if the order is currently open.\ntrades | A list of trades executed on this order."
 			},
 			"response": [
 				{
@@ -1234,8 +1356,8 @@
 							"variable": [
 								{
 									"key": "order_id",
-									"value": "109",
-									"description": "ID of the order to lookup"
+									"value": "{{order_id}}",
+									"description": "Integer ID of the order to lookup"
 								}
 							]
 						}
@@ -1245,24 +1367,68 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
+							"key": "Date",
+							"value": "Fri, 08 Nov 2019 00:29:35 GMT"
+						},
+						{
 							"key": "Content-Type",
 							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
 						},
 						{
 							"key": "Vary",
 							"value": "Origin"
 						},
 						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 05:53:12 GMT"
+							"key": "X-Ratelimit-Limit",
+							"value": "120"
 						},
 						{
-							"key": "Content-Length",
-							"value": "200"
+							"key": "X-Ratelimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "26"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "53236ef8288b5ef3-OMA"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"order\": {\n            \"id\": 109,\n            \"market_amount\": \"1\",\n            \"market_amount_remaining\": \"1\",\n            \"created_at\": \"2019-01-30T07:25:19.091171Z\",\n            \"price\": \"1\",\n            \"order_type\": \"sell_limit\",\n            \"market_id\": 2,\n            \"open\": true,\n            \"trades\": null\n        }\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"order\": {\n            \"id\": 8806681,\n            \"market_amount\": \"500\",\n            \"market_amount_remaining\": \"0\",\n            \"created_at\": \"2018-11-08T00:15:57.258122Z\",\n            \"price\": \"0.00000033\",\n            \"base_amount\": \"0\",\n            \"order_type\": \"sell_limit\",\n            \"market_id\": 36,\n            \"open\": false,\n            \"trades\": null,\n            \"close_reason\": \"canceled\"\n        }\n    }\n}"
 				}
 			]
 		},
@@ -1402,8 +1568,7 @@
 						{
 							"key": "withdraw_id",
 							"value": "{{withdraw_id}}",
-							"description": "Integer ID of the withdraw",
-							"type": "string"
+							"description": "Integer ID of the withdraw"
 						}
 					]
 				},
@@ -1569,12 +1734,11 @@
 						{
 							"key": "deposit_id",
 							"value": "{{deposit_id}}",
-							"description": "String ID of the deposit",
-							"type": "string"
+							"description": "String ID of the deposit"
 						}
 					]
 				},
-				"description": "Takes an Deposit ID and returns data about that Deposit"
+				"description": "Takes a Deposit ID and returns data about that Deposit"
 			},
 			"response": [
 				{
@@ -1910,16 +2074,89 @@
 					],
 					"variable": [
 						{
-							"description": "Currency code ala \"LTC\"",
 							"key": "currency",
 							"value": "String",
-							"type": "string"
+							"description": "Currency code ala \"LTC\""
 						}
 					]
 				},
 				"description": "Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time.\n\nThe returned `currency_status` key may be one of the following values:\n\nStatus | Returns address | Use case\n--- | --- | --- \n`ok` | Yes | Normal operation\n`degraded` | Yes | Down for maintenance. Funds will be credited once maintenance is completed\n`disabled` | No | Deposits temporarily disabled due to network issues. Typically due to excessive forking, stalled chain, or consesus issues\n`offline` | No | Offline for other reason\n`delisted` | No | Currency is delisted and deposits are no longer accepted\n\n"
 			},
 			"response": [
+				{
+					"name": "Get Deposit Address - disabled",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/user/deposit_address/[currency_key]",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"deposit_address",
+								"[currency_key]"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n\t\"data\": {\n\t\t\"currency_status\": \"disabled\"\n\t}\n}"
+				},
+				{
+					"name": "Get Deposit Address - delisted",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/user/deposit_address/:currency",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"deposit_address",
+								":currency"
+							],
+							"variable": [
+								{
+									"key": "currency",
+									"value": "LTC",
+									"description": "Currency code ala \"LTC\""
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 01 Feb 2019 06:55:01 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"currency_status\": \"delisted\"\n    }\n}"
+				},
 				{
 					"name": "Get Deposit Address - ok",
 					"originalRequest": {
@@ -1981,81 +2218,7 @@
 					"body": "{\n    \"data\": {\n        \"address\": \"mhBYubznoJxVEst6DNr6arZHK6UYVTsjqC\",\n        \"currency_status\": \"ok\"\n    }\n}"
 				},
 				{
-					"name": "Get Deposit Address - disabled",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/v1/user/deposit_address/[currency_key]",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"deposit_address",
-								"[currency_key]"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [],
-					"cookie": [],
-					"body": "{\n\t\"data\": {\n\t\t\"currency_status\": \"disabled\"\n\t}\n}"
-				},
-				{
 					"name": "Get Deposit Address - degraded",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/v1/user/deposit_address/:currency",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"deposit_address",
-								":currency"
-							],
-							"variable": [
-								{
-									"description": "Currency code ala \"LTC\"",
-									"key": "currency",
-									"value": "LTC"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 07:32:37 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "60"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"address\": \"mhBYubznoJxVEst6DNr6arZHK6UYVTsjqC\",\n        \"currency_status\": \"degraded\"\n    }\n}"
-				},
-				{
-					"name": "Get Deposit Address - delisted",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -2093,15 +2256,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 01 Feb 2019 06:55:01 GMT"
+							"value": "Fri, 01 Feb 2019 07:32:37 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "39"
+							"value": "60"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"currency_status\": \"delisted\"\n    }\n}"
+					"body": "{\n    \"data\": {\n        \"address\": \"mhBYubznoJxVEst6DNr6arZHK6UYVTsjqC\",\n        \"currency_status\": \"degraded\"\n    }\n}"
 				}
 			]
 		},
@@ -2396,5 +2559,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

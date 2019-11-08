@@ -30,6 +30,16 @@ The qTrade API is available at
   All URL endpoints are prefixed with the API version. Try this URL in your browser: <code>https://api.qtrade.io/v1/tickers</code>
 </aside>
 
+
+# Python Client
+
+We provide a [Python client](https://github.com/qtrade-exchange/qtrade-py-client) for our API.
+
+To install via pip:
+
+`pip3 install --upgrade --user git+https://github.com/qtrade-exchange/qtrade-py-client.git`
+
+
 # Authentication
 
 ``` python
