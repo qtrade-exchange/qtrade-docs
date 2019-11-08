@@ -1,5 +1,21 @@
 # Errors
 
+<blockquote><br>
+<p>Response 403 </p>
+</blockquote>
+
+``` json
+{
+    "errors": [
+        {
+            "code": "invalid_auth",
+            "title": "Invalid HMAC signature"
+        }
+    ]
+}
+```
+Errors return with a JSON object explaining the cause, if applicable.
+
 The qTrade API returns the following error codes:
 
 

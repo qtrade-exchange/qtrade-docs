@@ -1223,7 +1223,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/v1/user/orders",
+					"raw": "{{url}}/v1/user/orders?",
 					"host": [
 						"{{url}}"
 					],
@@ -1235,7 +1235,7 @@
 					"query": [
 						{
 							"key": "open",
-							"value": "true",
+							"value": "Boolean",
 							"description": "Filter by opened/closed orders",
 							"disabled": true
 						},
@@ -1253,7 +1253,7 @@
 						}
 					]
 				},
-				"description": "Fetches the last 200 orders made by your account with all the trades associated.\n\nIf you need more than the last 200 trades use the `older_than` param. Passing an order ID will return results only orders which are older than that order ID."
+				"description": "Fetches the last 200 orders made by your account with all the trades associated.\n\nIf you need more than the last 200 orders use the `older_than` param. Passing an order ID will return results only orders which are older than that order ID.\n\n<blockquote><br>\n<p>Examples </p>\n</blockquote>\n\n``` python\n\"\"\"\nOrder IDs are strictly increasing, so code like the following\nshort example may be used to detect new orders.\n\"\"\"\n\nlatest_order_id = 0\nwhile True:\n\tresult = api.get(\"/v1/user/orders\", params={\"newer_than\": latest_order_id}).json()\n\tif result['data']['orders'] != []:\n\t\t## process the new order ##\n\t\tlatest_order_id = result['data']['orders'][0]['id']\n\n\n\"\"\"\nIf you're searching for an order older than the latest\n200, you can use older_than to iterate over old orders.\n\"\"\"\n\norders = api.get(\"/v1/user/orders\").json()\nsearch_price = \"4.99896025\"\nwhile True:\n\tfor order in orders[\"data\"][\"orders\"]:\n\t\tif order[\"price\"] == search_price:\n\t\t\treturn order\n\toldest_order_id = orders[\"data\"][\"orders\"][-1][\"id\"]\n\torders = api.get(\"/v1/orders\", params={\"older_than\": oldest_order_id}).json()\n\n```"
 			},
 			"response": [
 				{
@@ -1330,7 +1330,7 @@
 						{
 							"key": "order_id",
 							"value": "{{order_id}}",
-							"description": "Integer ID of the order to lookup"
+							"description": "Integer ID of the order"
 						}
 					]
 				},
@@ -1536,6 +1536,108 @@
 					],
 					"cookie": [],
 					"body": "{\n\t\"errors\": [{\n\t\t\"code\": \"order_not_found\",\n\t\t\"title\": \"That order no longer exists\"\n\t}]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Withdraw",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "{{withdraw_amount}}",
+							"description": "String. Exact amount, including decimal \"1.2345\"",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "{{code}}",
+							"description": "String. Currency code to withdraw",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "{{withdraw_address}}",
+							"description": "String. Address to receive funds",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/v1/user/withdraw",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"user",
+						"withdraw"
+					]
+				},
+				"description": "Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes.\n\nRequires email or 2FA confirmation (if enabled), or an approved withdraw address."
+			},
+			"response": [
+				{
+					"name": "Create a Withdraw",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"currency\": \"LTC\", \"amount\": \"1.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
+						},
+						"url": {
+							"raw": "{{url}}/v1/user/withdraw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"withdraw"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 01 Feb 2019 06:32:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"code\": \"initiated\",\n        \"result\": \"Withdraw initiated. Please allow 3-5 minutes for our system to process.\"\n    }\n}"
 				}
 			]
 		},
@@ -1948,108 +2050,6 @@
 			]
 		},
 		{
-			"name": "Create a Withdraw",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "amount",
-							"value": "{{withdraw_amount}}",
-							"description": "String. Exact amount, including decimal \"1.2345\"",
-							"type": "text"
-						},
-						{
-							"key": "currency",
-							"value": "{{code}}",
-							"description": "String. Currency code to withdraw",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "{{withdraw_address}}",
-							"description": "String. Address to receive funds",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/v1/user/withdraw",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"v1",
-						"user",
-						"withdraw"
-					]
-				},
-				"description": "Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes."
-			},
-			"response": [
-				{
-					"name": "Create a Withdraw",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"currency\": \"LTC\", \"amount\": \"1.51235432\", \"address\": \"n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE\"}"
-						},
-						"url": {
-							"raw": "{{url}}/v1/user/withdraw",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"v1",
-								"user",
-								"withdraw"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 01 Feb 2019 06:32:09 GMT"
-						},
-						{
-							"key": "Content-Length",
-							"value": "119"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"code\": \"initiated\",\n        \"result\": \"Withdraw initiated. Please allow 3-5 minutes for our system to process.\"\n    }\n}"
-				}
-			]
-		},
-		{
 			"name": "Get Deposit Address",
 			"request": {
 				"auth": {
@@ -2088,6 +2088,10 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"currency\": \"LTC\"}"
+						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/[currency_key]",
 							"host": [
@@ -2171,7 +2175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"currency\": \"LTC\"}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{url}}/v1/user/deposit_address/:currency",

@@ -66,6 +66,13 @@ Deposit | `/user/deposit_address/{currency_code}`
 Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 
 
+# Approved Withdraw Addresses
+
+For user security, account withdrawals usually require email or 2FA approval.  However, this usually isn't practical for API integrations.
+
+Users can whitelist specific withdrawal addresses in the [Manage Addresses panel](https://qtrade.io/settings/manage_addresses) of the user settings on the website.  Adding an address to the approved list will allow users and API integrations to withdraw to it without manual confirmation.
+
+
 {% macro endpoint(item) %}
 ## {{ item.name }}
 
