@@ -74,7 +74,7 @@ Users can whitelist specific withdrawal addresses in the [Manage Addresses panel
 
 <aside class="warning">
 
-Approving an address will allow the account to withdraw to it with NO CONFIRMATION.  Only approve addresses of wallets you control.
+Any user or API with access to the account can withdraw to approved addresses with NO CONFIRMATION.  Only approve addresses of wallets you control.
 
 </aside>
 
