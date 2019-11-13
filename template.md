@@ -72,6 +72,12 @@ For user security, account withdrawals require email or 2FA approval.  However, 
 
 Users can whitelist specific withdrawal addresses in the [Manage Addresses panel](https://qtrade.io/settings/manage_addresses) of the user settings on the website.  Adding an address to the approved list will allow users and API integrations to withdraw to it without manual confirmation.
 
+<aside class="warning">
+
+Approving an address will allow the account to withdraw to it with NO CONFIRMATION.  Only approve addresses of wallets you control.
+
+</aside>
+
 
 {% macro endpoint(item) %}
 ## {{ item.name }}

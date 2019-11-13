@@ -28,7 +28,7 @@
 						}
 					]
 				},
-				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market.\n\nkey | desc\n---------- | -------\nask | The current ask price on the market\nbid | The current bid price on the market\nday_avg_price | The market average price over the last 24 hours\nday_change | The change in the market's midpoint over the last 24 hours\nday_high | The price of the highest trade in the last 24 hours\nday_low | The price of the lowest trade in the last 24 hours\nday_open | The price of the latest trade which occurred more than 24 hours ago\nday_volume_base | The market volume in its base currency\nday_volume_market | The market volume in market currency\nid | A globally unique market identifier as an integer\nid_hr | A globally unique market identifier as a human-readable string\nlast | The price of the last trade made on the market"
+				"description": "Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market.\n\nKey | Description\n---------- | -------\nask | The current ask price on the market\nbid | The current bid price on the market\nday_avg_price | The market average price over the last 24 hours\nday_change | The change in the market's midpoint over the last 24 hours\nday_high | The price of the highest trade in the last 24 hours\nday_low | The price of the lowest trade in the last 24 hours\nday_open | The price of the latest trade which occurred more than 24 hours ago\nday_volume_base | The market volume in its base currency\nday_volume_market | The market volume in market currency\nid | A globally unique market identifier as an integer\nid_hr | A globally unique market identifier as a human-readable string\nlast | The price of the last trade made on the market"
 			},
 			"response": [
 				{
@@ -219,7 +219,7 @@
 						}
 					]
 				},
-				"description": "Get general information about a specific currency.\n\nkey | desc\n---------- | -------\ncan_withdraw | True if this currency can be withdrawn\ncode | The currency code as used in market strings etc.\nconfig | This dictionary is primarily for internal use, and varies from coin to coin.  Consistent values are as follows:\n&nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The estimated price of the coin in USD\n&nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee | &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade\nlong_name | The full name of the currency\nprecision | \nstatus | The coin's listing and trading status on qTrade"
+				"description": "Get general information about a specific currency.\n\nKey | Description\n---------- | -------\ncan_withdraw | True if this currency can be withdrawn\ncode | The currency code as used in market strings etc.\nconfig | This dictionary is primarily for internal use, and varies from coin to coin.  Consistent values are as follows:\n&nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The estimated price of the coin in USD\n&nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee | &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade\nlong_name | The full name of the currency\nprecision | \nstatus | The coin's listing and trading status on qTrade"
 			},
 			"response": [
 				{
@@ -467,7 +467,7 @@
 						}
 					]
 				},
-				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.\n\nkey | desc\n---------- | -------\nmaker_fee | The percentage fee taken on the trade value of maker orders\ntaker_fee | The percentage fee taken on the trade value on taker orders\nid | A globally unique market identifier as an integer\nmetadata | Frontend rendering params\ncan_trade | true if trading and order creation is disabled\nbase_currency | The code of currency that orders are priced in\nmarket_currency | The code of currency that is bought or sold"
+				"description": "Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.\n\nKey | Description\n---------- | -------\nmaker_fee | The percentage fee taken on the trade value of maker orders\ntaker_fee | The percentage fee taken on the trade value on taker orders\nid | A globally unique market identifier as an integer\nmetadata | Frontend rendering params\ncan_trade | true if trading and order creation is disabled\nbase_currency | The code of currency that orders are priced in\nmarket_currency | The code of currency that is bought or sold"
 			},
 			"response": [
 				{
@@ -674,7 +674,7 @@
 						}
 					]
 				},
-				"description": "Return historical trade data on a market.\n\nkey | desc\n---------- | -------\namount | The amount of the transaction in market currency\ncreated_at | The time and date of the trade's creation\nprice | The price of the trade in base currency\nseller_taker | True if the seller was the taker, false if the buyer was the taker"
+				"description": "Return historical trade data on a market.\n\nKey | Description\n---------- | -------\namount | The amount of the transaction in market currency\ncreated_at | The time and date of the trade's creation\nprice | The price of the trade in base currency\nseller_taker | True if the seller was the taker, false if the buyer was the taker"
 			},
 			"response": [
 				{
@@ -1334,7 +1334,7 @@
 						}
 					]
 				},
-				"description": "Takes an Order ID and returns data about that order.\n\nkey | desc\n---------- | -------\nmarket_amount | The amount of market currency involved in the order.  This is the order amount for sell orders, or the total traded for buy orders.\nmarket_amount_remaining | The amount of market currency remaining when this request was processed.\nbase_amount | The amount of base currency involved in the order.  This is the order value for buy orders, or the total traded for sell orders.\nopen | True if the order is currently open.\ntrades | A list of trades executed on this order."
+				"description": "Takes an Order ID and returns data about that order.\n\nKey | Description\n---------- | -------\nmarket_amount | The amount of market currency involved in the order.  This is the order amount for sell orders, or the total traded for buy orders.\nmarket_amount_remaining | The amount of market currency remaining when this request was processed.\nbase_amount | The amount of base currency involved in the order.  This is the order value for buy orders, or the total traded for sell orders.\nopen | True if the order is currently open.\ntrades | A list of trades executed on this order."
 			},
 			"response": [
 				{
