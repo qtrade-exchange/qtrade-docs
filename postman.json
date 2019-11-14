@@ -445,6 +445,114 @@
 			]
 		},
 		{
+			"name": "Common",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/common",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"common"
+					]
+				},
+				"description": "Retrieve All Markets, All Currencies, and All Tickers in one call."
+			},
+			"response": [
+				{
+					"name": "Common Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/common",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"common"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 14 Nov 2019 17:19:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=60"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "37"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "535aa67319d15ef3-OMA"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"currencies\": [\n            {\n                \"code\": \"MMO\",\n                \"long_name\": \"MMOCoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"delisted\",\n                \"precision\": 8,\n                \"config\": {\n                    \"price\": 0.002,\n                    \"wif_version\": 178,\n                    \"withdraw_fee\": \"0.001\",\n                    \"default_signer\": 23,\n                    \"address_version\": 50,\n                    \"satoshi_per_byte\": 100,\n                    \"required_confirmations\": 6,\n                    \"required_generate_confirmations\": 120\n                },\n                \"metadata\": {\n                    \"delisting_date\": \"12/13/2018\"\n                },\n                \"can_withdraw\": false\n            },\n            {\n                \"code\": \"BTC\",\n                \"long_name\": \"Bitcoin\",\n                \"type\": \"bitcoin_like\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"price\": 8595.59,\n                    \"withdraw_fee\": \"0.0005\",\n                    \"default_signer\": 6,\n                    \"address_version\": 0,\n                    \"satoshi_per_byte\": 15,\n                    \"explorerAddressURL\": \"https://live.blockcypher.com/btc/address/\",\n                    \"p2sh_address_version\": 5,\n                    \"explorerTransactionURL\": \"https://live.blockcypher.com/btc/tx/\",\n                    \"required_confirmations\": 2,\n                    \"required_generate_confirmations\": 100\n                },\n                \"metadata\": {\n                    \"withdraw_notices\": []\n                },\n                \"can_withdraw\": true\n            },\n            {\n                \"code\": \"BIS\",\n                \"long_name\": \"Bismuth\",\n                \"type\": \"bismuth\",\n                \"status\": \"ok\",\n                \"precision\": 8,\n                \"config\": {\n                    \"price\": 0.12891653720125376,\n                    \"data_max\": 1000,\n                    \"withdraw_fee\": \"0.25\",\n                    \"default_signer\": 54,\n                    \"explorerAddressURL\": \"https://bismuth.online/search?quicksearch=\",\n                    \"enable_address_data\": true,\n                    \"explorerTransactionURL\": \"https://bismuth.online/search?quicksearch=\",\n                    \"required_confirmations\": 35\n                },\n                \"metadata\": {\n                    \"hidden\": false,\n                    \"deposit_notices\": []\n                },\n                \"can_withdraw\": true\n            }\n        ],\n        \"markets\": [\n            {\n                \"id\": 8,\n                \"market_currency\": \"MMO\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0.0025\",\n                \"taker_fee\": \"0.0025\",\n                \"metadata\": {\n                    \"delisting_date\": \"12/13/2018\",\n                    \"market_notices\": [\n                        {\n                            \"message\": \"Delisting Notice: This market has been delisted due to low volume. Please cancel your orders and withdraw your funds by 12/13/2018.\",\n                            \"type\": \"warning\"\n                        }\n                    ]\n                },\n                \"can_trade\": false,\n                \"can_cancel\": false,\n                \"can_view\": false\n            },\n            {\n                \"id\": 20,\n                \"market_currency\": \"BIS\",\n                \"base_currency\": \"BTC\",\n                \"maker_fee\": \"0\",\n                \"taker_fee\": \"0.005\",\n                \"metadata\": {\n                    \"labels\": []\n                },\n                \"can_trade\": true,\n                \"can_cancel\": true,\n                \"can_view\": true\n            }\n        ],\n        \"tickers\": [\n            {\n                \"ask\": null,\n                \"bid\": null,\n                \"day_avg_price\": null,\n                \"day_change\": null,\n                \"day_high\": null,\n                \"day_low\": null,\n                \"day_open\": null,\n                \"day_volume_base\": \"0\",\n                \"day_volume_market\": \"0\",\n                \"id\": 8,\n                \"id_hr\": \"MMO_BTC\",\n                \"last\": \"0.00000076\"\n            },\n            {\n                \"ask\": \"0.000014\",\n                \"bid\": \"0.00001324\",\n                \"day_avg_price\": \"0.0000147000191353\",\n                \"day_change\": \"-0.023086269744836\",\n                \"day_high\": \"0.00001641\",\n                \"day_low\": \"0.00001292\",\n                \"day_open\": \"0.00001646\",\n                \"day_volume_base\": \"0.36885974\",\n                \"day_volume_market\": \"25092.46665642\",\n                \"id\": 20,\n                \"id_hr\": \"BIS_BTC\",\n                \"last\": \"0.00001608\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "Market",
 			"request": {
 				"method": "GET",
