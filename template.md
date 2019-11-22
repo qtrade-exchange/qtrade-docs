@@ -31,13 +31,28 @@ The qTrade API is available at
 </aside>
 
 
-# Python Client
+# Client Libraries
 
 We provide a [Python client](https://github.com/qtrade-exchange/qtrade-py-client) for our API.
 
 To install via pip:
 
 `pip3 install --upgrade --user git+https://github.com/qtrade-exchange/qtrade-py-client.git`
+
+Our API is also supported by [CCXT](https://github.com/ccxt/ccxt), a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.
+
+
+# Vocabulary
+
+Here is how we define the terms used in our documentation and API:
+
+Term | Definition
+--- | ---
+Market Currency | The currency which is bought or sold on a market (e.g. NYZO on the NYZO/BTC market).
+Base Currency | The currency which is used to buy or sell a market currency (currently BTC on all markets).
+Value | The total worth of an order or trade in base currency.
+Amount | The total worth of an order or trade in market currency.
+
 
 
 # Authentication
