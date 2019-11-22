@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
   - javascript: Node.js
   - php
+  - shell
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -131,6 +132,11 @@ api.get("/{{ item.request.url.path | join("/") }}", (resp) => {})
 $result = $api->get("/{{ item.request.url.path | join("/") }}");
 print_r(json_decode($result));
 ?>
+```
+``` shell
+{% if 'user' not in item.request.url.path %}
+curl https://api.qtrade.io/v1/{{ item.request.url.path | join("/") }}
+{% endif %}
 ```
 {% endif %}
 
