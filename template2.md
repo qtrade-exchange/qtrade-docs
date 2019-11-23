@@ -2,7 +2,8 @@
 title: qTrade API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - python
+  - python--Python: Python
+  - python--PyClient: Py Client
   - javascript: Node.js
   - php
   - shell
@@ -100,13 +101,14 @@ Any user or API with access to the account can withdraw to approved addresses wi
 
 {% if item.request.method == "POST" and resp.request.body %}
 
-``` python
 {% if resp.python_example %}
+``` python--PyClient
 {{ resp.python_example }}
-{% else %}
+```
+{% endif %}
+``` python--Python
 req = {{ resp.request.body | json_to_python_dict }}
 api.post("{{ item.request.url.path }}", json=req).json()
-{% endif %}
 ```
 ``` javascript
 req = {{ resp.request.body | json_to_python_dict }}
@@ -121,12 +123,13 @@ print_r(json_decode($result));
 ```
 {% elif item.request.method == "GET" %}
 
-``` python
 {% if resp.python_example %}
+``` python--PyClient
 {{ resp.python_example }}
-{% else %}
-api.get("{{ resp.request.url.path }}").json()
+```
 {% endif %}
+``` python--Python
+api.get("{{ resp.request.url.path }}").json()
 ```
 ``` javascript
 api.get("{{ resp.request.url.path }}", (resp) => {})
