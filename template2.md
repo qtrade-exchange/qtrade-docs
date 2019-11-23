@@ -66,8 +66,12 @@ Trade | `/user/sell_limit`, `/user/buy_limit`, `/user/cancel_order`
 {% if item.request.method == "POST" and resp.request.body %}
 
 ``` python
+{% if resp.python_example %}
+{{ resp.python_example }}
+{% else %}
 req = {{ resp.request.body | json_to_python_dict }}
 api.post("{{ item.request.url.path }}", json=req).json()
+{% endif %}
 ```
 ``` javascript
 req = {{ resp.request.body | json_to_python_dict }}
@@ -83,14 +87,18 @@ print_r(json_decode($result));
 {% elif item.request.method == "GET" %}
 
 ``` python
-api.get("/{{ item.request.url.path | join("/") }}").json()
+{% if resp.python_example %}
+{{ resp.python_example }}
+{% else %}
+api.get("{{ resp.request.url.path }}").json()
+{% endif %}
 ```
 ``` javascript
-api.get("/{{ item.request.url.path | join("/") }}", (resp) => {})
+api.get("{{ resp.request.url.path }}", (resp) => {})
 ```
 ``` php
 <?php
-$result = $api->get("/{{ item.request.url.path | join("/") }}");
+$result = $api->get("{{ item.request.url.path }}");
 print_r(json_decode($result));
 ?>
 ```
@@ -105,14 +113,14 @@ print_r(json_decode($result));
 
 {{ item.request.description }}
 
-{% if item.request.body and item.request.body.formdata %}
+{% if item.request.body and item.request.body.params %}
 
 ### POST Body
 
-Variable | Description
---------- | -----------
-{% for dict in item.request.body.formdata %}
-{{dict.key}} | {{dict.description}}
+Variable | Example | Description
+--------- | ------ | -----------
+{% for dict in item.request.body.params %}
+{{dict.key}} | {{dict.value}} | {{dict.description}}
 {% endfor %}
 {% endif %}
 
@@ -138,7 +146,7 @@ Parameter | Type | Description
 {% endfor %}
 {% endif %}
 
-`{{ item.request.method }} {{ item.request.url }}`
+`{{ item.request.method }} {{ item.request.url.path }}`
 
 {% endmacro %}
 
