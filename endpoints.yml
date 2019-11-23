@@ -426,10 +426,6 @@ endpoints:
     request:
       url:
         path: /v1/market/15
-        variable:
-        - description: "Integer ID of market"
-          key: market_id
-          value: '15'
 - name: "All Markets"
   request:
     description: |-
@@ -564,10 +560,6 @@ endpoints:
     request:
       url:
         path: /v1/orderbook/VEO_BTC
-        variable:
-        - description: "Formatted ala LTC_BTC for the LTC/BTC market"
-          key: market_string
-          value: VEO_BTC
 - name: OHLCV
   request:
     description: "Returns lifetime OHLCV data for a specific market. Accepts an interval\
@@ -615,10 +607,6 @@ endpoints:
     request:
       url:
         path: /v1/market/1/ohlcv/fourhour
-        variable:
-        - description: "OHLCH chunk interval"
-          key: interval
-          value: fourhour
 - name: "User Info"
   request:
     description: "Fetch general information about the authenticated user account."
@@ -927,7 +915,7 @@ endpoints:
     name: "Order Details Example"
     request:
       url:
-        path: /v1/user/order/{{order_id}}
+        path: /v1/user/order/:order_id
         variable:
         - description: "Integer ID of the order to lookup"
           key: order_id
@@ -1043,10 +1031,6 @@ endpoints:
     request:
       url:
         path: /v1/user/withdraw/2
-        variable:
-        - description: "ID of the withdraw"
-          key: withdraw_id
-          value: '2'
 - name: "Withdraw History"
   request:
     description: |-
@@ -1112,10 +1096,7 @@ endpoints:
     name: "Deposit Details Response"
     request:
       url:
-        path: /v1/user/deposit/
-        variable:
-        - key: deposit_id
-          value: ''
+        path: /v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4
 - name: "Deposit History"
   request:
     description: |-
@@ -1197,10 +1178,6 @@ endpoints:
     request:
       url:
         path: /v1/user/deposit_address/LTC
-        variable:
-        - description: "Currency code ala \"LTC\""
-          key: currency
-          value: LTC
   - body: |-
       {
           "data": {
@@ -1214,10 +1191,6 @@ endpoints:
       body: ''
       url:
         path: /v1/user/deposit_address/LTC
-        variable:
-        - description: "Currency code ala \"LTC\""
-          key: currency
-          value: LTC
   - body: |-
       {
           "data": {
@@ -1230,10 +1203,6 @@ endpoints:
     request:
       url:
         path: /v1/user/deposit_address/LTC
-        variable:
-        - description: "Currency code ala \"LTC\""
-          key: currency
-          value: LTC
 - name: Transfers
   request:
     description: |-
