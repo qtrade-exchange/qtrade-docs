@@ -56,8 +56,11 @@ Amount | The size of an order or trade in market currency.
 
 # Authentication
 
-``` python
+``` python--Python
 {{ load_snippet('hmac.py') }}
+```
+``` python--PyClient
+{{ load_snippet('hmac_client.py') }}
 ```
 ``` javascript
 {{ load_snippet('hmac.js') }}
