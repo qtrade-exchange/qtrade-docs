@@ -101,31 +101,31 @@ Any user or API with access to the account can withdraw to approved addresses wi
 
 {% if item.request.method == "POST" and resp.request.body %}
 
-{% if resp.python_example %}
+{% if resp.python_client_example %}
 ``` python--PyClient
-{{ resp.python_example }}
+{{ resp.python_client_example }}
 ```
 {% endif %}
 ``` python--Python
 req = {{ resp.request.body | json_to_python_dict }}
-api.post("{{ item.request.url.path }}", json=req).json()
+api.post("{{ resp.request.url.path }}", json=req).json()
 ```
 ``` javascript
 req = {{ resp.request.body | json_to_python_dict }}
-api.post("{{ item.request.url.path }}", JSON.stringify(req), (resp) => {})
+api.post("{{ resp.request.url.path }}", JSON.stringify(req), (resp) => {})
 ```
 ``` php
 <?php
 $req = {{ resp.request.body | json_to_php_array }}
-$result = $api->post("{{ item.request.url.path | join("/") }}", json_encode($req));
+$result = $api->post("{{ resp.request.url.path }}", json_encode($req));
 print_r(json_decode($result));
 ?>
 ```
 {% elif item.request.method == "GET" %}
 
-{% if resp.python_example %}
+{% if resp.python_client_example %}
 ``` python--PyClient
-{{ resp.python_example }}
+{{ resp.python_client_example }}
 ```
 {% endif %}
 ``` python--Python
@@ -136,13 +136,13 @@ api.get("{{ resp.request.url.path }}", (resp) => {})
 ```
 ``` php
 <?php
-$result = $api->get("{{ item.request.url.path }}");
+$result = $api->get("{{ resp.request.url.path }}");
 print_r(json_decode($result));
 ?>
 ```
 ``` shell
-{% if 'user' not in item.request.url.path %}
-curl https://api.qtrade.io{{ item.request.url.path }}
+{% if 'user' not in resp.request.url.path %}
+curl https://api.qtrade.io{{ resp.request.url.path }}
 {% endif %}
 ```
 {% endif %}
@@ -207,13 +207,37 @@ Parameter | Type | Description
 
 # Rate Limits
 
+``` json
+{
+	"X-Ratelimit-Limit": "60",
+	"X-Ratelimit-Reset": "56",
+	"X-Ratelimit-Remaining": "59",
+	"Expect-CT": "max-age=604800, report-uri=\\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\\"",
+	"Strict-Transport-Security": "max-age=15552000; includeSubDomains; preload",
+	"Access-Control-Expose-Headers": "X-Ratelimit-Limit, X-Ratelimit-Remaining, X-Ratelimit-Reset",
+	"Transfer-Encoding": "chunked",
+	"Set-Cookie": "__cfduid=dc4dd5af3b3aa00fbe2b5f4e1f4dc19951574699947; expires=Wed, 25-Dec-19 16:39:07 GMT; path=/; domain=.qtrade.io; HttpOnly; Secure",
+	"CF-Cache-Status": "DYNAMIC",
+	"Cache-Control": "max-age=60",
+	"Vary": "Accept-Encoding, Origin",
+	"Server": "cloudflare",
+	"Connection": "keep-alive",
+	"Access-Control-Allow-Credentials": "true",
+	"Date": "Mon, 25 Nov 2019 16:39:07 GMT",
+	"Access-Control-Allow-Origin": "https://qtrade.io",
+	"Content-Type": "application/json; charset=utf-8",
+	"CF-RAY": "53b50e8fac8e5f2f-OMA",
+	"Content-Encoding": "gzip",
+}
+```
+
 A good rule of thumb is to limit your requests to 1 / second. The rate limit is enforced by limiting the number of requests in a specific time period. The limit is reset after that time period has elapsed. This means your rate limit within that time period is burstable, and not strictly limited to 1/second. You can monitor the current rate limit status by checking the response headers of your requests. Outlined below are the headers we return and how they work.
 
 If you'd like a higher rate limit please contact support and explain your use case.
 
 Header | How it is used
 --- | ---
-X-Ratelimit | The number of maximum requests available in the time period
+X-Ratelimit-Limit | The number of maximum requests available in the time period
 X-RateLimit-Reset | How many seconds until your rate limit resets
 X-Ratelimit-Remaining | How many requests you have left for the time period
 

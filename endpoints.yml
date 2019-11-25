@@ -45,6 +45,8 @@ endpoints:
       }
     code: 200
     name: "Ticker Example"
+    python_client_example: |-
+      api.tickers['VEO_BTC']
     request:
       url:
         path: /v1/ticker/VEO_BTC
@@ -95,6 +97,11 @@ endpoints:
       }
     code: 200
     name: "Tickers Example"
+    python_client_example: |-
+      api.tickers
+      -> {36: {'ask':...}, 'DOGE_BTC': {'ask':...}}
+      # Tickers are lazily loaded.  To set the update interval in seconds:
+      api.tickers_update_interval = 30
     request:
       url:
         path: /v1/tickers
@@ -147,6 +154,8 @@ endpoints:
       }
     code: 200
     name: "Currency By Code"
+    python_client_example: |-
+      api.currencies['BTC']
     request:
       url:
         path: /v1/currency/BTC
@@ -214,6 +223,12 @@ endpoints:
       }
     code: 200
     name: "All Currencies"
+    python_client_example: |-
+      api.currencies
+      -> {'BIS': {'can_withdraw':...}}
+      # Currencies are lazily loaded from the common endpoint, at the same time as markets
+      # To set the update interval in seconds:
+      api.market_update_interval = 30
     request:
       url:
         path: /v1/currencies
@@ -363,9 +378,8 @@ endpoints:
       }
     code: 200
     name: "Common Example"
-    python_example: |-
-      api.currency['BTC']
-      api.market['BTC_LTC']
+    python_client_example: |-
+      {'currencies': api.currencies, 'markets': api.markets, 'tickers': api.tickers}
     request:
       url:
         path: /v1/common
@@ -423,6 +437,8 @@ endpoints:
       }
     code: 200
     name: "Market Details Example"
+    python_client_example: |-
+      api.markets['VEO_BTC']
     request:
       url:
         path: /v1/market/15
@@ -467,6 +483,11 @@ endpoints:
       }
     code: 200
     name: Markets
+    python_client_example: |-
+      api.markets
+      -> {36: {'base_currency':...}, 'DOGE_BTC': {'base_currency':...}}
+      # Markets are lazily loaded.  To set the update interval in seconds:
+      api.market_update_interval = 30
     request:
       url:
         path: /v1/markets
@@ -523,6 +544,8 @@ endpoints:
       }
     code: 200
     name: "Market Trades Example"
+    python_client_example: |-
+      api.get('/v1/market/LTC_BTC/trades')
     request:
       url:
         path: /v1/market/LTC_BTC/trades
@@ -557,6 +580,8 @@ endpoints:
       }
     code: 200
     name: "Orderbook Example"
+    python_client_example: |-
+      api.get("/v1/orderbook/VEO_BTC")
     request:
       url:
         path: /v1/orderbook/VEO_BTC
@@ -604,6 +629,8 @@ endpoints:
       }
     code: 200
     name: "OHLCV Example"
+    python_client_example: |-
+      api.get("/v1/market/1/ohlcv/fourhour")
     request:
       url:
         path: /v1/market/1/ohlcv/fourhour
@@ -651,6 +678,8 @@ endpoints:
       }
     code: 200
     name: "User Info"
+    python_client_example: |-
+      api.get("/v1/user/me")
     request:
       url:
         path: /v1/user/me
@@ -684,6 +713,10 @@ endpoints:
       }
     code: 200
     name: Balances
+    python_client_example: |-
+      api.balances() # returns only spendable balances
+      api.balances_merged() # returns both spendable and non-spendable balances merged
+      api.balances_all() # returns all balances, sorted by spendable and non-spendable
     request:
       url:
         path: /v1/user/balances
@@ -778,6 +811,8 @@ endpoints:
       }
     code: 200
     name: "User Market View"
+    python_client_example: |-
+      api.get("/v1/user/market/1")
     request:
       url:
         path: /v1/user/market/1
@@ -870,6 +905,10 @@ endpoints:
       }
     code: 200
     name: "Order History"
+    python_client_example: |-
+      api.orders() # returns all orders made by this account
+      api.orders(open=True) # returns only open orders
+      api.orders(open=False) # returns only closed orders
     request:
       url:
         path: /v1/user/orders
@@ -913,6 +952,8 @@ endpoints:
       }
     code: 200
     name: "Order Details Example"
+    python_client_example: |-
+      api.get("/v1/user/order/8806681")
     request:
       url:
         path: /v1/user/order/:order_id
@@ -927,7 +968,7 @@ endpoints:
       - description: "Integer ID of the order to cancel"
         key: id
         type: text
-        value: '{{cancel_order_id}}'
+        value: cancel_order_id
     description: |-
       Takes an Order ID.
 
@@ -949,6 +990,8 @@ endpoints:
       }
     code: 404
     name: "Cancel Order Fail Example"
+    python_client_example: |-
+      api.post("/v1/user/cancel_order", id=109)
     request:
       body: "{\"id\": 109}"
       url:
@@ -992,6 +1035,11 @@ endpoints:
       }
     code: 201
     name: "Create a Withdraw"
+    python_client_example: |-
+      api.post("/v1/user/withdraw",
+        address='n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE',
+        amount='1.51235432',
+        currency='LTC')
     request:
       body: |-
         {"currency": "LTC", "amount": "1.51235432", "address":
@@ -1028,6 +1076,8 @@ endpoints:
       }
     code: 200
     name: "Withdraw Details Example"
+    python_client_example: |-
+      api.get("/v1/user/withdraw/2")
     request:
       url:
         path: /v1/user/withdraw/2
@@ -1061,6 +1111,8 @@ endpoints:
       }
     code: 200
     name: "Withdraw History Example"
+    python_client_example: |-
+      api.get("/v1/user/withdraws")
     request:
       url:
         path: /v1/user/withdraws
@@ -1094,6 +1146,8 @@ endpoints:
       }
     code: 200
     name: "Deposit Details Response"
+    python_client_example: |-
+      api.get("/v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4")
     request:
       url:
         path: /v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4
@@ -1130,6 +1184,8 @@ endpoints:
       }
     code: 200
     name: "Deposit History"
+    python_client_example: |-
+      api.get("/v1/user/deposits")
     request:
       url:
         path: /v1/user/deposits
@@ -1163,10 +1219,12 @@ endpoints:
       }
     code: 200
     name: "Get Deposit Address - disabled"
+    python_client_example: |-
+      api.post("/v1/user/deposit_address/LTC")
     request:
-      body: "{\"currency\": \"LTC\"}"
+      body: "{}"
       url:
-        path: /v1/user/deposit_address/[currency_key]
+        path: /v1/user/deposit_address/LTC
   - body: |-
       {
           "data": {
@@ -1234,6 +1292,8 @@ endpoints:
       }
     code: 200
     name: Transfers
+    python_client_example: |-
+      api.get("/v1/user/transfers")
     request:
       url:
         path: /v1/user/transfers
@@ -1244,15 +1304,15 @@ endpoints:
       - description: "String. Exact amount, including decimal \"1.2345\""
         key: amount
         type: text
-        value: '{{sell_amount}}'
+        value: sell_amount
       - description: "String. Price in base currency of the market"
         key: price
         type: text
-        value: '{{sell_price}}'
+        value: sell_price
       - description: "Integer ID of the market"
         key: market_id
         type: text
-        value: '{{market_id}}'
+        value: market_id
     description: |-
       Creates an order to sell a currency at the specified price. Amount will be
       removed from your balance immediately. Returns the created order id.
@@ -1297,6 +1357,9 @@ endpoints:
       }
     code: 200
     name: "Create Sell Limit"
+    python_client_example: |-
+      api.order('sell_limit', '0.01', amount=1, market_id=1)
+      api.order('sell_limit', '0.01', value=.01, market_string='LTC_BTC')
     request:
       body: "{\"amount\": \"1\", \"price\": \"0.01\", \"market_id\": 1}"
       url:
@@ -1305,22 +1368,26 @@ endpoints:
   request:
     body:
       params:
-      - description: "String. Exact amount, including decimal \"1.2345\""
+      - description: "String. Exact amount, including decimal \"1.2345\"  Includes order fee."
         key: amount
         type: text
-        value: '{{buy_amount}}'
+        value: buy_amount
       - description: "String. Price in base currency of the market"
         key: price
         type: text
-        value: '{{buy_price}}'
+        value: buy_price
       - description: "Integer ID of market"
         key: market_id
         type: text
-        value: '{{market_id}}'
+        value: market_id
     description: |-
       Creates an order to buy a currency at the specified price on the specified
       market. Amount will be removed from your balance immediately. Returns the
       created order id.
+
+      The maximum fee will be escrowed from your account's balance when the order is created.
+      Usually this is the market's taker fee.  The fee will be returned to the user's account
+      if it is not applicable, e.g. if the order executed as maker.
     method: POST
     url:
       path: /v1/user/buy_limit
@@ -1344,6 +1411,9 @@ endpoints:
       }
     code: 200
     name: "Create Buy Limit"
+    python_client_example: |-
+      api.order('buy_limit', '0.1', amount=10, market_id=1)
+      api.order('buy_limit', '0.1', value=1, market_string='LTC_BTC')
     request:
       body: "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
       url:
