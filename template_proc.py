@@ -18,6 +18,8 @@ def load_snippet(name):
 
 
 def to_pretty_json(value):
+    if not value:
+        return ''
     value = json.loads(value)
     return json.dumps(value, sort_keys=True, indent=4, separators=(',', ': '))
 

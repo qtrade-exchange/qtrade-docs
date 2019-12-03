@@ -110,8 +110,12 @@ Any user or API with access to the account can withdraw to approved addresses wi
 ```
 {% endif %}
 ``` python--Python
+{% if resp.python_example %}
+{{ resp.python_example }}
+{% else %}
 req = {{ resp.request.body | json_to_python_dict }}
 api.post("{{ resp.request.url.path }}", json=req).json()
+{% endif %}
 ```
 ``` javascript
 req = {{ resp.request.body | json_to_python_dict }}
