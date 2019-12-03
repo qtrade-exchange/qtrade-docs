@@ -1,0 +1,1421 @@
+endpoints:
+- name: Ticker
+  request:
+    description: |-
+      Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market.
+
+      Key | Description
+      ---------- | -------
+      ask | The current ask price on the market
+      bid | The current bid price on the market
+      day_avg_price | The market average price over the last 24 hours
+      day_change | The change in the market's midpoint over the last 24 hours
+      day_high | The price of the highest trade in the last 24 hours
+      day_low | The price of the lowest trade in the last 24 hours
+      day_open | The price of the latest trade which occurred more than 24 hours ago
+      day_volume_base | The market volume in its base currency
+      day_volume_market | The market volume in market currency
+      id | A globally unique market identifier as an integer
+      id_hr | A globally unique market identifier as a human-readable string
+      last | The price of the last trade made on the market
+    method: GET
+    url:
+      path: /v1/ticker/:market_string
+      variable:
+      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+        key: market_string
+        value: LTC_BTC
+  response:
+  - body: |-
+      {
+          "data": {
+              "ask": "0.02249",
+              "bid": "0.0191",
+              "day_avg_price": "0.0197095311101552",
+              "day_change": "0.0380429141071119",
+              "day_high": "0.02249",
+              "day_low": "0.0184",
+              "day_open": "0.01840001",
+              "day_volume_base": "0.42644484",
+              "day_volume_market": "21.63647819",
+              "id": 15,
+              "id_hr": "VEO_BTC",
+              "last": "0.0191"
+          }
+      }
+    code: 200
+    name: "Ticker Example"
+    python_client_example: |-
+      api.tickers['VEO_BTC']
+    request:
+      url:
+        path: /v1/ticker/VEO_BTC
+- name: "All Tickers"
+  request:
+    description: |-
+      Get ticker values for all markets.
+
+      Return parameters are as for Ticker.
+    method: GET
+    url:
+      path: /v1/tickers
+  response:
+  - body: |-
+      {
+          "data": {
+              "markets": [
+                  {
+                      "ask": "0.0034",
+                      "bid": "0.0011",
+                      "day_avg_price": null,
+                      "day_change": null,
+                      "day_high": null,
+                      "day_low": null,
+                      "day_open": null,
+                      "day_volume_base": "0",
+                      "day_volume_market": "0",
+                      "id": 23,
+                      "id_hr": "GRIN_BTC",
+                      "last": "0.0033"
+                  },
+                  {
+                      "ask": "0.000099",
+                      "bid": "0.0000795",
+                      "day_avg_price": "0.0000795337894515",
+                      "day_change": "-0.2205882352941176",
+                      "day_high": "0.00008",
+                      "day_low": "0.0000795",
+                      "day_open": "0.000102",
+                      "day_volume_base": "0.07353291",
+                      "day_volume_market": "924.549308",
+                      "id": 19,
+                      "id_hr": "SNOW_BTC",
+                      "last": "0.0000795"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Tickers Example"
+    python_client_example: |-
+      api.tickers
+      -> {36: {'ask':...}, 'DOGE_BTC': {'ask':...}}
+      # Tickers are lazily loaded.  To set the update interval in seconds:
+      api.tickers_update_interval = 30
+    request:
+      url:
+        path: /v1/tickers
+- name: Currency
+  request:
+    description: "Get general information about a specific currency.\n\nKey | Description\n\
+      ---------- | -------\ncan_withdraw | True if this currency can be withdrawn\n\
+      code | The currency code as used in market strings etc.\nconfig | This dictionary\
+      \ is primarily for internal use, and varies from coin to coin.  Consistent values\
+      \ are as follows:\n&nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The\
+      \ estimated price of the coin in USD\n&nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee |\
+      \ &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade\nlong_name\
+      \ | The full name of the currency\nprecision | \nstatus | The coin's listing\
+      \ and trading status on qTrade"
+    method: GET
+    url:
+      path: /v1/currency/:code
+      variable:
+      - description: "The string ticker code of the currency. Ala 'BTC'"
+        key: code
+        value: '{{code}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "currency": {
+                  "can_withdraw": true,
+                  "code": "BTC",
+                  "config": {
+                      "address_version": 0,
+                      "default_signer": 6,
+                      "explorerAddressURL": "https://live.blockcypher.com/btc/address/",
+                      "explorerTransactionURL": "https://live.blockcypher.com/btc/tx/",
+                      "p2sh_address_version": 5,
+                      "price": 9159.72,
+                      "required_confirmations": 2,
+                      "required_generate_confirmations": 100,
+                      "satoshi_per_byte": 15,
+                      "withdraw_fee": "0.0005"
+                  },
+                  "long_name": "Bitcoin",
+                  "metadata": {
+                      "withdraw_notices": []
+                  },
+                  "precision": 8,
+                  "status": "ok",
+                  "type": "bitcoin_like"
+              }
+          }
+      }
+    code: 200
+    name: "Currency By Code"
+    python_client_example: |-
+      api.currencies['BTC']
+    request:
+      url:
+        path: /v1/currency/BTC
+- name: "All Currencies"
+  request:
+    description: |-
+      Get general information about all available currencies.
+
+      Return parameters are as for Currency.
+    method: GET
+    url:
+      path: /v1/currencies
+  response:
+  - body: |-
+      {
+          "data": {
+              "currencies": [
+                  {
+                      "can_withdraw": true,
+                      "code": "BTC",
+                      "config": {
+                          "address_version": 0,
+                          "default_signer": 6,
+                          "explorerAddressURL": "https://live.blockcypher.com/btc/address/",
+                          "explorerTransactionURL": "https://live.blockcypher.com/btc/tx/",
+                          "p2sh_address_version": 5,
+                          "price": 9159.72,
+                          "required_confirmations": 2,
+                          "required_generate_confirmations": 100,
+                          "satoshi_per_byte": 15,
+                          "withdraw_fee": "0.0005"
+                      },
+                      "long_name": "Bitcoin",
+                      "metadata": {
+                          "withdraw_notices": []
+                      },
+                      "precision": 8,
+                      "status": "ok",
+                      "type": "bitcoin_like"
+                  },
+                  {
+                      "can_withdraw": true,
+                      "code": "BIS",
+                      "config": {
+                          "data_max": 1000,
+                          "default_signer": 54,
+                          "enable_address_data": true,
+                          "explorerAddressURL": "https://bismuth.online/search?quicksearch=",
+                          "explorerTransactionURL": "https://bismuth.online/search?quicksearch=",
+                          "price": 0.11314929085578249,
+                          "required_confirmations": 35,
+                          "withdraw_fee": "0.25"
+                      },
+                      "long_name": "Bismuth",
+                      "metadata": {
+                          "deposit_notices": [],
+                          "hidden": false
+                      },
+                      "precision": 8,
+                      "status": "ok",
+                      "type": "bismuth"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "All Currencies"
+    python_client_example: |-
+      api.currencies
+      -> {'BIS': {'can_withdraw':...}}
+      # Currencies are lazily loaded from the common endpoint, at the same time as markets
+      # To set the update interval in seconds:
+      api.market_update_interval = 30
+    request:
+      url:
+        path: /v1/currencies
+- name: Common
+  request:
+    description: "Retrieve All Markets, All Currencies, and All Tickers in one call."
+    method: GET
+    url:
+      path: /v1/common
+  response:
+  - body: |-
+      {
+          "data": {
+              "currencies": [
+                  {
+                      "can_withdraw": false,
+                      "code": "MMO",
+                      "config": {
+                          "address_version": 50,
+                          "default_signer": 23,
+                          "price": 0.002,
+                          "required_confirmations": 6,
+                          "required_generate_confirmations": 120,
+                          "satoshi_per_byte": 100,
+                          "wif_version": 178,
+                          "withdraw_fee": "0.001"
+                      },
+                      "long_name": "MMOCoin",
+                      "metadata": {
+                          "delisting_date": "12/13/2018"
+                      },
+                      "precision": 8,
+                      "status": "delisted",
+                      "type": "bitcoin_like"
+                  },
+                  {
+                      "can_withdraw": true,
+                      "code": "BTC",
+                      "config": {
+                          "address_version": 0,
+                          "default_signer": 6,
+                          "explorerAddressURL": "https://live.blockcypher.com/btc/address/",
+                          "explorerTransactionURL": "https://live.blockcypher.com/btc/tx/",
+                          "p2sh_address_version": 5,
+                          "price": 8595.59,
+                          "required_confirmations": 2,
+                          "required_generate_confirmations": 100,
+                          "satoshi_per_byte": 15,
+                          "withdraw_fee": "0.0005"
+                      },
+                      "long_name": "Bitcoin",
+                      "metadata": {
+                          "withdraw_notices": []
+                      },
+                      "precision": 8,
+                      "status": "ok",
+                      "type": "bitcoin_like"
+                  },
+                  {
+                      "can_withdraw": true,
+                      "code": "BIS",
+                      "config": {
+                          "data_max": 1000,
+                          "default_signer": 54,
+                          "enable_address_data": true,
+                          "explorerAddressURL": "https://bismuth.online/search?quicksearch=",
+                          "explorerTransactionURL": "https://bismuth.online/search?quicksearch=",
+                          "price": 0.12891653720125376,
+                          "required_confirmations": 35,
+                          "withdraw_fee": "0.25"
+                      },
+                      "long_name": "Bismuth",
+                      "metadata": {
+                          "deposit_notices": [],
+                          "hidden": false
+                      },
+                      "precision": 8,
+                      "status": "ok",
+                      "type": "bismuth"
+                  }
+              ],
+              "markets": [
+                  {
+                      "base_currency": "BTC",
+                      "can_cancel": false,
+                      "can_trade": false,
+                      "can_view": false,
+                      "id": 8,
+                      "maker_fee": "0.0025",
+                      "market_currency": "MMO",
+                      "metadata": {
+                          "delisting_date": "12/13/2018",
+                          "market_notices": [
+                              {
+                                  "message": "Delisting Notice: This market has been delisted due to low volume. Please cancel your orders and withdraw your funds by 12/13/2018.",
+                                  "type": "warning"
+                              }
+                          ]
+                      },
+                      "taker_fee": "0.0025"
+                  },
+                  {
+                      "base_currency": "BTC",
+                      "can_cancel": true,
+                      "can_trade": true,
+                      "can_view": true,
+                      "id": 20,
+                      "maker_fee": "0",
+                      "market_currency": "BIS",
+                      "metadata": {
+                          "labels": []
+                      },
+                      "taker_fee": "0.005"
+                  }
+              ],
+              "tickers": [
+                  {
+                      "ask": null,
+                      "bid": null,
+                      "day_avg_price": null,
+                      "day_change": null,
+                      "day_high": null,
+                      "day_low": null,
+                      "day_open": null,
+                      "day_volume_base": "0",
+                      "day_volume_market": "0",
+                      "id": 8,
+                      "id_hr": "MMO_BTC",
+                      "last": "0.00000076"
+                  },
+                  {
+                      "ask": "0.000014",
+                      "bid": "0.00001324",
+                      "day_avg_price": "0.0000147000191353",
+                      "day_change": "-0.023086269744836",
+                      "day_high": "0.00001641",
+                      "day_low": "0.00001292",
+                      "day_open": "0.00001646",
+                      "day_volume_base": "0.36885974",
+                      "day_volume_market": "25092.46665642",
+                      "id": 20,
+                      "id_hr": "BIS_BTC",
+                      "last": "0.00001608"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Common Example"
+    python_client_example: |-
+      {'currencies': api.currencies, 'markets': api.markets, 'tickers': api.tickers}
+    request:
+      url:
+        path: /v1/common
+- name: Market
+  request:
+    description: |-
+      Return details about a specific market including info about fees, user permissions/market state and the most recent 200 trades.
+
+      Key | Description
+      ---------- | -------
+      maker_fee | The percentage fee taken on the trade value of maker orders
+      taker_fee | The percentage fee taken on the trade value on taker orders
+      id | A globally unique market identifier as an integer
+      metadata | Frontend rendering params
+      can_trade | true if trading and order creation is disabled
+      base_currency | The code of currency that orders are priced in
+      market_currency | The code of currency that is bought or sold
+    method: GET
+    url:
+      path: /v1/market/:market_string
+      variable:
+      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+        key: market_string
+        value: '{{market_string}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "market": {
+                  "base_currency": "BTC",
+                  "can_cancel": true,
+                  "can_trade": true,
+                  "can_view": false,
+                  "id": 15,
+                  "maker_fee": "0.005",
+                  "market_currency": "VEO",
+                  "metadata": {},
+                  "taker_fee": "0.005"
+              },
+              "recent_trades": [
+                  {
+                      "amount": "1.64360163",
+                      "created_at": "2019-01-31T23:09:31.419131Z",
+                      "id": 51362,
+                      "price": "0.0191"
+                  },
+                  {
+                      "amount": "1.60828469",
+                      "created_at": "2019-01-31T22:05:16.531659Z",
+                      "id": 51362,
+                      "price": "0.02248"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Market Details Example"
+    python_client_example: |-
+      api.markets['VEO_BTC']
+    request:
+      url:
+        path: /v1/market/15
+- name: "All Markets"
+  request:
+    description: |-
+      Get general information about all available markets.
+
+      Return parameters are as for Market.
+    method: GET
+    url:
+      path: /v1/markets
+  response:
+  - body: |-
+      {
+          "data": {
+              "markets": [
+                  {
+                      "base_currency": "BTC",
+                      "can_cancel": true,
+                      "can_trade": true,
+                      "can_view": true,
+                      "id": 20,
+                      "maker_fee": "0.0025",
+                      "market_currency": "BIS",
+                      "metadata": {},
+                      "taker_fee": "0.0025"
+                  },
+                  {
+                      "base_currency": "BTC",
+                      "can_cancel": true,
+                      "can_trade": true,
+                      "can_view": true,
+                      "id": 19,
+                      "maker_fee": "0.0075",
+                      "market_currency": "SNOW",
+                      "metadata": {},
+                      "taker_fee": "0.0075"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: Markets
+    python_client_example: |-
+      api.markets
+      -> {36: {'base_currency':...}, 'DOGE_BTC': {'base_currency':...}}
+      # Markets are lazily loaded.  To set the update interval in seconds:
+      api.market_update_interval = 30
+    request:
+      url:
+        path: /v1/markets
+- name: "Market Trades"
+  request:
+    description: |-
+      Return historical trade data on a market.
+
+      Key | Description
+      ---------- | -------
+      amount | The amount of the transaction in market currency
+      created_at | The time and date of the trade's creation
+      price | The price of the trade in base currency
+      seller_taker | True if the seller was the taker, false if the buyer was the taker
+    method: GET
+    url:
+      path: /v1/market/:market_string/trades
+      query:
+      - description: "Expects a trade ID and returns trades with an ID < the passed\
+          \ ID"
+        disabled: true
+        key: older_than
+        value: Integer
+      - description: "Expects a trade ID and returns trades with an ID > the passed\
+          \ ID\n"
+        disabled: true
+        key: newer_than
+        value: Integer
+      variable:
+      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+        key: market_string
+        value: '{{market_string}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "trades": [
+                  {
+                      "amount": "0.00760005",
+                      "created_at": "2019-05-21T02:41:30.781308Z",
+                      "id": 51362,
+                      "price": "0.01181539",
+                      "seller_taker": false
+                  },
+                  {
+                      "amount": "4.99515615",
+                      "created_at": "2019-05-21T02:41:30.781308Z",
+                      "id": 51354,
+                      "price": "0.01180695",
+                      "seller_taker": false
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Market Trades Example"
+    python_client_example: |-
+      api.get('/v1/market/LTC_BTC/trades')
+    request:
+      url:
+        path: /v1/market/LTC_BTC/trades
+- name: "Market Orderbook"
+  request:
+    description: |-
+      Get orderbook values for the given market. The `market_string` value should be formatted ala `LTC_BTC` for the LTC/BTC market.
+
+      Orders are given in a `price|amount` format, sorted by type.
+    method: GET
+    url:
+      path: /v1/orderbook/:market_string
+      variable:
+      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+        key: market_string
+        value: '{{market_string}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "buy": {
+                  "0.000009": "150",
+                  "0.0001032": "100",
+                  "0.00020139": "100"
+              },
+              "sell": {
+                  "0.02249": "0.99720378",
+                  "14": "28",
+                  "5": "100"
+              }
+          }
+      }
+    code: 200
+    name: "Orderbook Example"
+    python_client_example: |-
+      api.get("/v1/orderbook/VEO_BTC")
+    request:
+      url:
+        path: /v1/orderbook/VEO_BTC
+- name: OHLCV
+  request:
+    description: "Returns lifetime OHLCV data for a specific market. Accepts an interval\
+      \ value which returns OHLCV data in chunks of the specified interval duration.\n\
+      \nValid interval values include:\n\nIntervals | Meaning\n---------- | -------\n\
+      fivemin | Five minute slices\nfifteenmin | Fifteen minute slices\nthirtymin\
+      \ | Thirty minute slices\nonehour | One hour slices \ntwohour | Two hour slices\n\
+      fourhour | Four hour slices \noneday | One day slices"
+    method: GET
+    url:
+      path: /v1/market/:market_string/ohlcv/:interval
+      variable:
+      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+        key: market_string
+        value: '{{market_string}}'
+      - description: "OHLCV data is chunked by this interval"
+        key: interval
+        value: '{{interval}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "slices": [
+                  {
+                      "close": "0.02",
+                      "high": "0.02",
+                      "low": "0.02",
+                      "open": "0.02",
+                      "time": "2018-04-28T04:00:00Z",
+                      "volume": "0.00190564"
+                  },
+                  {
+                      "close": "0.02",
+                      "high": "0.02",
+                      "low": "0.02",
+                      "open": "0.02",
+                      "time": "2018-04-28T08:00:00Z",
+                      "volume": "0"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "OHLCV Example"
+    python_client_example: |-
+      api.get("/v1/market/1/ohlcv/fourhour")
+    request:
+      url:
+        path: /v1/market/1/ohlcv/fourhour
+- name: "User Info"
+  request:
+    description: "Fetch general information about the authenticated user account."
+    method: GET
+    url:
+      path: /v1/user/me
+  response:
+  - body: |-
+      {
+          "data": {
+              "user": {
+                  "can_login": true,
+                  "can_trade": true,
+                  "can_withdraw": true,
+                  "email": "hugh@test.com",
+                  "email_addresses": [
+                      {
+                          "address": "hugh@test.com",
+                          "created_at": "2019-10-14T14:41:43.506827Z",
+                          "id": 10000,
+                          "is_primary": true,
+                          "verified": true
+                      },
+                      {
+                          "address": "jass@test.com",
+                          "created_at": "2019-11-14T18:51:23.816532Z",
+                          "id": 10001,
+                          "is_primary": false,
+                          "verified": true
+                      }
+                  ],
+                  "fname": "Hugh",
+                  "id": 1000000,
+                  "lname": "Jass",
+                  "referral_code": "6W56QFFVIIJ2",
+                  "tfa_enabled": true,
+                  "verification": "none",
+                  "verified_email": true,
+                  "withdraw_limit": 0
+              }
+          }
+      }
+    code: 200
+    name: "User Info"
+    python_client_example: |-
+      api.get("/v1/user/me")
+    request:
+      url:
+        path: /v1/user/me
+- name: Balances
+  request:
+    description: |-
+      Current useable account balances for a user account. Doesn't include amounts
+      currently represented in open orders, pending deposits or withdraws.
+    method: GET
+    url:
+      path: /v1/user/balances
+  response:
+  - body: |-
+      {
+          "data": {
+              "balances": [
+                  {
+                      "balance": "100000000",
+                      "currency": "BCH"
+                  },
+                  {
+                      "balance": "99992435.78253015",
+                      "currency": "LTC"
+                  },
+                  {
+                      "balance": "99927153.76074182",
+                      "currency": "BTC"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: Balances
+    python_client_example: |-
+      api.balances() # returns only spendable balances
+      api.balances_merged() # returns both spendable and non-spendable balances merged
+      api.balances_all() # returns all balances, sorted by spendable and non-spendable
+    request:
+      url:
+        path: /v1/user/balances
+- name: "User Market View"
+  request:
+    description: |-
+      Returns the currently available `base_currency` and `market_currency`  balances for a user on the given market. These amounts do **not** include amounts currently represented in open orders, pending deposits or withdraws.
+
+      Also returns lists of `open_orders` and `closed_orders`
+    method: GET
+    url:
+      path: /v1/user/market/:market_id
+      variable:
+      - description: "Integer ID of market"
+        key: market_id
+        value: '{{market_id}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "base_balance": "99927153.76074182",
+              "closed_orders": [
+                  {
+                      "base_amount": "0.09102782",
+                      "created_at": "2018-04-06T17:59:36.366493Z",
+                      "id": 13252,
+                      "market_amount": "4.99896025",
+                      "market_amount_remaining": "0",
+                      "market_id": 1,
+                      "open": false,
+                      "order_type": "buy_limit",
+                      "price": "9.90682437",
+                      "trades": [
+                          {
+                              "base_amount": "49.37394186",
+                              "base_fee": "0.12343485",
+                              "created_at": "2018-04-06T17:59:36.366493Z",
+                              "id": 10289,
+                              "market_amount": "4.99298105",
+                              "price": "9.88866999",
+                              "taker": true
+                          },
+                          {
+                              "base_amount": "0.05907856",
+                              "base_fee": "0.00014769",
+                              "created_at": "2018-04-06T17:59:36.366493Z",
+                              "id": 10288,
+                              "market_amount": "0.0059792",
+                              "price": "9.88068047",
+                              "taker": true
+                          }
+                      ]
+                  }
+              ],
+              "market_balance": "99992435.78253015",
+              "open_orders": [
+                  {
+                      "base_amount": "49.45063516",
+                      "created_at": "2018-04-06T17:59:35.867526Z",
+                      "id": 13249,
+                      "market_amount": "5.0007505",
+                      "market_amount_remaining": "5.0007505",
+                      "market_id": 1,
+                      "open": true,
+                      "order_type": "buy_limit",
+                      "price": "9.86398279",
+                      "trades": null
+                  },
+                  {
+                      "created_at": "2018-04-06T17:59:27.347006Z",
+                      "id": 13192,
+                      "market_amount": "5.00245975",
+                      "market_amount_remaining": "0.0173805",
+                      "market_id": 1,
+                      "open": true,
+                      "order_type": "sell_limit",
+                      "price": "9.90428849",
+                      "trades": [
+                          {
+                              "base_amount": "49.37366303",
+                              "base_fee": "0.12343415",
+                              "created_at": "2018-04-06T17:59:27.531716Z",
+                              "id": 10241,
+                              "market_amount": "4.98507925",
+                              "price": "9.90428849",
+                              "taker": false
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "User Market View"
+    python_client_example: |-
+      api.get("/v1/user/market/1")
+    request:
+      url:
+        path: /v1/user/market/1
+- name: "Get Orders"
+  request:
+    description: "Fetches the last 200 orders made by your account with all the trades\
+      \ associated.\n\nIf you need more than the last 200 orders use the `older_than`\
+      \ param. Passing an order ID will return results only orders which are older\
+      \ than that order ID.\n\n<blockquote class=\"lang-specific python\"><br>\n<p>Examples\
+      \ </p>\n</blockquote>\n\n``` python\n\"\"\"\nOrder IDs are strictly increasing,\
+      \ so code like the following\nshort example may be used to detect new orders.\n\
+      \"\"\"\n\nlatest_order_id = 0\nwhile True:\n\tresult = api.get(\"/v1/user/orders\"\
+      , params={\"newer_than\": latest_order_id}).json()\n\tif result['data']['orders']\
+      \ != []:\n\t\t## process the new order ##\n\t\tlatest_order_id = result['data']['orders'][0]['id']\n\
+      \n\n\"\"\"\nIf you're searching for an order older than the latest\n200, you\
+      \ can use older_than to iterate over old orders.\n\"\"\"\n\norders = api.get(\"\
+      /v1/user/orders\").json()\nsearch_price = \"4.99896025\"\nwhile True:\n\tfor\
+      \ order in orders[\"data\"][\"orders\"]:\n\t\tif order[\"price\"] == search_price:\n\
+      \t\t\treturn order\n\toldest_order_id = orders[\"data\"][\"orders\"][-1][\"\
+      id\"]\n\torders = api.get(\"/v1/orders\", params={\"older_than\": oldest_order_id}).json()\n\
+      \n```"
+    method: GET
+    url:
+      path: /v1/user/orders
+      query:
+      - description: "Filter by opened/closed orders"
+        disabled: true
+        key: open
+        value: Boolean
+      - description: "Expects an order ID and returns orders with an ID < the passed\
+          \ ID"
+        disabled: true
+        key: older_than
+        value: Integer
+      - description: "Expects an order ID and returns orders with an ID > the passed\
+          \ ID"
+        disabled: true
+        key: newer_than
+        value: Integer
+  response:
+  - body: |-
+      {
+          "data": {
+              "orders": [
+                  {
+                      "base_amount": "0.09102782",
+                      "created_at": "2018-04-06T17:59:36.366493Z",
+                      "id": 13252,
+                      "market_amount": "4.99896025",
+                      "market_amount_remaining": "0",
+                      "market_id": 1,
+                      "open": false,
+                      "order_type": "buy_limit",
+                      "price": "9.90682437",
+                      "trades": [
+                          {
+                              "base_amount": "49.37394186",
+                              "base_fee": "0.12343485",
+                              "created_at": "2018-04-06T17:59:36.366493Z",
+                              "id": 10289,
+                              "market_amount": "4.99298105",
+                              "price": "9.88866999",
+                              "taker": true
+                          },
+                          {
+                              "base_amount": "0.05907856",
+                              "base_fee": "0.00014769",
+                              "created_at": "2018-04-06T17:59:36.366493Z",
+                              "id": 10288,
+                              "market_amount": "0.0059792",
+                              "price": "9.88068047",
+                              "taker": true
+                          }
+                      ]
+                  },
+                  {
+                      "base_amount": "49.33046306",
+                      "created_at": "2018-04-06T17:59:12.941034Z",
+                      "id": 13099,
+                      "market_amount": "4.9950993",
+                      "market_amount_remaining": "4.9950993",
+                      "market_id": 1,
+                      "open": true,
+                      "order_type": "buy_limit",
+                      "price": "9.85114439",
+                      "trades": null
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Order History"
+    python_client_example: |-
+      api.orders() # returns all orders made by this account
+      api.orders(open=True) # returns only open orders
+      api.orders(open=False) # returns only closed orders
+    request:
+      url:
+        path: /v1/user/orders
+- name: "Order Details"
+  request:
+    description: |-
+      Takes an Order ID and returns data about that order.
+
+      Key | Description
+      ---------- | -------
+      market_amount | The amount of market currency involved in the order.  This is the order amount for sell orders, or the total traded for buy orders.
+      market_amount_remaining | The amount of market currency remaining when this request was processed.
+      base_amount | The amount of base currency involved in the order.  This is the order value for buy orders, or the total traded for sell orders.
+      open | True if the order is currently open.
+      trades | A list of trades executed on this order.
+    method: GET
+    url:
+      path: /v1/user/order/:order_id
+      variable:
+      - description: "Integer ID of the order"
+        key: order_id
+        value: '{{order_id}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "order": {
+                  "base_amount": "0",
+                  "close_reason": "canceled",
+                  "created_at": "2018-11-08T00:15:57.258122Z",
+                  "id": 8806681,
+                  "market_amount": "500",
+                  "market_amount_remaining": "0",
+                  "market_id": 36,
+                  "open": false,
+                  "order_type": "sell_limit",
+                  "price": "0.00000033",
+                  "trades": null
+              }
+          }
+      }
+    code: 200
+    name: "Order Details Example"
+    python_client_example: |-
+      api.get("/v1/user/order/8806681")
+    request:
+      url:
+        path: /v1/user/order/:order_id
+        variable:
+        - description: "Integer ID of the order to lookup"
+          key: order_id
+          value: '{{order_id}}'
+- name: "Cancel Order"
+  request:
+    body:
+      params:
+      - description: "Integer ID of the order to cancel"
+        key: id
+        type: text
+        value: cancel_order_id
+    description: |-
+      Takes an Order ID.
+
+      <aside class="notice">
+      Successful cancellation returns just a 200 with no payload
+      </aside>
+    method: POST
+    url:
+      path: /v1/user/cancel_order
+  response:
+  - body: |-
+      {
+          "errors": [
+              {
+                  "code": "order_not_found",
+                  "title": "That order no longer exists"
+              }
+          ]
+      }
+    code: 404
+    name: "Cancel Order Fail Example"
+    python_client_example: |-
+      api.post("/v1/user/cancel_order", id=109)
+    request:
+      body: "{\"id\": 109}"
+      url:
+        path: /v1/user/cancel_order
+        query:
+        - description: "Order ID to cancel"
+          disabled: true
+          key: id
+          value: Integer
+- name: "Create a Withdraw"
+  request:
+    body:
+      params:
+      - description: "String. Exact amount, including decimal \"1.2345\""
+        key: amount
+        type: text
+        value: '{{withdraw_amount}}'
+      - description: "String. Currency code to withdraw"
+        key: currency
+        type: text
+        value: '{{code}}'
+      - description: "String. Address to receive funds"
+        key: address
+        type: text
+        value: '{{withdraw_address}}'
+    description: |-
+      Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes.
+
+      Requires email or 2FA confirmation (if enabled), or an approved withdraw address.
+    method: POST
+    url:
+      path: /v1/user/withdraw
+  response:
+  - body: |-
+      {
+          "data": {
+              "code": "initiated",
+              "id": 3,
+              "result": "Withdraw initiated. Please allow 3-5 minutes for our system to process."
+          }
+      }
+    code: 201
+    name: "Create a Withdraw"
+    python_client_example: |-
+      api.post("/v1/user/withdraw",
+        address='n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE',
+        amount='1.51235432',
+        currency='LTC')
+    request:
+      body: |-
+        {"currency": "LTC", "amount": "1.51235432", "address":
+        "n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE"}
+      url:
+        path: /v1/user/withdraw
+- name: "Withdraw Details"
+  request:
+    description: "Takes an Withdraw ID and returns data about that Withdraw"
+    method: GET
+    url:
+      path: /v1/user/withdraw/:withdraw_id
+      variable:
+      - description: "Integer ID of the withdraw"
+        key: withdraw_id
+        value: '{{withdraw_id}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "withdraw": {
+                  "address": "mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB",
+                  "amount": "1",
+                  "cancel_requested": false,
+                  "created_at": "2019-02-01T06:06:16.218062Z",
+                  "currency": "LTC",
+                  "id": 2,
+                  "network_data": {},
+                  "relay_status": "",
+                  "status": "needs_create",
+                  "user_id": 0
+              }
+          }
+      }
+    code: 200
+    name: "Withdraw Details Example"
+    python_client_example: |-
+      api.get("/v1/user/withdraw/2")
+    request:
+      url:
+        path: /v1/user/withdraw/2
+- name: "Withdraw History"
+  request:
+    description: |-
+      Returns a list of the user's Withdraws and metadata including `id`, `amount`,
+      `currency`, `address`, `status`, `network_data`, `created_at` values
+    method: GET
+    url:
+      path: /v1/user/withdraws
+  response:
+  - body: |-
+      {
+          "data": {
+              "withdraws": [
+                  {
+                      "address": "mw67t7AE88SBSRWYw1is3JaFbtXVygwpmB",
+                      "amount": "1",
+                      "cancel_requested": false,
+                      "created_at": "2019-02-01T06:06:16.218062Z",
+                      "currency": "LTC",
+                      "id": 2,
+                      "network_data": {},
+                      "relay_status": "",
+                      "status": "needs_create",
+                      "user_id": 0
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Withdraw History Example"
+    python_client_example: |-
+      api.get("/v1/user/withdraws")
+    request:
+      url:
+        path: /v1/user/withdraws
+- name: "Deposit Details"
+  request:
+    description: "Takes a Deposit ID and returns data about that Deposit"
+    method: GET
+    url:
+      path: /v1/user/deposit/:deposit_id
+      variable:
+      - description: "String ID of the deposit"
+        key: deposit_id
+        value: '{{deposit_id}}'
+  response:
+  - body: |-
+      {
+          "data": {
+              "deposit": [
+                  {
+                      "address": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE",
+                      "amount": "1",
+                      "created_at": "2019-03-02T04:05:51.090427Z",
+                      "currency": "BTC",
+                      "id": "ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4",
+                      "network_data": {},
+                      "relay_status": "",
+                      "status": "credited"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Deposit Details Response"
+    python_client_example: |-
+      api.get("/v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4")
+    request:
+      url:
+        path: /v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4
+- name: "Deposit History"
+  request:
+    description: |-
+      Returns a list of the user's Deposits and metadata including `id`, `amount`,
+      `currency`, `address`, `status`, `network_data`, `created_at` values.
+    method: GET
+    url:
+      path: /v1/user/deposits
+  response:
+  - body: |-
+      {
+          "data": {
+              "deposits": [
+                  {
+                      "address": "1Kv3CKUigVPsxGCkkaoyLKrZHZ7WLq8jNK",
+                      "amount": "0.25",
+                      "created_at": "2019-01-08T21:15:18.775592Z",
+                      "currency": "BTC",
+                      "id": "1:855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088",
+                      "network_data": {
+                          "confirms": 2,
+                          "confirms_required": 2,
+                          "txid": "855e291e4acd61c21fcbf1bc31aa2578fa8eb3b388d9e979077567a71b58f088",
+                          "vout": 1
+                      },
+                      "relay_status": "",
+                      "status": "credited"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Deposit History"
+    python_client_example: |-
+      api.get("/v1/user/deposits")
+    request:
+      url:
+        path: /v1/user/deposits
+- name: "Deposit Address"
+  request:
+    body:
+      params: []
+    description: "Returns a deposit address for sending money to your exchange account.\
+      \ This address should rarely change, but it is good practice to fetch it before\
+      \ sending currency every time.\n\nThe returned `currency_status` key may be\
+      \ one of the following values:\n\nStatus | Returns address | Use case\n--- |\
+      \ --- | --- \n`ok` | Yes | Normal operation\n`degraded` | Yes | Down for maintenance.\
+      \ Funds will be credited once maintenance is completed\n`disabled` | No | Deposits\
+      \ temporarily disabled due to network issues. Typically due to excessive forking,\
+      \ stalled chain, or consesus issues\n`offline` | No | Offline for other reason\n\
+      `delisted` | No | Currency is delisted and deposits are no longer accepted\n\
+      \n"
+    method: POST
+    url:
+      path: /v1/user/deposit_address/:currency
+      variable:
+      - description: "Currency code ala \"LTC\""
+        key: currency
+        value: String
+  response:
+  - body: |-
+      {
+          "data": {
+              "currency_status": "disabled"
+          }
+      }
+    code: 200
+    name: "Get Deposit Address - disabled"
+    python_client_example: |-
+      api.post("/v1/user/deposit_address/LTC")
+    request:
+      body: "{}"
+      url:
+        path: /v1/user/deposit_address/LTC
+  - body: |-
+      {
+          "data": {
+              "currency_status": "delisted"
+          }
+      }
+    code: 200
+    name: "Get Deposit Address - delisted"
+    request:
+      url:
+        path: /v1/user/deposit_address/LTC
+  - body: |-
+      {
+          "data": {
+              "address": "mhBYubznoJxVEst6DNr6arZHK6UYVTsjqC",
+              "currency_status": "ok"
+          }
+      }
+    code: 200
+    name: "Get Deposit Address - ok"
+    request:
+      body: ''
+      url:
+        path: /v1/user/deposit_address/LTC
+  - body: |-
+      {
+          "data": {
+              "address": "mhBYubznoJxVEst6DNr6arZHK6UYVTsjqC",
+              "currency_status": "degraded"
+          }
+      }
+    code: 200
+    name: "Get Deposit Address - degraded"
+    request:
+      url:
+        path: /v1/user/deposit_address/LTC
+- name: Transfers
+  request:
+    description: |-
+      Returns a list of the user's Transfers and metadata. Transfers are a special
+      internal movement of funds between qTrade users. User created Transfers are not
+      currently supported
+    method: GET
+    url:
+      path: /v1/user/transfers
+  response:
+  - body: |-
+      {
+          "data": {
+              "transfers": [
+                  {
+                      "amount": "0.5",
+                      "created_at": "2018-12-10T00:06:41.066665Z",
+                      "currency": "BTC",
+                      "id": 9,
+                      "reason_code": "referral_payout",
+                      "reason_metadata": {
+                          "note": "January referral earnings"
+                      },
+                      "sender_email": "qtrade",
+                      "sender_id": 218
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: Transfers
+    python_client_example: |-
+      api.get("/v1/user/transfers")
+    request:
+      url:
+        path: /v1/user/transfers
+- name: "Create Sell Limit"
+  request:
+    body:
+      params:
+      - description: "String. Exact amount, including decimal \"1.2345\""
+        key: amount
+        type: text
+        value: sell_amount
+      - description: "String. Price in base currency of the market"
+        key: price
+        type: text
+        value: sell_price
+      - description: "Integer ID of the market"
+        key: market_id
+        type: text
+        value: market_id
+    description: |-
+      Creates an order to sell a currency at the specified price. Amount will be
+      removed from your balance immediately. Returns the created order id.
+    method: POST
+    url:
+      path: /v1/user/sell_limit
+  response:
+  - body: |-
+      {
+          "data": {
+              "order": {
+                  "created_at": "2018-04-06T20:46:52.899248Z",
+                  "id": 13253,
+                  "market_amount": "1",
+                  "market_amount_remaining": "0",
+                  "market_id": 1,
+                  "open": false,
+                  "order_type": "sell_limit",
+                  "price": "0.01",
+                  "trades": [
+                      {
+                          "base_amount": "0.27834267",
+                          "base_fee": "0.00069585",
+                          "created_at": "0001-01-01T00:00:00Z",
+                          "id": 0,
+                          "market_amount": "0.02820645",
+                          "price": "9.86805058",
+                          "taker": true
+                      },
+                      {
+                          "base_amount": "9.58970687",
+                          "base_fee": "0.02397426",
+                          "created_at": "0001-01-01T00:00:00Z",
+                          "id": 0,
+                          "market_amount": "0.97179355",
+                          "price": "9.86804952",
+                          "taker": true
+                      }
+                  ]
+              }
+          }
+      }
+    code: 200
+    name: "Create Sell Limit"
+    python_client_example: |-
+      api.order('sell_limit', '0.01', amount=1, market_id=1)
+      api.order('sell_limit', '0.01', value=.01, market_string='LTC_BTC')
+    request:
+      body: "{\"amount\": \"1\", \"price\": \"0.01\", \"market_id\": 1}"
+      url:
+        path: /v1/user/sell_limit
+- name: "Create Buy Limit"
+  request:
+    body:
+      params:
+      - description: "String. Exact amount, including decimal \"1.2345\"  Includes order fee."
+        key: amount
+        type: text
+        value: buy_amount
+      - description: "String. Price in base currency of the market"
+        key: price
+        type: text
+        value: buy_price
+      - description: "Integer ID of market"
+        key: market_id
+        type: text
+        value: market_id
+    description: |-
+      Creates an order to buy a currency at the specified price on the specified
+      market. Amount will be removed from your balance immediately. Returns the
+      created order id.
+
+      The maximum fee will be escrowed from your account's balance when the order is created.
+      Usually this is the market's taker fee.  The fee will be returned to the user's account
+      if it is not applicable, e.g. if the order executed as maker.
+    method: POST
+    url:
+      path: /v1/user/buy_limit
+  response:
+  - body: |-
+      {
+          "data": {
+              "order": {
+                  "base_amount": "1.0025",
+                  "created_at": "2018-04-06T20:47:11.966139Z",
+                  "id": 13254,
+                  "market_amount": "10",
+                  "market_amount_remaining": "10",
+                  "market_id": 1,
+                  "open": true,
+                  "order_type": "buy_limit",
+                  "price": "0.1",
+                  "trades": []
+              }
+          }
+      }
+    code: 200
+    name: "Create Buy Limit"
+    python_client_example: |-
+      api.order('buy_limit', '0.1', amount=10, market_id=1)
+      api.order('buy_limit', '0.1', value=1, market_string='LTC_BTC')
+    request:
+      body: "{\"amount\": \"10\", \"price\": \"0.1\", \"market_id\": 1}"
+      url:
+        path: /v1/user/buy_limit
+

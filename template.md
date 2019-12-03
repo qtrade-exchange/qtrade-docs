@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
   - javascript: Node.js
   - php
+  - shell
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -31,13 +32,26 @@ The qTrade API is available at
 </aside>
 
 
-# Python Client
+# Client Libraries
 
-We provide a [Python client](https://github.com/qtrade-exchange/qtrade-py-client) for our API.
+<h3> Python Client </h3>
+We provide a [Python client](https://github.com/qtrade-exchange/qtrade-py-client) for our API.  This client offers helper functions, convenient response formatting, and automatic rate limit waiting to make developing applications with our API as efficient as possible.
 
-To install via pip:
+<h3> CryptoCurrency eXchange Trading Library </h3>
+Our API is also supported by [CCXT](https://github.com/ccxt/ccxt), a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.
 
-`pip3 install --upgrade --user git+https://github.com/qtrade-exchange/qtrade-py-client.git`
+
+# Vocabulary
+
+Here is how we define the terms used in our documentation and API:
+
+Term | Definition
+--- | ---
+Market Currency | The currency which is bought or sold on a market (e.g. NYZO on the NYZO/BTC market).
+Base Currency | The currency which is used to buy or sell a market currency (currently BTC on all markets).  Price is given in this currency.
+Value | The total worth of an order or trade in base currency.
+Amount | The size of an order or trade in market currency.
+
 
 
 # Authentication
@@ -116,6 +130,11 @@ api.get("/{{ item.request.url.path | join("/") }}", (resp) => {})
 $result = $api->get("/{{ item.request.url.path | join("/") }}");
 print_r(json_decode($result));
 ?>
+```
+``` shell
+{% if 'user' not in item.request.url.path %}
+curl https://api.qtrade.io/v1/{{ item.request.url.path | join("/") }}
+{% endif %}
 ```
 {% endif %}
 
