@@ -833,7 +833,7 @@ endpoints:
     description: |-
       Fetches the last 200 orders made by your account with all the trades associated.
 
-      If you need more than the last 200 orders use the `older_than` param. Passing an order ID will return results only orders which are older than that order ID.
+      If you need more than the last 200 orders use the `older_than` param. Passing an order ID will return only orders which are older than that order ID.
 
       <blockquote class="lang-specific python"><br>
       <p>Examples </p>
@@ -995,6 +995,82 @@ endpoints:
         - description: "Integer ID of the order to lookup"
           key: order_id
           value: '{{order_id}}'
+- name: "Get Trades"
+  request:
+    description : |-
+      Fetches the last 200 trades made by your account.
+
+      If you need more than the last 200 trades use the `older_than` param. Passing a trade ID will return only trades which are older than that trade ID.
+    
+    method: GET
+    url:
+      path: /v1/user/trades
+      query:
+      - description: "Filter by market ID"
+        disabled: true
+        key: market_id
+        value: Integer
+      - description: "Expects a trade ID and returns trades with an ID < the passed ID"
+        disabled: true
+        key: older_than
+        value: Integer
+      - description: "Expects a trade ID and returns trades with an ID > the passed ID"
+        disabled: true
+        key: newer_than
+        value: Integer
+  response:
+  - body: |-
+      {
+          "data": {
+              "trades": [
+                  {
+                      "id": 63286,
+                      "market_amount": "733.93113296",
+                      "price": "0.00000031",
+                      "base_amount": "0.00022751",
+                      "order_id": 8141515,
+                      "market_id": 36,
+                      "side": "sell",
+                      "taker": false,
+                      "base_fee": "0",
+                      "created_at": "2019-10-14T17:42:42.874812Z"
+                  },
+                  {
+                      "id": 63287,
+                      "market_amount": "1400",
+                      "price": "0.00000031",
+                      "base_amount": "0.000434",
+                      "order_id": 8141515,
+                      "market_id": 36,
+                      "side": "sell",
+                      "taker": true,
+                      "base_fee": "0.00000217",
+                      "created_at": "2019-10-14T17:42:42.874812Z"
+                  },
+                  {
+                      "id": 64129,
+                      "market_amount": "500",
+                      "price": "0.00000027",
+                      "base_amount": "0.000135",
+                      "order_id": 8209249,
+                      "market_id": 36,
+                      "side": "buy",
+                      "taker": false,
+                      "base_fee": "0",
+                      "created_at": "2019-10-19T11:10:19.387393Z"
+                  }
+              ]
+          }
+      }
+    code: 200
+    name: "Trade History"
+    python_client_example: |-
+      api.get('/v1/user/trades') # returns all trades made by this account
+      api.get('/v1/user/trades', market_id=36) # returns only trades on the DOGE/BTC market
+      api.get('/v1/user/trades', newer_than=12345) # returns trades more recent than the trade with this ID
+    request:
+      url:
+        path: /v1/user/trades
 - name: "Cancel Order"
   request:
     body:
