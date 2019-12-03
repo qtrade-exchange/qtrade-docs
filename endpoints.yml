@@ -1042,15 +1042,15 @@ endpoints:
       - description: "String. Exact amount, including decimal \"1.2345\""
         key: amount
         type: text
-        value: '{{withdraw_amount}}'
+        value: '1.2345'
       - description: "String. Currency code to withdraw"
         key: currency
         type: text
-        value: '{{code}}'
+        value: 'LTC'
       - description: "String. Address to receive funds"
         key: address
         type: text
-        value: '{{withdraw_address}}'
+        value: 'n4D4LZGnh82gpgFgqoLr6phN7yZMMroAWE'
     description: |-
       Creates a request with Withdraw currency to a specified address. Currency is removed from the balance upon success, the corresponding network transaction may be delayed for up to 5 minutes.
 
