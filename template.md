@@ -215,22 +215,7 @@ Parameter | Type | Description
 	"X-Ratelimit-Limit": "60",
 	"X-Ratelimit-Reset": "56",
 	"X-Ratelimit-Remaining": "59",
-	"Expect-CT": "max-age=604800, report-uri=\\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\\"",
-	"Strict-Transport-Security": "max-age=15552000; includeSubDomains; preload",
-	"Access-Control-Expose-Headers": "X-Ratelimit-Limit, X-Ratelimit-Remaining, X-Ratelimit-Reset",
-	"Transfer-Encoding": "chunked",
-	"Set-Cookie": "__cfduid=dc4dd5af3b3aa00fbe2b5f4e1f4dc19951574699947; expires=Wed, 25-Dec-19 16:39:07 GMT; path=/; domain=.qtrade.io; HttpOnly; Secure",
-	"CF-Cache-Status": "DYNAMIC",
-	"Cache-Control": "max-age=60",
-	"Vary": "Accept-Encoding, Origin",
-	"Server": "cloudflare",
-	"Connection": "keep-alive",
-	"Access-Control-Allow-Credentials": "true",
-	"Date": "Mon, 25 Nov 2019 16:39:07 GMT",
-	"Access-Control-Allow-Origin": "https://qtrade.io",
-	"Content-Type": "application/json; charset=utf-8",
-	"CF-RAY": "53b50e8fac8e5f2f-OMA",
-	"Content-Encoding": "gzip",
+    ...
 }
 ```
 
