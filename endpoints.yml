@@ -107,15 +107,19 @@ endpoints:
         path: /v1/tickers
 - name: Currency
   request:
-    description: "Get general information about a specific currency.\n\nKey | Description\n\
-      ---------- | -------\ncan_withdraw | True if this currency can be withdrawn\n\
-      code | The currency code as used in market strings etc.\nconfig | This dictionary\
-      \ is primarily for internal use, and varies from coin to coin.  Consistent values\
-      \ are as follows:\n&nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The\
-      \ estimated price of the coin in USD\n&nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee |\
-      \ &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade\nlong_name\
-      \ | The full name of the currency\nprecision | \nstatus | The coin's listing\
-      \ and trading status on qTrade"
+    description: |-
+      Get general information about a specific currency.
+
+      Key | Description
+      ---------- | -------
+      can_withdraw | True if this currency can be withdrawn
+      code | The currency code as used in market strings etc.
+      config | This dictionary is primarily for internal use, and varies from coin to coin.  Consistent values are as follows:
+      &nbsp;&nbsp;&nbsp;&nbsp;price | &nbsp;&nbsp;&nbsp;&nbsp;The estimated price of the coin in USD
+      &nbsp;&nbsp;&nbsp;&nbsp;withdraw_fee | &nbsp;&nbsp;&nbsp;&nbsp;The fee to withdraw this currency from qTrade
+      long_name | The full name of the currency
+      precision | 
+      status | The coin's listing and trading status on qTrade
     method: GET
     url:
       path: /v1/currency/:code
@@ -587,12 +591,20 @@ endpoints:
         path: /v1/orderbook/VEO_BTC
 - name: OHLCV
   request:
-    description: "Returns lifetime OHLCV data for a specific market. Accepts an interval\
-      \ value which returns OHLCV data in chunks of the specified interval duration.\n\
-      \nValid interval values include:\n\nIntervals | Meaning\n---------- | -------\n\
-      fivemin | Five minute slices\nfifteenmin | Fifteen minute slices\nthirtymin\
-      \ | Thirty minute slices\nonehour | One hour slices \ntwohour | Two hour slices\n\
-      fourhour | Four hour slices \noneday | One day slices"
+    description: |-
+      Returns lifetime OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration.
+
+      Valid interval values include:
+
+      Intervals | Meaning
+      ---------- | -------
+      fivemin | Five minute slices
+      fifteenmin | Fifteen minute slices
+      thirtymin | Thirty minute slices
+      onehour | One hour slices 
+      twohour | Two hour slices
+      fourhour | Four hour slices 
+      oneday | One day slices
     method: GET
     url:
       path: /v1/market/:market_string/ohlcv/:interval
@@ -818,22 +830,44 @@ endpoints:
         path: /v1/user/market/1
 - name: "Get Orders"
   request:
-    description: "Fetches the last 200 orders made by your account with all the trades\
-      \ associated.\n\nIf you need more than the last 200 orders use the `older_than`\
-      \ param. Passing an order ID will return results only orders which are older\
-      \ than that order ID.\n\n<blockquote class=\"lang-specific python\"><br>\n<p>Examples\
-      \ </p>\n</blockquote>\n\n``` python\n\"\"\"\nOrder IDs are strictly increasing,\
-      \ so code like the following\nshort example may be used to detect new orders.\n\
-      \"\"\"\n\nlatest_order_id = 0\nwhile True:\n\tresult = api.get(\"/v1/user/orders\"\
-      , params={\"newer_than\": latest_order_id}).json()\n\tif result['data']['orders']\
-      \ != []:\n\t\t## process the new order ##\n\t\tlatest_order_id = result['data']['orders'][0]['id']\n\
-      \n\n\"\"\"\nIf you're searching for an order older than the latest\n200, you\
-      \ can use older_than to iterate over old orders.\n\"\"\"\n\norders = api.get(\"\
-      /v1/user/orders\").json()\nsearch_price = \"4.99896025\"\nwhile True:\n\tfor\
-      \ order in orders[\"data\"][\"orders\"]:\n\t\tif order[\"price\"] == search_price:\n\
-      \t\t\treturn order\n\toldest_order_id = orders[\"data\"][\"orders\"][-1][\"\
-      id\"]\n\torders = api.get(\"/v1/orders\", params={\"older_than\": oldest_order_id}).json()\n\
-      \n```"
+    description: |-
+      Fetches the last 200 orders made by your account with all the trades associated.
+
+      If you need more than the last 200 orders use the `older_than` param. Passing an order ID will return results only orders which are older than that order ID.
+
+      <blockquote class="lang-specific python"><br>
+      <p>Examples </p>
+      </blockquote>
+
+      ``` python
+      """
+      Order IDs are strictly increasing, so code like the following
+      short example may be used to detect new orders.
+      """
+
+      latest_order_id = 0
+      while True:
+        result = api.get("/v1/user/orders", params={"newer_than": latest_order_id}).json()
+        if result['data']['orders'] != []:
+          ## process the new order ##
+          latest_order_id = result['data']['orders'][0]['id']
+
+
+      """
+      If you're searching for an order older than the latest
+      200, you can use older_than to iterate over old orders.
+      """
+
+      orders = api.get("/v1/user/orders").json()
+      search_price = "4.99896025"
+      while True:
+        for order in orders["data"]["orders"]:
+          if order["price"] == search_price:
+            return order
+        oldest_order_id = orders["data"]["orders"][-1]["id"]
+        orders = api.get("/v1/orders", params={"older_than": oldest_order_id}).json()
+
+      ```
     method: GET
     url:
       path: /v1/user/orders
@@ -1193,16 +1227,18 @@ endpoints:
   request:
     body:
       params: []
-    description: "Returns a deposit address for sending money to your exchange account.\
-      \ This address should rarely change, but it is good practice to fetch it before\
-      \ sending currency every time.\n\nThe returned `currency_status` key may be\
-      \ one of the following values:\n\nStatus | Returns address | Use case\n--- |\
-      \ --- | --- \n`ok` | Yes | Normal operation\n`degraded` | Yes | Down for maintenance.\
-      \ Funds will be credited once maintenance is completed\n`disabled` | No | Deposits\
-      \ temporarily disabled due to network issues. Typically due to excessive forking,\
-      \ stalled chain, or consesus issues\n`offline` | No | Offline for other reason\n\
-      `delisted` | No | Currency is delisted and deposits are no longer accepted\n\
-      \n"
+    description: |-
+      Returns a deposit address for sending money to your exchange account. This address should rarely change, but it is good practice to fetch it before sending currency every time.
+
+      The returned `currency_status` key may be one of the following values:
+
+      Status | Returns address | Use case
+      --- | --- | --- 
+      `ok` | Yes | Normal operation
+      `degraded` | Yes | Down for maintenance. Funds will be credited once maintenance is completed
+      `disabled` | No | Deposits temporarily disabled due to network issues. Typically due to excessive forking, stalled chain, or consesus issues
+      `offline` | No | Offline for other reason
+      `delisted` | No | Currency is delisted and deposits are no longer accepted
     method: POST
     url:
       path: /v1/user/deposit_address/:currency
