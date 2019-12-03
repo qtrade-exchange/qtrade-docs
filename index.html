@@ -2001,7 +2001,24 @@ If you're searching for an order older than the latest
 <p><code>GET /v1/user/order/:order_id</code></p>
 <h2 id='cancel-order'>Cancel Order</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
-<span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$req</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">109</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s2">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$req</span><span class="p">));</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
+<span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
 <span class="nx">api</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">),</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
