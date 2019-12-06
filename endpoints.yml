@@ -742,9 +742,12 @@ endpoints:
     url:
       path: /v1/user/market/:market_id
       variable:
-      - description: "Integer ID of market"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        value: '{{market_id}}'
+        value: 36
+      - description: "String identifier of the market.  Mutually exclusive with market_id"
+        key: market_string
+        value: "\"DOGE_BTC\""
   response:
   - body: |-
       {
@@ -872,17 +875,21 @@ endpoints:
     url:
       path: /v1/user/orders
       query:
+      - description: "Filter results by market ID.  Mutually exclusive with market_string"
+        key: market_id
+        value: Integer
+      - description: "Filter results by market string. Mutually exclusive with market_id"
+        key: market_string
+        value: String
       - description: "Filter by opened/closed orders"
         disabled: true
         key: open
         value: Boolean
-      - description: "Expects an order ID and returns orders with an ID < the passed\
-          \ ID"
+      - description: "Expects an order ID and returns orders with an ID < the passed ID"
         disabled: true
         key: older_than
         value: Integer
-      - description: "Expects an order ID and returns orders with an ID > the passed\
-          \ ID"
+      - description: "Expects an order ID and returns orders with an ID > the passed ID"
         disabled: true
         key: newer_than
         value: Integer
@@ -1006,10 +1013,12 @@ endpoints:
     url:
       path: /v1/user/trades
       query:
-      - description: "Filter by market ID"
-        disabled: true
+      - description: "Filter results by market ID.  Mutually exclusive with market_string"
         key: market_id
         value: Integer
+      - description: "Filter results by market string. Mutually exclusive with market_id"
+        key: market_string
+        value: String
       - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         disabled: true
         key: older_than
@@ -1078,7 +1087,7 @@ endpoints:
       - description: "Integer ID of the order to cancel"
         key: id
         type: text
-        value: cancel_order_id
+        value: 420
     description: |-
       Takes an Order ID.
 
@@ -1423,18 +1432,18 @@ endpoints:
   request:
     body:
       params:
-      - description: "String. Exact amount, including decimal \"1.2345\""
+      - description: "String. Exact amount in market currency, including decimal"
         key: amount
-        type: text
-        value: sell_amount
+        value: "\"1.2345\""
       - description: "String. Price in base currency of the market"
         key: price
-        type: text
-        value: sell_price
-      - description: "Integer ID of the market"
+        value: "\"0.1123\""
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        type: text
-        value: market_id
+        value: 36
+      - description: "String identifier of the market.  Mutually exclusive with market_id"
+        key: market_string
+        value: "\"DOGE_BTC\""
     description: |-
       Creates an order to sell a currency at the specified price. Amount will be
       removed from your balance immediately. Returns the created order id.
@@ -1490,18 +1499,18 @@ endpoints:
   request:
     body:
       params:
-      - description: "String. Exact amount, including decimal \"1.2345\"  Includes order fee."
+      - description: "String. Exact amount in market currency, including decimal"
         key: amount
-        type: text
-        value: buy_amount
+        value: "\"1.2345\""
       - description: "String. Price in base currency of the market"
         key: price
-        type: text
-        value: buy_price
-      - description: "Integer ID of market"
+        value: "\"0.1123\""
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        type: text
-        value: market_id
+        value: 36
+      - description: "String identifier of the market.  Mutually exclusive with market_id"
+        key: market_string
+        value: "\"DOGE_BTC\""
     description: |-
       Creates an order to buy a currency at the specified price on the specified
       market. Amount will be removed from your balance immediately. Returns the
