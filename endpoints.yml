@@ -22,9 +22,10 @@ endpoints:
     url:
       path: /v1/ticker/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
+        key: market_id
+      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
         key: market_string
-        value: LTC_BTC
   response:
   - body: |-
       {
@@ -126,7 +127,6 @@ endpoints:
       variable:
       - description: "The string ticker code of the currency. Ala 'BTC'"
         key: code
-        value: '{{code}}'
   response:
   - body: |-
       {
@@ -405,9 +405,10 @@ endpoints:
     url:
       path: /v1/market/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
+        key: market_id
+      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -510,20 +511,17 @@ endpoints:
     url:
       path: /v1/market/:market_string/trades
       query:
-      - description: "Expects a trade ID and returns trades with an ID < the passed\
-          \ ID"
-        disabled: true
+      - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         key: older_than
         value: Integer
-      - description: "Expects a trade ID and returns trades with an ID > the passed\
-          \ ID\n"
-        disabled: true
+      - description: "Expects a trade ID and returns trades with an ID > the passed ID"
         key: newer_than
         value: Integer
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
+        key: market_id
+      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -563,9 +561,10 @@ endpoints:
     url:
       path: /v1/orderbook/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
+        key: market_id
+      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -609,12 +608,12 @@ endpoints:
     url:
       path: /v1/market/:market_string/ohlcv/:interval
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
+        key: market_id
+      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
         key: market_string
-        value: '{{market_string}}'
       - description: "OHLCV data is chunked by this interval"
         key: interval
-        value: '{{interval}}'
   response:
   - body: |-
       {
@@ -744,10 +743,8 @@ endpoints:
       variable:
       - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        value: 36
       - description: "String identifier of the market.  Mutually exclusive with market_id"
         key: market_string
-        value: "\"DOGE_BTC\""
   response:
   - body: |-
       {
@@ -971,7 +968,6 @@ endpoints:
       variable:
       - description: "Integer ID of the order"
         key: order_id
-        value: '{{order_id}}'
   response:
   - body: |-
       {
@@ -1001,7 +997,6 @@ endpoints:
         variable:
         - description: "Integer ID of the order to lookup"
           key: order_id
-          value: '{{order_id}}'
 - name: "Get Trades"
   request:
     description : |-
@@ -1184,7 +1179,6 @@ endpoints:
       variable:
       - description: "Integer ID of the withdraw"
         key: withdraw_id
-        value: '{{withdraw_id}}'
   response:
   - body: |-
       {
@@ -1254,7 +1248,6 @@ endpoints:
       variable:
       - description: "String ID of the deposit"
         key: deposit_id
-        value: '{{deposit_id}}'
   response:
   - body: |-
       {
@@ -1340,7 +1333,6 @@ endpoints:
       variable:
       - description: "Currency code ala \"LTC\""
         key: currency
-        value: String
   response:
   - body: |-
       {
