@@ -2,7 +2,7 @@ endpoints:
 - name: Ticker
   request:
     description: |-
-      Get ticker values for the given market. The `market_string` value should be formatted ala `BTC_LTC` for the BTC/LTC market.
+      Get ticker values for the given market. The `market_string` value should be formatted ala `LTC_BTC` for a market that buys and sells Litecoin with Bitcoin.
 
       Key | Description
       ---------- | -------
