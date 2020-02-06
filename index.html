@@ -232,9 +232,6 @@
                   <li>
                     <a href="#python-client" class="toc-h2 toc-link" data-title="Python Client">Python Client</a>
                   </li>
-                  <li>
-                    <a href="#cryptocurrency-exchange-trading-library" class="toc-h2 toc-link" data-title="CryptoCurrency eXchange Trading Library">CryptoCurrency eXchange Trading Library</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -298,6 +295,9 @@
                   </li>
                   <li>
                     <a href="#order-details" class="toc-h2 toc-link" data-title="Order Details">Order Details</a>
+                  </li>
+                  <li>
+                    <a href="#get-trades" class="toc-h2 toc-link" data-title="Get Trades">Get Trades</a>
                   </li>
                   <li>
                     <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
@@ -370,8 +370,11 @@
 </aside>
 <h1 id='client-libraries'>Client Libraries</h1><h3 id='python-client'>Python Client</h3>
 <p>We provide a <a href="https://github.com/qtrade-exchange/qtrade-py-client">Python client</a> for our API.  This client offers helper functions, convenient response formatting, and automatic rate limit waiting to make developing applications with our API as efficient as possible.</p>
-<h3 id='cryptocurrency-exchange-trading-library'>CryptoCurrency eXchange Trading Library</h3>
-<p>Our API is also supported by <a href="https://github.com/ccxt/ccxt">CCXT</a>, a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.</p>
+
+<!---
+### CryptoCurrency eXchange Trading Library
+Our API is also supported by [CCXT](https://github.com/ccxt/ccxt), a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.
+-->
 <h1 id='vocabulary'>Vocabulary</h1>
 <p>Here is how we define the terms used in our documentation and API:</p>
 
@@ -801,7 +804,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get ticker values for the given market. The <code>market_string</code> value should be formatted ala <code>BTC_LTC</code> for the BTC/LTC market.</p>
+<p>Get ticker values for the given market. The <code>market_string</code> value should be formatted ala <code>LTC_BTC</code> for a market that buys and sells Litecoin with Bitcoin.</p>
 
 <table><thead>
 <tr>
@@ -1869,7 +1872,7 @@ currently represented in open orders, pending deposits or withdraws.</p>
 </span></code></pre>
 <p>Fetches the last 200 orders made by your account with all the trades associated.</p>
 
-<p>If you need more than the last 200 orders use the <code>older_than</code> param. Passing an order ID will return results only orders which are older than that order ID.</p>
+<p>If you need more than the last 200 orders use the <code>older_than</code> param. Passing an order ID will return only orders which are older than that order ID.</p>
 
 <blockquote class="lang-specific python"><br>
 <p>Examples </p>
@@ -1999,6 +2002,91 @@ If you're searching for an order older than the latest
 </tbody></table>
 
 <p><code>GET /v1/user/order/:order_id</code></p>
+<h2 id='get-trades'>Get Trades</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">)</span> <span class="c"># returns all trades made by this account</span>
+<span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">,</span> <span class="n">market_id</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span> <span class="c"># returns only trades on the DOGE/BTC market</span>
+<span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">,</span> <span class="n">newer_than</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span> <span class="c"># returns trades more recent than the trade with this ID</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/trades"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/trades"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/trades"</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre><pre class="highlight shell tab-shell"><code></code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00022751"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"base_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-14T17:42:42.874812Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63286</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"733.93113296"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8141515</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000031"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000434"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"base_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000217"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-14T17:42:42.874812Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63287</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1400"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8141515</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000031"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000135"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"base_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-19T11:10:19.387393Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">64129</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8209249</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000027"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Fetches the last 200 trades made by your account.</p>
+
+<p>If you need more than the last 200 trades use the <code>older_than</code> param. Passing a trade ID will return only trades which are older than that trade ID.</p>
+<h3 id='query-params-3'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_id</td>
+<td>Integer</td>
+<td>Filter by market ID</td>
+</tr>
+<tr>
+<td>older_than</td>
+<td>Integer</td>
+<td>Expects a trade ID and returns trades with an ID &lt; the passed ID</td>
+</tr>
+<tr>
+<td>newer_than</td>
+<td>Integer</td>
+<td>Expects a trade ID and returns trades with an ID &gt; the passed ID</td>
+</tr>
+</tbody></table>
+
+<p><code>GET /v1/user/trades</code></p>
 <h2 id='cancel-order'>Cancel Order</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
