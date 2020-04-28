@@ -22,9 +22,7 @@ endpoints:
     url:
       path: /v1/ticker/:market_string
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
   response:
   - body: |-
@@ -405,9 +403,7 @@ endpoints:
     url:
       path: /v1/market/:market_string
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
   response:
   - body: |-
@@ -446,7 +442,7 @@ endpoints:
       api.markets['VEO_BTC']
     request:
       url:
-        path: /v1/market/15
+        path: /v1/market/VEO_BTC
 - name: "All Markets"
   request:
     description: |-
@@ -518,9 +514,7 @@ endpoints:
         key: newer_than
         value: Integer
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
   response:
   - body: |-
@@ -561,9 +555,7 @@ endpoints:
     url:
       path: /v1/orderbook/:market_string
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
   response:
   - body: |-
@@ -608,9 +600,7 @@ endpoints:
     url:
       path: /v1/market/:market_string/ohlcv/:interval
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "Market string pair, ala 'LTC_BTC'. Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
       - description: "OHLCV data is chunked by this interval"
         key: interval
@@ -641,10 +631,10 @@ endpoints:
     code: 200
     name: "OHLCV Example"
     python_client_example: |-
-      api.get("/v1/market/1/ohlcv/fourhour")
+      api.get("/v1/market/LTC_BTC/ohlcv/fourhour")
     request:
       url:
-        path: /v1/market/1/ohlcv/fourhour
+        path: /v1/market/LTC_BTC/ohlcv/fourhour
 - name: "User Info"
   request:
     description: "Fetch general information about the authenticated user account."
@@ -739,11 +729,9 @@ endpoints:
       Also returns lists of `open_orders` and `closed_orders`
     method: GET
     url:
-      path: /v1/user/market/:market_id
+      path: /v1/user/market/:market_string
       variable:
-      - description: "Integer ID of the market.  Mutually exclusive with market_string"
-        key: market_id
-      - description: "String identifier of the market.  Mutually exclusive with market_id"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
   response:
   - body: |-
@@ -824,10 +812,10 @@ endpoints:
     code: 200
     name: "User Market View"
     python_client_example: |-
-      api.get("/v1/user/market/1")
+      api.get("/v1/user/market/LTC_BTC")
     request:
       url:
-        path: /v1/user/market/1
+        path: /v1/user/market/LTC_BTC
 - name: "Get Orders"
   request:
     description: |-
