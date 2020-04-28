@@ -22,9 +22,8 @@ endpoints:
     url:
       path: /v1/ticker/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
-        value: LTC_BTC
   response:
   - body: |-
       {
@@ -126,7 +125,6 @@ endpoints:
       variable:
       - description: "The string ticker code of the currency. Ala 'BTC'"
         key: code
-        value: '{{code}}'
   response:
   - body: |-
       {
@@ -405,9 +403,8 @@ endpoints:
     url:
       path: /v1/market/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -445,7 +442,7 @@ endpoints:
       api.markets['VEO_BTC']
     request:
       url:
-        path: /v1/market/15
+        path: /v1/market/VEO_BTC
 - name: "All Markets"
   request:
     description: |-
@@ -510,20 +507,15 @@ endpoints:
     url:
       path: /v1/market/:market_string/trades
       query:
-      - description: "Expects a trade ID and returns trades with an ID < the passed\
-          \ ID"
-        disabled: true
+      - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         key: older_than
         value: Integer
-      - description: "Expects a trade ID and returns trades with an ID > the passed\
-          \ ID\n"
-        disabled: true
+      - description: "Expects a trade ID and returns trades with an ID > the passed ID"
         key: newer_than
         value: Integer
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -563,9 +555,8 @@ endpoints:
     url:
       path: /v1/orderbook/:market_string
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
-        value: '{{market_string}}'
   response:
   - body: |-
       {
@@ -609,12 +600,10 @@ endpoints:
     url:
       path: /v1/market/:market_string/ohlcv/:interval
       variable:
-      - description: "Integer ID or a string pair ala 'LTC_BTC'"
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
-        value: '{{market_string}}'
       - description: "OHLCV data is chunked by this interval"
         key: interval
-        value: '{{interval}}'
   response:
   - body: |-
       {
@@ -642,10 +631,10 @@ endpoints:
     code: 200
     name: "OHLCV Example"
     python_client_example: |-
-      api.get("/v1/market/1/ohlcv/fourhour")
+      api.get("/v1/market/LTC_BTC/ohlcv/fourhour")
     request:
       url:
-        path: /v1/market/1/ohlcv/fourhour
+        path: /v1/market/LTC_BTC/ohlcv/fourhour
 - name: "User Info"
   request:
     description: "Fetch general information about the authenticated user account."
@@ -740,11 +729,10 @@ endpoints:
       Also returns lists of `open_orders` and `closed_orders`
     method: GET
     url:
-      path: /v1/user/market/:market_id
+      path: /v1/user/market/:market_string
       variable:
-      - description: "Integer ID of market"
-        key: market_id
-        value: '{{market_id}}'
+      - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
+        key: market_string
   response:
   - body: |-
       {
@@ -824,10 +812,10 @@ endpoints:
     code: 200
     name: "User Market View"
     python_client_example: |-
-      api.get("/v1/user/market/1")
+      api.get("/v1/user/market/LTC_BTC")
     request:
       url:
-        path: /v1/user/market/1
+        path: /v1/user/market/LTC_BTC
 - name: "Get Orders"
   request:
     description: |-
@@ -872,17 +860,21 @@ endpoints:
     url:
       path: /v1/user/orders
       query:
+      - description: "Filter results by market ID.  Mutually exclusive with market_string"
+        key: market_id
+        value: Integer
+      - description: "Filter results by market string. Mutually exclusive with market_id"
+        key: market_string
+        value: String
       - description: "Filter by opened/closed orders"
         disabled: true
         key: open
         value: Boolean
-      - description: "Expects an order ID and returns orders with an ID < the passed\
-          \ ID"
+      - description: "Expects an order ID and returns orders with an ID < the passed ID"
         disabled: true
         key: older_than
         value: Integer
-      - description: "Expects an order ID and returns orders with an ID > the passed\
-          \ ID"
+      - description: "Expects an order ID and returns orders with an ID > the passed ID"
         disabled: true
         key: newer_than
         value: Integer
@@ -964,7 +956,6 @@ endpoints:
       variable:
       - description: "Integer ID of the order"
         key: order_id
-        value: '{{order_id}}'
   response:
   - body: |-
       {
@@ -994,7 +985,6 @@ endpoints:
         variable:
         - description: "Integer ID of the order to lookup"
           key: order_id
-          value: '{{order_id}}'
 - name: "Get Trades"
   request:
     description : |-
@@ -1006,10 +996,12 @@ endpoints:
     url:
       path: /v1/user/trades
       query:
-      - description: "Filter by market ID"
-        disabled: true
+      - description: "Filter results by market ID.  Mutually exclusive with market_string"
         key: market_id
         value: Integer
+      - description: "Filter results by market string. Mutually exclusive with market_id"
+        key: market_string
+        value: String
       - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         disabled: true
         key: older_than
@@ -1078,7 +1070,7 @@ endpoints:
       - description: "Integer ID of the order to cancel"
         key: id
         type: text
-        value: cancel_order_id
+        value: 420
     description: |-
       Takes an Order ID.
 
@@ -1175,7 +1167,6 @@ endpoints:
       variable:
       - description: "Integer ID of the withdraw"
         key: withdraw_id
-        value: '{{withdraw_id}}'
   response:
   - body: |-
       {
@@ -1245,7 +1236,6 @@ endpoints:
       variable:
       - description: "String ID of the deposit"
         key: deposit_id
-        value: '{{deposit_id}}'
   response:
   - body: |-
       {
@@ -1331,7 +1321,6 @@ endpoints:
       variable:
       - description: "Currency code ala \"LTC\""
         key: currency
-        value: String
   response:
   - body: |-
       {
@@ -1423,18 +1412,18 @@ endpoints:
   request:
     body:
       params:
-      - description: "String. Exact amount, including decimal \"1.2345\""
+      - description: "String. Exact amount in market currency, including decimal"
         key: amount
-        type: text
-        value: sell_amount
+        value: "\"1.2345\""
       - description: "String. Price in base currency of the market"
         key: price
-        type: text
-        value: sell_price
-      - description: "Integer ID of the market"
+        value: "\"0.1123\""
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        type: text
-        value: market_id
+        value: 36
+      - description: "String identifier of the market.  Mutually exclusive with market_id"
+        key: market_string
+        value: "\"DOGE_BTC\""
     description: |-
       Creates an order to sell a currency at the specified price. Amount will be
       removed from your balance immediately. Returns the created order id.
@@ -1490,18 +1479,18 @@ endpoints:
   request:
     body:
       params:
-      - description: "String. Exact amount, including decimal \"1.2345\"  Includes order fee."
+      - description: "String. Exact amount in market currency, including decimal"
         key: amount
-        type: text
-        value: buy_amount
+        value: "\"1.2345\""
       - description: "String. Price in base currency of the market"
         key: price
-        type: text
-        value: buy_price
-      - description: "Integer ID of market"
+        value: "\"0.1123\""
+      - description: "Integer ID of the market.  Mutually exclusive with market_string"
         key: market_id
-        type: text
-        value: market_id
+        value: 36
+      - description: "String identifier of the market.  Mutually exclusive with market_id"
+        key: market_string
+        value: "\"DOGE_BTC\""
     description: |-
       Creates an order to buy a currency at the specified price on the specified
       market. Amount will be removed from your balance immediately. Returns the
