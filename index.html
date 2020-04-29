@@ -870,7 +870,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
 
@@ -1251,13 +1251,13 @@ Any user or API with access to the account can withdraw to approved addresses wi
 
 <p><code>GET /v1/common</code></p>
 <h2 id='market'>Market</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">markets</span><span class="p">[</span><span class="s">'VEO_BTC'</span><span class="p">]</span>
-</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/15"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/15"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/VEO_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/VEO_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/15"</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/VEO_BTC"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/market/15
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/market/VEO_BTC
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -1338,7 +1338,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
 
@@ -1459,7 +1459,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
 <h3 id='query-params'>Query params</h3>
@@ -1522,19 +1522,19 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
 
 <p><code>GET /v1/orderbook/:market_string</code></p>
-<h2 id='ohlcv'>OHLCV</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/1/ohlcv/fourhour"</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/1/ohlcv/fourhour"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/1/ohlcv/fourhour"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+<h2 id='ohlcv'>OHLCV</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/LTC_BTC/ohlcv/fourhour"</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/LTC_BTC/ohlcv/fourhour"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/LTC_BTC/ohlcv/fourhour"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/1/ohlcv/fourhour"</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/market/LTC_BTC/ohlcv/fourhour"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/market/1/ohlcv/fourhour
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/market/LTC_BTC/ohlcv/fourhour
 </code></pre>
 <blockquote>
 <p>200 Response </p>
@@ -1610,7 +1610,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </thead><tbody>
 <tr>
 <td>market_string</td>
-<td>Integer ID or a string pair ala &#39;LTC_BTC&#39;</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 <tr>
 <td>interval</td>
@@ -1704,11 +1704,11 @@ Any user or API with access to the account can withdraw to approved addresses wi
 currently represented in open orders, pending deposits or withdraws.</p>
 
 <p><code>GET /v1/user/balances</code></p>
-<h2 id='user-market-view'>User Market View</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/1"</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/1"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/market/1"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+<h2 id='user-market-view'>User Market View</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/LTC_BTC"</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/LTC_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/market/LTC_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/market/1"</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/user/market/LTC_BTC"</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre><pre class="highlight shell tab-shell"><code></code></pre>
@@ -1801,12 +1801,12 @@ currently represented in open orders, pending deposits or withdraws.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>market_id</td>
-<td>Integer ID of market</td>
+<td>market_string</td>
+<td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
 
-<p><code>GET /v1/user/market/:market_id</code></p>
+<p><code>GET /v1/user/market/:market_string</code></p>
 <h2 id='get-orders'>Get Orders</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">()</span> <span class="c"># returns all orders made by this account</span>
 <span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">(</span><span class="nb">open</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c"># returns only open orders</span>
 <span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">(</span><span class="nb">open</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c"># returns only closed orders</span>
@@ -1912,6 +1912,16 @@ If you're searching for an order older than the latest
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>market_id</td>
+<td>Integer</td>
+<td>Filter results by market ID.  Mutually exclusive with market_string</td>
+</tr>
+<tr>
+<td>market_string</td>
+<td>String</td>
+<td>Filter results by market string. Mutually exclusive with market_id</td>
+</tr>
 <tr>
 <td>open</td>
 <td>Boolean</td>
@@ -2072,7 +2082,12 @@ If you're searching for an order older than the latest
 <tr>
 <td>market_id</td>
 <td>Integer</td>
-<td>Filter by market ID</td>
+<td>Filter results by market ID.  Mutually exclusive with market_string</td>
+</tr>
+<tr>
+<td>market_string</td>
+<td>String</td>
+<td>Filter results by market string. Mutually exclusive with market_id</td>
 </tr>
 <tr>
 <td>older_than</td>
@@ -2144,7 +2159,7 @@ Successful cancellation returns just a 200 with no payload
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>cancel_order_id</td>
+<td>420</td>
 <td>Integer ID of the order to cancel</td>
 </tr>
 </tbody></table>
@@ -2571,18 +2586,23 @@ removed from your balance immediately. Returns the created order id.</p>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>sell_amount</td>
-<td>String. Exact amount, including decimal &quot;1.2345&quot;</td>
+<td>&quot;1.2345&quot;</td>
+<td>String. Exact amount in market currency, including decimal</td>
 </tr>
 <tr>
 <td>price</td>
-<td>sell_price</td>
+<td>&quot;0.1123&quot;</td>
 <td>String. Price in base currency of the market</td>
 </tr>
 <tr>
 <td>market_id</td>
-<td>market_id</td>
-<td>Integer ID of the market</td>
+<td>36</td>
+<td>Integer ID of the market.  Mutually exclusive with market_string</td>
+</tr>
+<tr>
+<td>market_string</td>
+<td>&quot;DOGE_BTC&quot;</td>
+<td>String identifier of the market.  Mutually exclusive with market_id</td>
 </tr>
 </tbody></table>
 
@@ -2640,18 +2660,23 @@ if it is not applicable, e.g. if the order executed as maker.</p>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>buy_amount</td>
-<td>String. Exact amount, including decimal &quot;1.2345&quot;  Includes order fee.</td>
+<td>&quot;1.2345&quot;</td>
+<td>String. Exact amount in market currency, including decimal</td>
 </tr>
 <tr>
 <td>price</td>
-<td>buy_price</td>
+<td>&quot;0.1123&quot;</td>
 <td>String. Price in base currency of the market</td>
 </tr>
 <tr>
 <td>market_id</td>
-<td>market_id</td>
-<td>Integer ID of market</td>
+<td>36</td>
+<td>Integer ID of the market.  Mutually exclusive with market_string</td>
+</tr>
+<tr>
+<td>market_string</td>
+<td>&quot;DOGE_BTC&quot;</td>
+<td>String identifier of the market.  Mutually exclusive with market_id</td>
 </tr>
 </tbody></table>
 
