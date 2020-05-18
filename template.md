@@ -38,10 +38,8 @@ The qTrade API is available at
 ### Python Client
 We provide a [Python client](https://github.com/qtrade-exchange/qtrade-py-client) for our API.  This client offers helper functions, convenient response formatting, and automatic rate limit waiting to make developing applications with our API as efficient as possible.
 
-<!---
 ### CryptoCurrency eXchange Trading Library
-Our API is also supported by [CCXT](https://github.com/ccxt/ccxt), a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.
--->
+Our API is also supported by [CCXT](https://ccxt.trade), a JavaScript / Python / PHP cryptocurrency trading API with support for over 120 exchanges.
 
 # Vocabulary
 
