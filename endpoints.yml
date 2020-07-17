@@ -505,7 +505,7 @@ endpoints:
       seller_taker | True if the seller was the taker, false if the buyer was the taker
     method: GET
     url:
-      path: /v1/market/:market_string/trades
+      path: /v1/market/:market_string/trades?older_than=1000000&newer_than=1
       query:
       - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         key: older_than
@@ -691,7 +691,11 @@ endpoints:
       currently represented in open orders, pending deposits or withdraws.
     method: GET
     url:
-      path: /v1/user/balances
+      path: /v1/user/balances?account_id=1000000-2
+      query:
+      - description: "Return data only for the specified account"
+        key: account_id
+        value: String
   response:
   - body: |-
       {
@@ -729,10 +733,14 @@ endpoints:
       Also returns lists of `open_orders` and `closed_orders`
     method: GET
     url:
-      path: /v1/user/market/:market_string
+      path: /v1/user/market/:market_string?account_id=1000000-2
       variable:
       - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
+      query:
+      - description: "Return data only for the specified account"
+        key: account_id
+        value: String
   response:
   - body: |-
       {
@@ -858,7 +866,7 @@ endpoints:
       ```
     method: GET
     url:
-      path: /v1/user/orders
+      path: /v1/user/orders?market_string=ETH_BTC&open=true&account_id=1000000-2&newer_than=1
       query:
       - description: "Filter results by market ID.  Mutually exclusive with market_string"
         key: market_id
@@ -870,6 +878,9 @@ endpoints:
         disabled: true
         key: open
         value: Boolean
+      - description: "Return data only for the specified account"
+        key: account_id
+        value: String
       - description: "Expects an order ID and returns orders with an ID < the passed ID"
         disabled: true
         key: older_than
@@ -1012,7 +1023,7 @@ endpoints:
       - description: "Returns newest trades first when true"
         key: desc
         value: Boolean
-      - description: "Return trades for the specified account. "
+      - description: "Return data only for the specified account"
         key: account_id
         value: String
       - description: "Expects a trade ID and returns trades with an ID < the passed ID"
@@ -1213,7 +1224,11 @@ endpoints:
       `currency`, `address`, `status`, `network_data`, `created_at` values
     method: GET
     url:
-      path: /v1/user/withdraws
+      path: /v1/user/withdraws?account_id=1000000-2
+      query:
+        - description: "Return data only for the specified account"
+          key: account_id
+          value: String
   response:
   - body: |-
       {
@@ -1282,7 +1297,11 @@ endpoints:
       `currency`, `address`, `status`, `network_data`, `created_at` values.
     method: GET
     url:
-      path: /v1/user/deposits
+      path: /v1/user/deposits?account_id=1000000-2
+      query:
+        - description: "Return data only for the specified account"
+          key: account_id
+          value: String
   response:
   - body: |-
       {
@@ -1329,6 +1348,10 @@ endpoints:
       `disabled` | No | Deposits temporarily disabled due to network issues. Typically due to excessive forking, stalled chain, or consesus issues
       `offline` | No | Offline for other reason
       `delisted` | No | Currency is delisted and deposits are no longer accepted
+
+      <aside class="info">
+        Deposit addresses are currently only available for Master accounts. Subaccounts cannot be deposited to directly
+      </aside>
     method: POST
     url:
       path: /v1/user/deposit_address/:currency
@@ -1394,7 +1417,11 @@ endpoints:
       currently supported
     method: GET
     url:
-      path: /v1/user/transfers
+      path: /v1/user/transfers?account_id=1000000-2
+      query:
+        - description: "Return data only for the specified account"
+          key: account_id
+          value: String
   response:
   - body: |-
       {
@@ -1438,6 +1465,9 @@ endpoints:
       - description: "String identifier of the market.  Mutually exclusive with market_id"
         key: market_string
         value: "\"DOGE_BTC\""
+      - description: "Create order for the specified account"
+        key: account_id
+        value: String
     description: |-
       Creates an order to sell a currency at the specified price. Amount will be
       removed from your balance immediately. Returns the created order id.
@@ -1505,6 +1535,9 @@ endpoints:
       - description: "String identifier of the market.  Mutually exclusive with market_id"
         key: market_string
         value: "\"DOGE_BTC\""
+      - description: "Create order for the specified account"
+        key: account_id
+        value: String
     description: |-
       Creates an order to buy a currency at the specified price on the specified
       market. Amount will be removed from your balance immediately. Returns the
