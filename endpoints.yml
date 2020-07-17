@@ -988,19 +988,32 @@ endpoints:
 - name: "Get Trades"
   request:
     description : |-
-      Fetches the last 200 trades made by your account.
+      By default, fetch the oldest 200 trades made by your master account.
 
-      If you need more than the last 200 trades use the `older_than` param. Passing a trade ID will return only trades which are older than that trade ID.
+      If you want to iterate or need more than the first 200 trades use of the `newer_than`, `older_than`, and `desc` params will be helpful. The `newer_than` and `older_than` params expect a trade ID, and results will only include trades which are newer/older than the provided trade ID.
+
+      <aside class="warning">
+        <strong>Deprecation Notice</strong>
+        <p>
+          The default behavior of this endpoint will change to return the last 200 trades made instead of the first 200. It is strongly recommended to pass the <code>desc</code> param to preserve expected behavior
+        </p>
+      </aside>
     
     method: GET
     url:
-      path: /v1/user/trades
+      path: /v1/user/trades?desc=true&market_string=ETH_BTC&account_id=1000000-2
       query:
       - description: "Filter results by market ID.  Mutually exclusive with market_string"
         key: market_id
         value: Integer
       - description: "Filter results by market string. Mutually exclusive with market_id"
         key: market_string
+        value: String
+      - description: "Returns newest trades first when true"
+        key: desc
+        value: Boolean
+      - description: "Return trades for the specified account. "
+        key: account_id
         value: String
       - description: "Expects a trade ID and returns trades with an ID < the passed ID"
         disabled: true
@@ -1060,6 +1073,7 @@ endpoints:
       api.get('/v1/user/trades') # returns all trades made by this account
       api.get('/v1/user/trades', market_id=36) # returns only trades on the DOGE/BTC market
       api.get('/v1/user/trades', newer_than=12345) # returns trades more recent than the trade with this ID
+      api.get('/v1/user/trades', desc=True) # returns newest trades first
     request:
       url:
         path: /v1/user/trades
