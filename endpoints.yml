@@ -583,7 +583,18 @@ endpoints:
 - name: OHLCV
   request:
     description: |-
-      Returns lifetime OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration.
+      Returns OHLCV data for a specific market. Candlesticks are returned newest to oldest, up to the `limit`. The default limit is 1000 candlesticks.
+
+      If you need older data you may specify a `start` timestamp at an older date. Iteration over older data may be easier by also specifying a limited number of results
+
+      <aside class="info">
+        <strong>Zero value intervals omitted</strong>
+        <p>
+          If no trades occurred during an interval no data will be returned for that interval
+        </p>
+      </aside>
+      
+      Candlestick intervals may be specified by providing an `interval` value which returns OHLCV data in chunks of the specified duration. This value is optional and defaults to 5 minute intervals
 
       Valid interval values include:
 
@@ -604,6 +615,13 @@ endpoints:
         key: market_string
       - description: "OHLCV data is chunked by this interval"
         key: interval
+      query:
+      - description: "Return data only after the provided unix timestamp"
+        key: start
+        value: Integer (timestamp)
+      - description: "Return up to this number of candlesticks. Max limit is 1000"
+        key: limit
+        value: Integer
   response:
   - body: |-
       {
