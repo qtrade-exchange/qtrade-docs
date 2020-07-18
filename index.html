@@ -250,6 +250,9 @@
             <a href="#public" class="toc-h1 toc-link" data-title="Public">Public</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#summary" class="toc-h2 toc-link" data-title="Summary">Summary</a>
+                  </li>
+                  <li>
                     <a href="#ticker" class="toc-h2 toc-link" data-title="Ticker">Ticker</a>
                   </li>
                   <li>
@@ -260,9 +263,6 @@
                   </li>
                   <li>
                     <a href="#all-currencies" class="toc-h2 toc-link" data-title="All Currencies">All Currencies</a>
-                  </li>
-                  <li>
-                    <a href="#common" class="toc-h2 toc-link" data-title="Common">Common</a>
                   </li>
                   <li>
                     <a href="#market" class="toc-h2 toc-link" data-title="Market">Market</a>
@@ -775,7 +775,159 @@
 Any user or API with access to the account can withdraw to approved addresses with NO CONFIRMATION.  Only approve addresses of wallets you control.
 
 </aside>
-<h1 id='public'>Public</h1><h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">tickers</span><span class="p">[</span><span class="s">'VEO_BTC'</span><span class="p">]</span>
+<h1 id='public'>Public</h1><h2 id='summary'>Summary</h2><pre class="highlight python tab-python--PyClient"><code><span class="p">{</span><span class="s">'currencies'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span> <span class="s">'markets'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">markets</span><span class="p">,</span> <span class="s">'tickers'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">tickers</span><span class="p">}</span>
+</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/common"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/common"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/common"</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/common
+</code></pre>
+<blockquote>
+<p>200 Response </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"required_generate_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"satoshi_per_byte"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wif_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMOCoin"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"delisting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/13/2018"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delisted"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin_like"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"explorerAddressURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/address/"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"explorerTransactionURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/tx/"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"p2sh_address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8595.59</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"required_generate_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"satoshi_per_byte"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"withdraw_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin_like"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"data_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"enable_address_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"explorerAddressURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bismuth.online/search?quicksearch="</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"explorerTransactionURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bismuth.online/search?quicksearch="</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12891653720125376</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.25"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bismuth"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"deposit_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bismuth"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_cancel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_trade"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_view"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0025"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"delisting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/13/2018"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"market_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delisting Notice: This market has been delisted due to low volume. Please cancel your orders and withdraw your funds by 12/13/2018."</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warning"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0025"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_cancel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_trade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"can_view"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.005"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"tickers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO_BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000076"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000014"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001324"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000147000191353"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.023086269744836"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001641"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001292"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001646"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.36885974"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25092.46665642"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS_BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001608"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieve All Markets, All Currencies, and All Tickers in one call.</p>
+
+<p><code>GET /v1/common</code></p>
+<h2 id='ticker'>Ticker</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">tickers</span><span class="p">[</span><span class="s">'VEO_BTC'</span><span class="p">]</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/ticker/VEO_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/ticker/VEO_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -1098,158 +1250,6 @@ Any user or API with access to the account can withdraw to approved addresses wi
 <p>Return parameters are as for Currency.</p>
 
 <p><code>GET /v1/currencies</code></p>
-<h2 id='common'>Common</h2><pre class="highlight python tab-python--PyClient"><code><span class="p">{</span><span class="s">'currencies'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">currencies</span><span class="p">,</span> <span class="s">'markets'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">markets</span><span class="p">,</span> <span class="s">'tickers'</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">tickers</span><span class="p">}</span>
-</code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/common"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/common"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
-</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">"/v1/common"</span><span class="p">);</span>
-<span class="nb">print_r</span><span class="p">(</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$result</span><span class="p">));</span>
-<span class="cp">?&gt;</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.qtrade.io/v1/common
-</code></pre>
-<blockquote>
-<p>200 Response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"currencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"required_generate_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"satoshi_per_byte"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"wif_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMOCoin"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"delisting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/13/2018"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delisted"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin_like"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"explorerAddressURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/address/"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"explorerTransactionURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/tx/"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"p2sh_address_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">8595.59</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"required_generate_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"satoshi_per_byte"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0005"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"withdraw_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin_like"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"can_withdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"data_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"default_signer"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"enable_address_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"explorerAddressURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bismuth.online/search?quicksearch="</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"explorerTransactionURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bismuth.online/search?quicksearch="</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12891653720125376</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"required_confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"withdraw_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.25"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bismuth"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"deposit_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                    </span><span class="s2">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"precision"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bismuth"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"markets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_cancel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_trade"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_view"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0025"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"market_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"delisting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/13/2018"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"market_notices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delisting Notice: This market has been delisted due to low volume. Please cancel your orders and withdraw your funds by 12/13/2018."</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warning"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">]</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0025"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_cancel"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_trade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"can_view"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"market_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.005"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"tickers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMO_BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000076"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000014"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001324"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_avg_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000147000191353"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.023086269744836"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001641"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001292"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001646"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_volume_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.36885974"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"day_volume_market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25092.46665642"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id_hr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BIS_BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001608"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Retrieve All Markets, All Currencies, and All Tickers in one call.</p>
-
-<p><code>GET /v1/common</code></p>
 <h2 id='market'>Market</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">markets</span><span class="p">[</span><span class="s">'VEO_BTC'</span><span class="p">]</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/market/VEO_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/market/VEO_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
@@ -1482,7 +1482,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </tr>
 </tbody></table>
 
-<p><code>GET /v1/market/:market_string/trades</code></p>
+<p><code>GET /v1/market/:market_string/trades?older_than=1000000&amp;newer_than=1</code></p>
 <h2 id='market-orderbook'>Market Orderbook</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/orderbook/VEO_BTC"</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/orderbook/VEO_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/orderbook/VEO_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
@@ -1502,6 +1502,7 @@ Any user or API with access to the account can withdraw to approved addresses wi
             </span><span class="s2">"0.0001032"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"0.00020139"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595029625809804</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sell"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"0.02249"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.99720378"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28"</span><span class="p">,</span><span class="w">
@@ -1510,9 +1511,11 @@ Any user or API with access to the account can withdraw to approved addresses wi
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get orderbook values for the given market. The <code>market_string</code> value should be formatted ala <code>LTC_BTC</code> for the LTC/BTC market.</p>
+<p>Returns the full level 2 order book liquidity aggregated by price. By default the full depth is returned for a given market pair.</p>
 
-<p>Orders are given in a <code>price|amount</code> format, sorted by type.</p>
+<p>Liquidity is returned as two objects (<code>buy</code> and <code>sell</code>) where the keys are the price and the values are the amounts available at that price.</p>
+
+<p>The <code>buy</code> object is returned with prices in ascending order (lowest to highest). The <code>sell</code> object is the opposite, returned in descending order (highest price to lowest price).</p>
 <h3 id='path-variables-5'>Path variables</h3>
 <table><thead>
 <tr>
@@ -1562,7 +1565,18 @@ Any user or API with access to the account can withdraw to approved addresses wi
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Returns lifetime OHLCV data for a specific market. Accepts an interval value which returns OHLCV data in chunks of the specified interval duration.</p>
+<p>Returns OHLCV data for a specific market. Candlesticks are returned newest to oldest, up to the <code>limit</code>. The default limit is 1000 candlesticks.</p>
+
+<p>If you need older data you may specify a <code>start</code> timestamp at an older date. Iteration over older data may be easier by also specifying a limited number of results</p>
+
+<aside class="info">
+  <strong>Zero value intervals omitted</strong>
+  <p>
+    If no trades occurred during an interval no data will be returned for that interval
+  </p>
+</aside>
+
+<p>Candlestick intervals may be specified by providing an <code>interval</code> value which returns OHLCV data in chunks of the specified duration. This value is optional and defaults to 5 minute intervals</p>
 
 <p>Valid interval values include:</p>
 
@@ -1615,6 +1629,25 @@ Any user or API with access to the account can withdraw to approved addresses wi
 <tr>
 <td>interval</td>
 <td>OHLCV data is chunked by this interval</td>
+</tr>
+</tbody></table>
+<h3 id='query-params-2'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>Integer (timestamp)</td>
+<td>Return data only after the provided unix timestamp</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Return up to this number of candlesticks. Max limit is 1000</td>
 </tr>
 </tbody></table>
 
@@ -1702,8 +1735,22 @@ Any user or API with access to the account can withdraw to approved addresses wi
 </span></code></pre>
 <p>Current useable account balances for a user account. Doesn&#39;t include amounts
 currently represented in open orders, pending deposits or withdraws.</p>
+<h3 id='query-params-3'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+</tbody></table>
 
-<p><code>GET /v1/user/balances</code></p>
+<p><code>GET /v1/user/balances?account_id=1000000-2</code></p>
 <h2 id='user-market-view'>User Market View</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/LTC_BTC"</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/market/LTC_BTC"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/market/LTC_BTC"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
@@ -1805,8 +1852,22 @@ currently represented in open orders, pending deposits or withdraws.</p>
 <td>Integer ID (&#39;1&#39;) or a string pair (&#39;LTC_BTC&#39;)</td>
 </tr>
 </tbody></table>
+<h3 id='query-params-4'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+</tbody></table>
 
-<p><code>GET /v1/user/market/:market_string</code></p>
+<p><code>GET /v1/user/market/:market_string?account_id=1000000-2</code></p>
 <h2 id='get-orders'>Get Orders</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">()</span> <span class="c"># returns all orders made by this account</span>
 <span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">(</span><span class="nb">open</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c"># returns only open orders</span>
 <span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="p">(</span><span class="nb">open</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c"># returns only closed orders</span>
@@ -1904,7 +1965,7 @@ If you're searching for an order older than the latest
   <span class="n">oldest_order_id</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="s">"data"</span><span class="p">][</span><span class="s">"orders"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s">"id"</span><span class="p">]</span>
   <span class="n">orders</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/orders"</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">"older_than"</span><span class="p">:</span> <span class="n">oldest_order_id</span><span class="p">})</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-</code></pre><h3 id='query-params-2'>Query params</h3>
+</code></pre><h3 id='query-params-5'>Query params</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1928,6 +1989,11 @@ If you're searching for an order older than the latest
 <td>Filter by opened/closed orders</td>
 </tr>
 <tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+<tr>
 <td>older_than</td>
 <td>Integer</td>
 <td>Expects an order ID and returns orders with an ID &lt; the passed ID</td>
@@ -1939,7 +2005,7 @@ If you're searching for an order older than the latest
 </tr>
 </tbody></table>
 
-<p><code>GET /v1/user/orders</code></p>
+<p><code>GET /v1/user/orders?market_string=ETH_BTC&amp;open=true&amp;account_id=1000000-2&amp;newer_than=1</code></p>
 <h2 id='order-details'>Order Details</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/order/8806681"</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/order/:order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/order/:order_id"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
@@ -2015,6 +2081,7 @@ If you're searching for an order older than the latest
 <h2 id='get-trades'>Get Trades</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">)</span> <span class="c"># returns all trades made by this account</span>
 <span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">,</span> <span class="n">market_id</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span> <span class="c"># returns only trades on the DOGE/BTC market</span>
 <span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">,</span> <span class="n">newer_than</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span> <span class="c"># returns trades more recent than the trade with this ID</span>
+<span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/v1/user/trades'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c"># returns newest trades first</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/trades"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/trades"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -2068,10 +2135,17 @@ If you're searching for an order older than the latest
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Fetches the last 200 trades made by your account.</p>
+<p>By default, fetch the oldest 200 trades made by your master account.</p>
 
-<p>If you need more than the last 200 trades use the <code>older_than</code> param. Passing a trade ID will return only trades which are older than that trade ID.</p>
-<h3 id='query-params-3'>Query params</h3>
+<p>If you want to iterate or need more than the first 200 trades use of the <code>newer_than</code>, <code>older_than</code>, and <code>desc</code> params will be helpful. The <code>newer_than</code> and <code>older_than</code> params expect a trade ID, and results will only include trades which are newer/older than the provided trade ID.</p>
+
+<aside class="warning">
+  <strong>Deprecation Notice</strong>
+  <p>
+    The default behavior of this endpoint will change to return the last 200 trades made instead of the first 200. It is strongly recommended to pass the <code>desc</code> param to preserve expected behavior
+  </p>
+</aside>
+<h3 id='query-params-6'>Query params</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2090,6 +2164,16 @@ If you're searching for an order older than the latest
 <td>Filter results by market string. Mutually exclusive with market_id</td>
 </tr>
 <tr>
+<td>desc</td>
+<td>Boolean</td>
+<td>Returns newest trades first when true</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+<tr>
 <td>older_than</td>
 <td>Integer</td>
 <td>Expects a trade ID and returns trades with an ID &lt; the passed ID</td>
@@ -2101,7 +2185,7 @@ If you're searching for an order older than the latest
 </tr>
 </tbody></table>
 
-<p><code>GET /v1/user/trades</code></p>
+<p><code>GET /v1/user/trades?desc=true&amp;market_string=ETH_BTC&amp;account_id=1000000-2</code></p>
 <h2 id='cancel-order'>Cancel Order</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="mi">109</span><span class="p">}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/cancel_order"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
@@ -2302,8 +2386,22 @@ Successful cancellation returns just a 200 with no payload
 </span></code></pre>
 <p>Returns a list of the user&#39;s Withdraws and metadata including <code>id</code>, <code>amount</code>,
 <code>currency</code>, <code>address</code>, <code>status</code>, <code>network_data</code>, <code>created_at</code> values</p>
+<h3 id='query-params-7'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+</tbody></table>
 
-<p><code>GET /v1/user/withdraws</code></p>
+<p><code>GET /v1/user/withdraws?account_id=1000000-2</code></p>
 <h2 id='deposit-details'>Deposit Details</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"/v1/user/deposit/ab5e1720944065ad64917929082191270896edc1b17d18e921aa5b1b26e18ab4"</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
@@ -2382,8 +2480,22 @@ Successful cancellation returns just a 200 with no payload
 </span></code></pre>
 <p>Returns a list of the user&#39;s Deposits and metadata including <code>id</code>, <code>amount</code>,
 <code>currency</code>, <code>address</code>, <code>status</code>, <code>network_data</code>, <code>created_at</code> values.</p>
+<h3 id='query-params-8'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+</tbody></table>
 
-<p><code>GET /v1/user/deposits</code></p>
+<p><code>GET /v1/user/deposits?account_id=1000000-2</code></p>
 <h2 id='deposit-address'>Deposit Address</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/deposit_address/LTC"</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/v1/user/deposit_address/LTC"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -2471,6 +2583,10 @@ Successful cancellation returns just a 200 with no payload
 <td>Currency is delisted and deposits are no longer accepted</td>
 </tr>
 </tbody></table>
+
+<aside class="info">
+  Deposit addresses are currently only available for Master accounts. Subaccounts cannot be deposited to directly
+</aside>
 <h3 id='path-variables-11'>Path variables</h3>
 <table><thead>
 <tr>
@@ -2518,8 +2634,22 @@ Successful cancellation returns just a 200 with no payload
 <p>Returns a list of the user&#39;s Transfers and metadata. Transfers are a special
 internal movement of funds between qTrade users. User created Transfers are not
 currently supported</p>
+<h3 id='query-params-9'>Query params</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Return data only for the specified account</td>
+</tr>
+</tbody></table>
 
-<p><code>GET /v1/user/transfers</code></p>
+<p><code>GET /v1/user/transfers?account_id=1000000-2</code></p>
 <h2 id='create-sell-limit'>Create Sell Limit</h2><pre class="highlight python tab-python--PyClient"><code><span class="n">api</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s">'sell_limit'</span><span class="p">,</span> <span class="s">'0.01'</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">market_id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s">'sell_limit'</span><span class="p">,</span> <span class="s">'0.01'</span><span class="p">,</span> <span class="n">value</span><span class="o">=.</span><span class="mo">01</span><span class="p">,</span> <span class="n">market_string</span><span class="o">=</span><span class="s">'LTC_BTC'</span><span class="p">)</span>
 </code></pre><pre class="highlight python tab-python--Python"><code><span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s">'amount'</span><span class="p">:</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'market_id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span> <span class="s">'0.01'</span><span class="p">}</span>
@@ -2604,6 +2734,11 @@ removed from your balance immediately. Returns the created order id.</p>
 <td>&quot;DOGE_BTC&quot;</td>
 <td>String identifier of the market.  Mutually exclusive with market_id</td>
 </tr>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Create order for the specified account</td>
+</tr>
 </tbody></table>
 
 <p><code>POST /v1/user/sell_limit</code></p>
@@ -2677,6 +2812,11 @@ if it is not applicable, e.g. if the order executed as maker.</p>
 <td>market_string</td>
 <td>&quot;DOGE_BTC&quot;</td>
 <td>String identifier of the market.  Mutually exclusive with market_id</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Create order for the specified account</td>
 </tr>
 </tbody></table>
 
