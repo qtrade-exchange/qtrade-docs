@@ -548,15 +548,28 @@ endpoints:
 - name: "Market Orderbook"
   request:
     description: |-
-      Get orderbook values for the given market. The `market_string` value should be formatted ala `LTC_BTC` for the LTC/BTC market.
+      Returns the full level 2 order book liquidity aggregated by price. By default the full depth is returned for a given market pair.
 
-      Orders are given in a `price|amount` format, sorted by type.
+      Liquidity is returned as two objects (`buy` and `sell`) where the keys are the price and the values are the amounts available at that price.
+
+      The `buy` object is returned with prices in ascending order (lowest to highest). The `sell` object is the opposite, returned in descending order (highest price to lowest price).
     method: GET
     url:
       path: /v1/orderbook/:market_string
       variable:
       - description: "Integer ID ('1') or a string pair ('LTC_BTC')"
         key: market_string
+      # To be implemented
+      # query:
+      # - description: "Limit the number of returned liquidity rows to this value, moving away from the middle"
+      #   key: limit
+      #   value: Integer
+      # - description: "Limit the returned liquidity to this amount of base currency"
+      #   key: depth
+      #   value: Float
+      # - description: "Select between returning level 1, 2, or 3 data"
+      #   key: level
+      #   value: Integer
   response:
   - body: |-
       {
@@ -566,6 +579,7 @@ endpoints:
                   "0.0001032": "100",
                   "0.00020139": "100"
               },
+              "last_change": 1595029625809804,
               "sell": {
                   "0.02249": "0.99720378",
                   "14": "28",
